@@ -1,0 +1,11 @@
+<div class="userPanel">
+    <div class="current sub"><span class="user">Bienvenue sur Ter Aelis</span></div>
+
+    <div class="sub">
+        {% include "TerAelisUserBundle:Security:login-content.html.twig" %}
+    </div>
+
+    <div class="sub">
+        <a href="{{ path('fos_user_registration_register') }}"><h3>S'enregistrer</h3></a>
+    </div>
+</div>

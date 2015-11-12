@@ -1,0 +1,61 @@
+<div class="sub">
+    <h3>
+        <a class="expand" href="events" src-plus="{{ asset('bundles/teraelisforum/img/global/plus.jpg') }}" src-moins="{{ asset('bundles/teraelisforum/img/global/moins.png') }}">
+            <img src="{{ asset('bundles/teraelisforum/img/global/moins.png') }}" alt="minimiser" title="Minimiser" />
+        </a>
+        <a href="{{ path('taforum_event_list', {pole: pole}) }}">Évènements</a>
+    </h3>
+    <div class="js-events posts">
+        {% if events is empty %}
+            <div class="post">
+                <div class="contenu">
+                    Aucun évènement à venir.
+                </div>
+            </div>
+        {% else %}
+            {% for event in events %}
+                {% set pole_couleur = event.pole %}
+                <div class="post">
+                    <div class="pole {{ pole_couleur }}"></div>
+                    <div class="contenu">
+                        <a href="{{ event.url }}">
+                            <h4>
+                                {% if event.priority %}
+                                    /!\
+                                {% endif %}
+                                {{ event.name }}
+                            </h4>
+                        </a>
+                        <div class="meta">
+                            {{ event.date | localizeddate('none', 'short') }} - {{ event.date |localizeddate('medium', 'none') }}
+                        </div>
+                        <p class="text--not-emphasized align-right separation--important">
+                            {% if is_granted('ROLE_MODO_EVENT') or is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('taforum_event_edit', {
+                                pole: pole,
+                                eventId: event.id
+                                }) }}">Editer</a>
+                                -
+                                <a href="{{ path('taforum_event_delete', {
+                                pole: pole,
+                                eventId: event.id
+                                }) }}">Supprimer</a>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if is_granted('ROLE_CREATE_EVENT') or is_granted('ROLE_ADMIN') %}
+            <div class="post">
+                <p class="contenu align-center text--not-emphasized">
+                    <a href="{{ path('taforum_event_create', {
+                        pole: pole
+                    }) }}">
+                        Créer un nouvel évènement
+                    </a>
+                </p>
+            </div>
+        {% endif %}
+    </div>
+</div>

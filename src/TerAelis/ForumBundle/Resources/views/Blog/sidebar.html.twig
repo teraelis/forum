@@ -1,0 +1,9 @@
+<div class="sidebar">
+    {#{% render(controller("TerAelisForumBundle:Blog:lastComment")) %}#}
+
+    {#{% render(controller("TerAelisForumBundle:Blog:lastSubject")) %}#}
+
+    {% render(controller("TerAelisForumBundle:Blog:sideBar")) %}
+
+    {% include("TerAelisForumBundle:Blog:sidebar-links.html.twig") %}
+</div>

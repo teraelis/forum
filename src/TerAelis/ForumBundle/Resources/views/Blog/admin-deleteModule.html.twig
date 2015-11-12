@@ -1,0 +1,12 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block page %}
+    <h2 class="titrePage">Edition de module</h2>
+    <h2>Etes vous sur de vouloir supprimer le module : {{ module.title }} ?</h2>
+    <div class="formulaire">
+        <form method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-primary" />
+        </form>
+    </div>
+{% endblock %}

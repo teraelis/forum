@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+{% if pole is not defined %}
+    {% if app.request.cookies.has('pole_aff') %}
+        {% set pole = app.request.cookies.get('pole_aff') %}
+    {% else %}
+        {% set pole = 'litterature' %}
+    {% endif %}
+{% endif %}
+
+{% if pole_aff is not defined %}
+    {% set pole_aff = pole %}
+    {% do setSession('pole_aff', pole_aff) %}
+{% endif %}
+
+{% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>{% block title %}Ter Aelis{% endblock %}</title>
+
+        <link rel="canonical" href="{{ canonical(currentPath, pole, pole_aff) }}" />
+        <link rel="icon" href="{{ asset('favicon.ico') }}" />
+
+        <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Rambla:400,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+        {% block stylesheets %}
+            {% if pole_aff == 'litterature' %}
+                {% stylesheets
+                "@TerAelisForumBundle/Resources/assets/css/style-litterature.css"
+                %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+                {% endstylesheets %}
+            {% endif %}
+
+            {% if pole_aff == 'graphisme' %}
+                {% stylesheets
+                "@TerAelisForumBundle/Resources/assets/css/style-graphisme.css"
+                %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+                {% endstylesheets %}
+            {% endif %}
+
+            {% if pole_aff == 'rolisme' %}
+                {% stylesheets
+                "@TerAelisForumBundle/Resources/assets/css/style-rolisme.css"
+                %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+                {% endstylesheets %}
+            {% endif %}
+        {% endblock %}
+    </head>
+    {{ render(controller('TerAelisForumBundle:Cookie:index')) }}
+    <body>
+        <div class="container">
+            <div id="header">
+                <header>
+                    <div id="header_left"></div>
+                    <div id="header_right"></div>
+                    {% block header %}
+                        {% include 'TerAelisForumBundle:Forum:forum_header.html.twig' with {pole: pole} %}
+                    {% endblock %}
+                </header>
+            </div>
+
+            <div id="content">
+                <div id="background_left"></div>
+                <div id="background_right"></div>
+                {% block slider %}{% endblock %}
+                <div id="content_center">
+                    {% block sidebar %}
+                        {% include("TerAelisForumBundle:Forum:sidebar.html.twig") %}
+                    {% endblock %}
+
+                    <div class="content">
+                        {% block content %}
+                            Bienvenue sur Ter Aelis !
+                        {% endblock %}
+                        <span class="lastup up"><a href="#">^</a></span>
+                    </div>
+
+                    {% block enligne %}
+                        {% if __index_ is defined and __index_ == 'true' %}
+                            {{ render(controller('TerAelisForumBundle:Forum:enLigne' , {'pole': pole})) }}
+                            <span class="lastup" class="up"><a href="#">^</a></span>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            </div>
+
+
+            <footer>
+                <p>
+                    {% if app.user is not empty and is_granted("ROLE_ADMIN") %}
+                        <a href="{{ path('admin_home') }}">Panneau d'administration</a><br />
+                    {% endif %}
+                    Site de Ter Aelis
+                </p>
+            </footer>
+        </div>
+
+        {% block javascripts %}
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+            <script src="{{ asset('bundles/teraelisforum/js/jquery-1.11.0.min.js') }}" type="text/javascript"></script>
+            {% javascripts '@TerAelisForumBundle/Resources/assets/js/*' %}
+                <script src='{{ asset_url }}' type='text/javascript'></script>
+            {% endjavascripts %}
+        {% endblock %}
+
+    </body>
+</html>

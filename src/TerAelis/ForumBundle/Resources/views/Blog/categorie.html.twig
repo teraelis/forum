@@ -1,0 +1,18 @@
+{% extends 'TerAelisForumBundle:Blog:layout.html.twig' %}
+
+{% block page %}
+
+    {% block entete %}<h1>Catégorie : {{ categorie_courante.title }}</h1>{% endblock %}
+    <ul class="articles">
+        {% for sujet in sujets %}
+            <li>
+                <span class="categorie">{{ sujet.mainCategorie.title }}</span>
+                <span class="nbCom">{{ sujet.numberComment }}</span>
+                <h2><a href="{{ path('taforum_voirSujet', {pole: 'blog', slug: sujet.slug}) }}">{{ sujet.title }}</a></h2>
+                <span class="info">le {{ sujet.datePublication | localizeddate('none', 'short') }} - {{ sujet.datePublication |localizeddate('medium', 'none') }} par {{ authors(sujet.authors) }}</span>
+                {#<p>{{ sujet.short }}</p>#}
+                <a class="suite" href="{{ path('taforum_voirSujet', {pole: 'blog', slug: sujet.slug}) }}">Lire la suite</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    <h1>Calendrier</h1>
+    <h2>Supprimer un évènement</h2>
+
+    {{ form_start(form) }}
+
+    <div class="error">
+        {{ form_errors(form) }}
+    </div>
+
+    {{ form_row(form.submit, {
+        'attr': {
+            'class': 'btn'
+        }
+    }) }}
+
+    {{ form_end(form) }}
+{% endblock %}

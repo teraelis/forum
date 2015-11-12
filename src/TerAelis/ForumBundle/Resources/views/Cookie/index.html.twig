@@ -1,0 +1,24 @@
+{% if render %}
+    <div class="cookiePanel" id="cookiePanel">
+        En poursuivant votre navigation, vous acceptez l'utilisation de services tiers pouvant installer des cookies.
+        <button type="button" id="acceptCookies" class="btn cookie-btn">Ok</button>
+        <a href="{{ path('orientation') }}" class="btn small-btn cookie-btn">En savoir plus</a>
+    </div>
+
+    <script>
+        (function() {
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                var expires = "expires="+d.toUTCString();
+                document.cookie = cname + "=" + cvalue + "; " + expires;
+            }
+
+            document.getElementById('acceptCookies').addEventListener("click",function(e){
+                var cookiePanel = document.getElementById('cookiePanel');
+                cookiePanel.parentNode.removeChild(cookiePanel);
+                setCookie('accept_cookies', true, 365);
+            },false);
+        })();
+    </script>
+{% endif %}

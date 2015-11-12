@@ -1,0 +1,11 @@
+parameters:
+    sidebar.nbSalon: 5
+services:
+    # websocket chat application
+    teraelis.tchat.persist_chat:
+        class: TerAelis\TChatBundle\Service\PersistTchat
+        arguments: [@doctrine]
+
+    teraelis.tchat.salon_manager:
+        class: TerAelis\TChatBundle\Service\SalonManager
+        arguments: [@doctrine.orm.entity_manager]

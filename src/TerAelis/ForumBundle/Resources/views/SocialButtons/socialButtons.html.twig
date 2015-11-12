@@ -1,0 +1,11 @@
+<div class="socialBar">
+    <div class="button facebookButton">
+        {% if url is defined and url != null %}
+            {% set param = {'url': url} %}
+        {% else %}
+            {% set param = {} %}
+        {% endif %}
+        {{ facebookButton(param) }}
+        {{ googleplusButton(param) }}
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Blog{% endblock %}
+
+{% block header %}
+    <a href="{{ path("taforum_blog") }}"><img src="{{ asset('bundles/teraelisforum/img/'~pole~'/logo.jpg') }}" alt="Ter Aelis Litterature Logo" title="Ter Aelis - Pôle Littéraire"/></a>
+    <nav>
+        <ul class="nav-user">
+            <li><img src="{{ asset('bundles/teraelisforum/img/'~pole~'/orientation.png') }}" alt="Orientation" title="Orientation" /></li>
+            <li><img src="{{ asset('bundles/teraelisforum/img/'~pole~'/membres.png') }}" alt="Membres" title="Membres" /></li>
+            <li><img src="{{ asset('bundles/teraelisforum/img/'~pole~'/rechercher.png') }}" alt="Rechercher" title="Rechercher" /></li>
+        </ul>
+
+        {% render(controller("TerAelisForumBundle:Forum:poleNonVus", {pole: ''})) %}
+
+    </nav>
+{% endblock %}
+
+{% block enligne %}{% endblock %}
+{% block slider %}{% endblock %}
+
+{% block sidebar %}
+    {% include("TerAelisForumBundle:Blog:sidebar.html.twig") %}
+{% endblock %}
+
+{% block content %}
+    {% block page %}
+    {% endblock %}
+{% endblock %}

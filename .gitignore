@@ -1,0 +1,14 @@
+*~
+.idea
+composer.phar
+bin
+vendor
+app/config/parameters.yml
+app/cache
+app/logs
+app/bootstrap.php.cache
+web/emoticons
+web/uploads
+web/css
+web/js
+web/bundles

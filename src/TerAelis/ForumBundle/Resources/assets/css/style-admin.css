@@ -1,0 +1,136 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    background-color: #dddddd;
+}
+
+h1, h2, h3, h4 { color: #333333; }
+a { color: #8D2F39; }
+a:hover, a:active, a:visited { color: #be202b; }
+
+.container {
+    width: 80%;
+    margin: 15px auto 0 auto;
+}
+
+header {
+    text-align: center;
+}
+
+header > a {
+    margin: 10px auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    height: 100px;
+    line-height: 100px;
+    display: block;
+    width: 100%;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+header > nav li {
+    display: inline-block;
+    width: 150px;
+}
+
+#header_left, #header_right, #background_left, #background_right {
+    display: none;
+}
+
+#content {
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+h2.titrePage {
+    text-align: center;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+td {
+    border: 1px solid #000000;
+}
+
+td h3, td p {
+    margin: 2px;
+}
+
+th.align-left {
+    text-align: left;
+}
+
+.lastup {
+    margin: 15px 0;
+    display: block;
+    text-align: center;
+}
+
+.lastup a {
+    text-decoration: none;
+}
+
+footer {
+    clear: both;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 15px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.admin_categorie_formulaire > div > div {
+    padding: 10px;
+    border:1px solid #aaaaaa;
+}
+
+.block {
+    padding: 15px;
+    border: 1px solid #aaaaaa;
+}
+
+.bbcode ul {
+    margin: 0 0 4px;
+    padding: 0;
+}
+
+.bbcode li {
+    display: inline-block;
+}
+
+.bbcode-btn {
+    border: 1px solid #aaaaaa;
+}
+
+ul.bbcode-bar {
+    background: #5b5b5b;
+    border-radius: 2px;
+}
+li:first-child .bbcode-img-btn{
+    padding-left:4px;
+}
+li:last-child .bbcode-img-btn{
+    padding-right:4px;
+}
+.bbcode-img-btn {
+    padding: 4px 0 2px;
+    background: none;
+    display: block;
+    margin: 0;
+}
+.bbcode-img-btn:hover, .bbcode-img-btn:focus, .bbcode-img-btn:active {
+    padding: 4px 0 2px;
+    background: none;
+    display: block;
+    margin: 0;
+}
+.bbcode-img-btn img {
+    vertical-align: bottom;
+}

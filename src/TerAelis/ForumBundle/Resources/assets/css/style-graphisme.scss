@@ -1,0 +1,77 @@
+$interpoleColor: #464646;
+$poleLitte: #a65752;
+$poleGFX: #46a5c3;
+$poleRP: #53a652;
+$poleColor: $poleGFX;
+
+
+$backgroundColor: #1E2531;
+$outerBackgroundColor: #1E2531;
+$innerBackgroundColor: #22262d;
+$behindContentBackground: #2E4048;
+$fontColor: #ffffff;
+$textColor: #ffffff;
+$titleColor: #45a4c1;
+$linkColor: $poleColor;
+$linkHoverColor: #999999;
+
+$emptyBackground: #22262d;
+
+$headerBackground: #42717e;
+$menuHighlightColor: #f1ece6;
+$menuBorder: #42717e;
+
+$catStateBackground: #737373;
+$postsBorder: #fff;
+$lightCellColor: #fff;
+
+$buttonFontColor: #fff;
+$buttonBackgroundColor: #005873;
+$buttonBorderColor: #16161a;
+$buttonHoverColor: #16161a;
+$buttonHoverBackground: #16161a;
+$buttonActiveBackground: #fff;
+$buttonFadeColor: #87959b;
+$buttonFadeBackground: #293740;
+$buttonFadeBorderColor: #3c5059;
+
+$buttonQuote: #426f84;
+$buttonEdit: #264e67;
+$buttonDelete: #59595b;
+$buttonAnswer: #285a73;
+$buttonProfile: #949597;
+$buttonWhite: #ffffff;
+$buttonFade: #949597;
+$buttonFadeWhite: #bbb;
+
+$tableBackground: #22262d;
+$tableBorder: #005873;
+
+$titleBackground: #005873;
+$titleBorderColor: #fff;
+$titleFontColor: #fff;
+$titleFadeColor: $poleColor;
+
+$contentBackground: $tableBackground;
+$contentBorderColor: $tableBorder;
+$contentFadeColor: #999;
+$contentFontColor: $fontColor;
+
+$lastPoleColor: #fff;
+$lastPoleBackground: #005873;
+$lastPoleBorder: #005873;
+$lastColor: #fff;
+$lastBackground: $interpoleColor;
+$lastBorder: $interpoleColor;
+$lastColor: #fff;
+$lastLinkColor: #fff;
+
+$formBackground: $contentBackground;
+
+$EnligneFontColor: $linkColor;
+
+$pole: "graphisme";
+$pole_image_location: "graphisme";
+$global_image_location: "global";
+
+@import 'style';

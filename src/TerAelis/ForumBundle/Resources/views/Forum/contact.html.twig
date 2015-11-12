@@ -1,0 +1,12 @@
+{% if author is not empty %}
+    <div class="contact">
+        <a class="small-btn profile img-profile" href="{{ path('user_profile', {id: author.id}) }}">Profil</a>
+        <a class="small-btn profile img-mp" href="{{ path('teraelis_tchat_lone_user', {userId: author.id}) }}">Message privé</a>
+        {% if author.showMail and author.email is defined and author.email != "" %}<a class="small-btn profile" href="{{ author.email }}">Mail</a>{% endif %}
+        {% if author.skype is defined and author.skype != "" %}<a class="small-btn profile" href="skype:{{ author.skype }}?chat">Skype</a>{% endif %}
+        {% if author.facebook is defined and author.facebook != "" %}<a class="small-btn profile" href="{{ author.facebook }}">Facebook</a>{% endif %}
+        {% if author.twitter is defined and author.twitter != "" %}<a class="small-btn profile" href="{{ author.twitter }}">Twitter</a>{% endif %}
+        {% if author.deviantart is defined and author.deviantart != "" %}<a class="small-btn profile" href="{{ author.deviantart }}">Deviantart</a>{% endif %}
+        {% if author.site is defined and author.site != "" %}<a class="small-btn profile" href="{{ author.site }}">Site web</a>{% endif %}
+    </div>
+{% endif %}

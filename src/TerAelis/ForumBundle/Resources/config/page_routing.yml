@@ -1,0 +1,25 @@
+taforum_page:
+    path:      /{pagePermalink}
+    defaults:  { _controller: TerAelisForumBundle:Page:page }
+    requirements:
+        pagePermalink: \w+
+
+taforum_admin_pages:
+    path:      /admin/pages
+    defaults:  { _controller: TerAelisForumBundle:Page:adminPages }
+
+taforum_admin_page_add:
+    path:      /admin/pages/add
+    defaults:  { _controller: TerAelisForumBundle:Page:adminPageAdd }
+
+taforum_admin_page:
+    path:      /admin/pages/{pagePermalink}
+    defaults:  { _controller: TerAelisForumBundle:Page:adminPageEdit }
+    requirements:
+        pagePermalink: \w+
+
+taforum_admin_page_delete:
+    path:      /admin/pages/{pagePermalink}/delete
+    defaults:  { _controller: TerAelisForumBundle:Page:adminPageDelete }
+    requirements:
+        pagePermalink: \w+

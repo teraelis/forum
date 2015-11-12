@@ -1,0 +1,12 @@
+<ul>
+    {% for sujet in nonLus %}
+        <li>
+            Non lu : <a href="{{ path('taforum_voirSujet', {pole: pole, slug: sujet.post.slug}) }}">{{ sujet.post.title }}</a> - {{ authors(sujet.post.authors) }}
+        </li>
+    {% endfor %}
+    {% for sujet in lus %}
+        <li>
+            Lu : <a href="{{ path('taforum_voirSujet', {pole: pole, slug: sujet.post.slug}) }}">{{ sujet.post.title }}</a> - {{ authors(sujet.post.authors) }}
+        </li>
+    {% endfor %}
+</ul>

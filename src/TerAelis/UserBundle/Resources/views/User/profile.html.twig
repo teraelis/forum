@@ -1,0 +1,59 @@
+{% extends 'TerAelisUserBundle:User:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ user.username }}{% endblock %}
+
+{% block page %}
+    <header></header>
+    <section class="infos">
+        <div class="statut">
+            {% include 'TerAelisForumBundle:Forum:leftProfil.html.twig' with {author: user, profil: 1} %}
+        </div>
+        <div class="apropos">
+            <div class="table">
+                <div class="row">
+                    <div class="statistiques">
+                        <h2>Statistiques</h2>
+                        <ul>
+                            <li>Sujets ouverts : {{ user.nbSujets }} - <a href="{{ path('user_listSujet', {id: user.id}) }}">Afficher la liste</a></li>
+                            <li>Commentaires : {{ user.nbCommentaires }} - <a href="{{ path('user_listCommentaire', {id: user.id}) }}">Afficher la liste</a></li>
+                            <li>Messages privés : {{ user.nbMessages }}</li>
+                            <li>Dernière visite :
+                                {% if user.visible %}
+                                    {{ user.lastVisit | localizeddate('none', 'short') }} - {{ user.lastVisit |localizeddate('medium', 'none') }}
+                                {% else %}
+                                    Inconnue
+                                {% endif %}
+                            </li>
+                            {% if user.id == app.user.id or is_granted('ROLE_ADMIN')%}
+                                <li>
+                                    <a href="{{ path('user_unpublished', { id: user.id }) }}">
+                                        Voir mes sujets non publiés
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="contact">
+                        <h2>Contact</h2>
+                        <ul>
+                            <li>Message privé : <a href="{{ path('teraelis_tchat_lone_user', {userId: user.id}) }}">Discuter</a></li>
+                            {% if user.skype != "" %}<li><a href="skype:{{ user.skype }}?chat">Skype : {{ user.skype }}</a></li>{% endif %}
+                            {% if user.facebook != "" %}<li><a href="{{ user.facebook }}">Facebook</a></li>{% endif %}
+                            {% if user.twitter != "" %}<li><a href="{{ user.twitter }}">Twitter</a></li>{% endif %}
+                            {% if user.deviantart != "" %}<li><a href="{{ user.deviantArt }}">DeviantArt</a></li>{% endif %}
+                            {% if user.site != "" %}<li><a href="{{ user.site }}">Site web</a></li>{% endif %}
+                            {% if user.showMail %}<li><a href="mailto:{{ user.email }}">Mail : {{ user.email }}</a></li>{% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bio">
+            {% if user.biographie is defined and user.biographie is not null %}
+            <h2>Biographie</h2>
+            <p>{{ user.biographie |  bbcode_filter('my_default_filter') }}</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

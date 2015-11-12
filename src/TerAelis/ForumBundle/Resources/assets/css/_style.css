@@ -1,0 +1,70 @@
+/*
+Error: Undefined variable: "$backgroundColor".
+        on line 11 of style.scss
+
+6: body {
+7:   font-size: 12px;
+8:   font-family: Rambla;
+9:   padding: 0px;
+10:   margin: 0 0 -10px 0;
+11:   background-color: $backgroundColor;
+12: }
+13: 
+14: div, span {
+15:   margin: 0;
+16:   padding: 0;
+
+Backtrace:
+style.scss:11
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/script/tree/variable.rb:49:in `_perform'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/script/tree/node.rb:50:in `perform'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:394:in `visit_prop'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/stack.rb:79:in `block in with_base'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:430:in `block (2 levels) in visit_rule'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:430:in `map'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:430:in `block in visit_rule'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:428:in `visit_rule'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/stack.rb:79:in `block in with_base'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `map'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:157:in `visit'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/root_node.rb:36:in `css_tree'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/engine.rb:368:in `_render_with_sourcemap'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/engine.rb:285:in `render_with_sourcemap'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:209:in `each'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/plugin.rb:82:in `update_stylesheets'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/exec/sass_scss.rb:361:in `watch_or_update'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/exec/base.rb:52:in `parse'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/lib/sass/exec/base.rb:19:in `parse!'
+/var/lib/gems/2.1.0/gems/sass-3.4.13/bin/scss:13:in `<top (required)>'
+/usr/local/bin/scss:23:in `load'
+/usr/local/bin/scss:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$backgroundColor\".\A         on line 11 of style.scss\A \A 6: body {\A 7:   font-size: 12px;\A 8:   font-family: Rambla;\A 9:   padding: 0px;\A 10:   margin: 0 0 -10px 0;\A 11:   background-color: $backgroundColor;\A 12: }\A 13: \A 14: div, span {\A 15:   margin: 0;\A 16:   padding: 0;"; }

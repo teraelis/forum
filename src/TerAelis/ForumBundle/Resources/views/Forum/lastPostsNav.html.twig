@@ -1,0 +1,11 @@
+<ul class="poles">
+    {% if pole != 'litterature' %}
+        <li><a class="navbar_pole litte" href="{{ path("taforum_forum", {pole: "litterature"}) }}">{{ litte }}</a></li>
+    {% endif %}
+    {% if pole != 'graphisme' %}
+        <li><a class="navbar_pole gfx" href="{{ path("taforum_forum", {pole: "graphisme"}) }}">{{ gfx }}</a></li>
+    {% endif %}
+    {% if pole != 'rolisme' %}
+        <li><a class="navbar_pole rp" href="{{ path("taforum_forum", {pole: "rolisme"}) }}">{{ rp }}</a></li>
+    {% endif %}
+</ul>

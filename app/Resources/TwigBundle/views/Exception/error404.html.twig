@@ -1,0 +1,11 @@
+{% extends "::errorlayout.html.twig" %}
+
+{% block errorTitle %}
+    La page demandée n'existe plus !
+{% endblock %}
+{% block errorSpecific %}
+    <p>
+        Nous n'avons pas trouvé la page que vous demandez. Peut-être n'existe-t-elle plus ?
+    </p>
+{% endblock %}
+

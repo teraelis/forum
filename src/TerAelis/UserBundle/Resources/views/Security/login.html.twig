@@ -1,0 +1,11 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    <h1>Se connecter</h1>
+    {% if error %}
+        <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+    {% endif %}
+
+    {% include "FOSUserBundle:Security:login-form.html.twig" %}
+
+{% endblock fos_user_content %}

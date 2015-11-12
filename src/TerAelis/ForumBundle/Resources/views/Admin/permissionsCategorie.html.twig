@@ -1,0 +1,7 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block page %}
+    <h2 class="titrePage">Permissions de la catégorie : {{ categorie.title }}</h2>
+
+    {% include 'TerAelisForumBundle:Admin:permissions.html.twig' with {'permissions': permissions, 'categorie': categorie, type: 'categorie' } %}
+{% endblock %}

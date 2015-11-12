@@ -1,0 +1,21 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    {% if title is defined and title is not empty %}
+        <h2>{{ title }}</h2>
+    {% endif %}
+
+
+    {% if description is defined and description is not empty %}
+        <p>{{ description | raw}}</p>
+    {% endif %}
+
+    <div class="formulaire">
+        <form method="post" {{ form_enctype(form) }}>
+            <div class="block">
+                {{ form_widget(form) }}
+            </div>
+            <input type="submit" class="btn btn-primary" value="{{ button }}" />
+        </form>
+    </div>
+{% endblock %}

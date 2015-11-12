@@ -1,0 +1,11 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    <h1>Tag : {{ tag.tag }}</h1>
+
+    <h2>Liste des posts</h2>
+    {# Affichage des sujets relayés par le controlleur #}
+    {% if posts is defined and posts != null %}
+        {% include "TerAelisForumBundle:Forum:listePosts.html.twig" with {'sujets': posts} %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,57 @@
+<div class="userPanel">
+    <div class="current sub">
+        <span class="user">
+            {{ showUsername(app.user, true) }}
+            <span class="status">
+                <p>En ligne</p>
+                <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+            </span>
+        </span>
+        {% if is_granted("ROLE_ADMIN") %}
+        <a href="{{ path('admin_home') }}">Panneau d'administration</a>
+        {% endif %}
+    </div>
+
+    {# On affiche les messages flash que définissent les contrôleurs du bundle #}
+    {% if is_granted("ROLE_ADMIN") %}
+        {% for key, message in app.session.flashbag.get('notice') %}
+            <div class="alert">
+                {#{{ message|trans({}, 'FOSUserBundle') }}#}{{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="sub">
+        <h3><a class="expand" href="profile" src-plus="{{ asset('bundles/teraelisforum/img/global/plus.jpg') }}" src-moins="{{ asset('bundles/teraelisforum/img/global/moins.png') }}"><img src="{{ asset('bundles/teraelisforum/img/global/moins.png') }}" alt="minimiser" title="Minimiser" /></a><a href="{{ path('user_profile', {'id': app.user.id}) }}"><img src="{{ asset('bundles/teraelisforum/img/menu/profil.png') }}" alt="" title="Profil" />Profil</a></h3>
+        <div class="profile js-profile">
+            <p>
+                Dernière visite : {% if app.user.visible %}{{ app.user.lastVisit | localizeddate('none', 'short') }}{% else %}Inconnue{% endif %}<br />
+            </p>
+        </div>
+    </div>
+    <div class="sub">
+        <h3>
+            <a class="expand" href="messagerie" src-plus="{{ asset('bundles/teraelisforum/img/global/plus.jpg') }}" src-moins="{{ asset('bundles/teraelisforum/img/global/moins.png') }}">
+                <img src="{{ asset('bundles/teraelisforum/img/global/moins.png') }}" alt="minimiser" title="Minimiser" />
+            </a>
+            <a href="{{ path('teraelis_tchat') }}">
+                {% if hasNewMessage %}
+                    <img style="margin: -4px 0 -4px -4px;" src="{{ asset('bundles/teraelisforum/img/menu/messagerie_nonvu.png') }}" alt="" title="Messagerie" />
+                {% else %}
+                    <img src="{{ asset('bundles/teraelisforum/img/menu/messagerie.png') }}" alt="" title="Messagerie" />
+                {% endif %}
+                Messagerie
+            </a>
+        </h3>
+        <div class="messagerie js-messagerie">
+            {{ render(controller("TerAelisTChatBundle:Salon:getSideBar", {user: app.user})) }}
+        </div>
+
+    </div>
+    {#<div class="sub">#}
+        {#<h3><a class="expand" href="surveilles" src-plus="{{ asset('bundles/teraelisforum/img/global/plus.jpg') }}" src-moins="{{ asset('bundles/teraelisforum/img/global/moins.png') }}"><img src="{{ asset('bundles/teraelisforum/img/global/moins.png') }}" alt="minimiser" title="Minimiser" /></a><img src="{{ asset('bundles/teraelisforum/img/menu/sujetsurveille.png') }}" alt="" title="Sujets surveillés" />Sujets surveillés</h3>#}
+        {#<div class="surveilles js-surveilles">#}
+            {#{{ render(controller("TerAelisUserBundle:User:listFollow", {pole: pole})) }}#}
+        {#</div>#}
+
+    {#</div>#}
+</div>

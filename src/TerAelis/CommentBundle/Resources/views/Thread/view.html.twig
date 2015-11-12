@@ -1,0 +1,60 @@
+<section class="thread commentaires">
+    <header>
+        {% include "TerAelisCommentBundle:Thread:buttons.html.twig" with {
+            peutRepondre: repondreSujet,
+            thread: thread,
+            answer: answer,
+            moderer: moderer,
+            sujet: sujet
+        } %}
+
+        {% if answer == 0 and thread.numberComment > 0 %}
+            {# page navigation #}
+            {% include "TerAelisForumBundle:Forum:pageNav.html.twig" with {
+                numberComment: thread.numberComment,
+                nbCommentPerPage: nbCommentPerPage,
+                active: page,
+                path: path('taforum_voirSujet', {'pole': pole_aff, 'slug': slug})
+            } %}
+        {% endif %}
+    </header>
+
+    {% if thread.numberComment > 0 %}
+        <div class="comments">
+            {% for comment in comments %}
+                {% include 'TerAelisCommentBundle:Comment:view.html.twig' with {
+                    'comment': comment,
+                    'editerMessage': editerMessage and comment.author.id == user.id,
+                    'moderer': moderer,
+                    'supprimerMessage': supprimerMessage and comment.author.id == user.id and postLastComment <= comment.createdAt,
+                    'repondreSujet': repondreSujet,
+                    'answer': answer,
+                    'thread': thread,
+                    'pole': pole_aff,
+                    'last' : loop.last,
+                    'nonVu' : (nonVu is null or nonVu.comment is empty ? null : nonVu.comment),
+                    'slug': slug,
+                    'currentPage': page
+                } %}
+            {% endfor %}
+        </div>
+
+        <footer>
+            {# page navigation #}
+            {% if answer == 0 and thread.numberComment > 0 %}
+            {% include "TerAelisForumBundle:Forum:pageNav.html.twig" with {
+                numberComment: thread.numberComment,
+                nbCommentPerPage: nbCommentPerPage,
+                active: page,
+                path: path('taforum_voirSujet', {'pole': pole_aff, 'slug': slug})
+            } %}
+            {% endif %}
+
+            {% include "TerAelisCommentBundle:Thread:buttons.html.twig" with {
+                peutRepondre: repondreSujet,
+                thread: thread,
+                answer: answer
+            } %}
+        </footer>
+    {% endif %}
+</section>

@@ -1,0 +1,35 @@
+<ul class="categories {{ pole }} change">
+    {% for child in categories %}
+        {% if voirCategorie is not empty and voirCategorie[child.id] is defined and voirCategorie[child.id] == 1 %}
+            {# On affiche que celles où l'utilisateur a le droit d'aller #}
+            <li class="cat">
+                <span class="cat_state">
+                    <a href="{{ path('taforum_forum', {'pole': pole_aff, 'slug': child.slug}) }}"><img src="{{ asset('bundles/teraelisforum/img/global/'~(child.new ? '' : 'pas')~'nouveau.'~(child.new ? 'gif' : 'jpg')) }}" alt="{{ child.new ? 'N' : 'Pas de n' }}as de nouveau message" title="{{ child.new ? 'N' : 'Pas de n' }}ouveau message" /></a>
+                </span>
+                <span class="cat_description">
+                    <h3><a href="{{ path('taforum_forum', {'pole': pole_aff, 'slug': child.slug}) }}">{{ child.title }}</a></h3>
+
+                    <p><em>{{ child.numberPost }}</em> sujets - <em>{{ child.numberComment }}</em> messages</p>
+                    <p>{{ child.description }}</p>
+                </span>
+                <span class="cat_last">
+                    {% if child.lastPost is defined and child.lastPost is not null %}
+                        <a class="lienimage" href="{{ path("taforum_voirSujet_last", {'pole': pole_aff, 'slug': child.lastPost.slug}) }}"><img src="{{ asset('bundles/teraelisforum/img/'~pole~'/last_message.png') }}" alt="Aller au dernier message" title="Aller au dernier message" /></a>
+                    {% endif %}
+                    <h4>Dernier message</h4>
+                    <p>
+                        {% if child.lastPost is defined and child.lastPost is not null %}
+                            <span class="cat_last_title">
+                                <a href="{{ path("taforum_voirSujet_last", {'pole': pole_aff, 'slug': child.lastPost.slug}) }}">{{ short((child.lastPost.getBalise() is not empty ? '['~child.lastPost.getBalise().getCourt()~'] ' : '' ) ~ child.lastPost.title) }}</a><br />
+                            </span>
+                            {{ child.lastPost.lastComment | localizeddate('none', 'short') }} - {{ child.lastPost.lastComment |localizeddate('medium', 'none') }}<br />
+                            {{ authors(child.lastPost.getLastAuthor(), true) }}
+                        {% else %}
+                            Pas de message
+                        {% endif %}
+                    </p>
+                </span>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

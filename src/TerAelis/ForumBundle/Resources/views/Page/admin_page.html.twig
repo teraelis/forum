@@ -1,0 +1,27 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block page %}
+    <h2>Pages</h2>
+
+    <a href="{{ path('taforum_admin_page_add') }}">
+        Ajouter une page
+    </a>
+
+    <ul>
+        {% for page in pages %}
+        <li>
+            <a href="{{ path('taforum_admin_page', {
+                pagePermalink: page.pagePermalink
+            }) }}">
+                {{ page.pageTitle }}
+            </a>
+            -
+            <a href="{{ path('taforum_admin_page_delete', {
+                pagePermalink: page.pagePermalink
+            }) }}">
+                Supprimer
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

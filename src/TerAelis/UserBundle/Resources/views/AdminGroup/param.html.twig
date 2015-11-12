@@ -1,0 +1,54 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block page %}
+<h2 class="titrePage">Edition de groupe</h2>
+<div class="formulaire">
+    <form method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-primary"{% if submit is defined and submit is not null %} value="{{ submit }}"{% endif %} />
+    </form>
+</div>
+
+
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var $container = $('div#teraelis_userbundle_grouptype_roles');
+        var $lienAjout = $('<a href="#" id="ajout_role" class="btn">Ajouter un rôle</a>');
+        $container.append($lienAjout);
+        $lienAjout.click(function(e) {
+            ajouterRole($container);
+            e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+            return false;
+        });
+
+        var index = $container.find(':input').length;
+        if (index != 0) {
+            $container.children('div').each(function() {
+                ajouterLienSuppression($(this));
+            });
+        }
+
+        // La fonction qui ajoute un formulaire Categorie
+        function ajouterRole($container) {
+            var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'Rôle n°' + (index+1))
+                    .replace(/__name__/g, index));
+            ajouterLienSuppression($prototype);
+            $container.append($prototype);
+            index++;
+        }
+
+        // La fonction qui ajoute un lien de suppression d'une catégorie
+        function ajouterLienSuppression($prototype) {
+            $lienSuppression = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+            $prototype.append($lienSuppression);
+            $lienSuppression.click(function(e) {
+                $prototype.remove();
+                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                return false;
+            });
+        }
+    });
+</script>
+{% endblock %}

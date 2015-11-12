@@ -1,0 +1,35 @@
+<div class="sub">
+    <h3><a class="expand" href="posts" src-plus="{{ asset('bundles/teraelisforum/img/global/plus.jpg') }}" src-moins="{{ asset('bundles/teraelisforum/img/global/moins.png') }}"><img src="{{ asset('bundles/teraelisforum/img/global/moins.png') }}" alt="minimiser" title="Minimiser" /></a>Ailleurs, ça cause</h3>
+    <div class="posts js-posts">
+    {% for post in posts %}
+        <div class="post">
+            {% if post.cat == litte %}
+                {% set pole_couleur = 'litterature' %}
+            {% elseif post.cat == rp %}
+                {% set pole_couleur = 'rolisme' %}
+            {% elseif post.cat == gfx %}
+                {% set pole_couleur = 'graphisme' %}
+            {% else %}
+                {% set pole_couleur = '' %}
+            {% endif %}
+            <div class="pole {{ pole_couleur }}"></div>
+            <div class="contenu">
+                <a href="{{ path("taforum_voirSujet_last", {'pole': pole, 'slug': post.slug}) }}"><h4>{%  if post.balise is not null %}[{{ post.balise.getCourt() }}]{% endif %} {{ veryShort(post.title) }}</h4></a>
+                <span class="meta">
+                    {{ post.lastComment | localizeddate('none', 'short') }} - {{ post.lastComment |localizeddate('medium', 'none') }}<br />
+                    {% if post.type == 'post' %}
+                    {{ authors(post.authors) }}
+                    {% else %}
+                    {{ showUsername(post.author) }}
+                    {% endif %}
+                </span>
+                {% if post.type == 'post' %}
+                <p>{{ shortText(post.content)|bbcode_clean }}</p>
+                {% else %}
+                <p>{{ shortComment(post.content)|bbcode_clean }}</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>

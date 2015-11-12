@@ -1,0 +1,57 @@
+#ter_aelis_t_chat_rest:
+#    resource: "@TerAelisTChatBundle/Resources/config/routing_rest.yml"
+#    prefix:   /api
+
+ter_aelis_t_chat:
+    resource: "@TerAelisTChatBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ter_aelis_statistiques:
+    resource: "@TerAelisStatistiquesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ter_aelis_user:
+    resource: "@TerAelisUserBundle/Resources/config/routing/user.yml"
+    prefix:   /membres
+
+ter_aelis_user_admin:
+    resource: "@TerAelisUserBundle/Resources/config/routing/admin_user.yml"
+    prefix:   /
+
+ter_aelis_group:
+    resource: "@TerAelisUserBundle/Resources/config/routing/group.yml"
+    prefix: /
+
+ter_aelis_rang:
+    resource: "@TerAelisUserBundle/Resources/config/routing/rang.yml"
+    prefix:   /admin/rang
+
+ter_aelis_forum:
+    resource: "@TerAelisForumBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ter_aelis_comment:
+    resource: "@TerAelisCommentBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+fos_user_change_password:
+    pattern:  /change-password
+    defaults: { _controller: TerAelisUserBundle:ChangePassword:changePassword}
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+ter_aelis_pages:
+    resource: "@TerAelisForumBundle/Resources/config/page_routing.yml"
+    prefix:   /

@@ -1,0 +1,13 @@
+{% extends 'TerAelisTChatBundle:Salon:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ salon.name }}{% endblock %}
+
+{% block titrepage %}{{ salon.name }}{% endblock %}
+{% block page %}
+<div class="formulaire">
+    <form method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-primary" value="{{ submit }}" />
+    </form>
+</div>
+{% endblock %}

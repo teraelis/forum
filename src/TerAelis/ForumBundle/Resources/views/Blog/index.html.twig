@@ -1,0 +1,8 @@
+{% extends 'TerAelisForumBundle:Blog:categorie.html.twig' %}
+{% set __index_ = 'true' %}
+
+{% block slider %}
+    {% render(controller('TerAelisForumBundle:Blog:slider')) %}
+{% endblock %}
+
+{% block entete %}<h1>Carnet d'actualité</h1>{% endblock %}

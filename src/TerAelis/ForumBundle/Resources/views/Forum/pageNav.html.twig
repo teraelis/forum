@@ -1,0 +1,27 @@
+{% if numberComment > 6 * nbCommentPerPage %}
+    <div class="nav_page js-open-page">
+        Pages :
+        {% set max = (numberComment / nbCommentPerPage)|round(0, 'ceil') %}
+        {% for i in 1..3 %}
+            <a class="btn small-btn {% if page is defined and page == i %}active{% endif %}" href="{{ path }}/{{ i }}">{{ i }}</a>
+        {% endfor %}
+
+        <button type="button" class="btn small-btn {% if page is defined and page > 3 and page < max - 2 %}active{% endif %} js-toggle-button">...</button>
+
+        {% for i in max-2..max %}
+            <a class="btn small-btn {% if page is defined and page == i %}active{% endif %}" href="{{ path }}/{{ i }}">{{ i }}</a>
+        {% endfor %}
+
+        <form class="js-choose-page block choose-page align-center" style="display: none;" data-url="{{ path }}/%%page%%">
+            <input type="number" value="{{ page }}" name="chosen_page" class="align-center js-chosen-page" />
+            <button type="submit" class="btn small-btn">Ouvrir</button>
+        </form>
+    </div>
+{% elseif numberComment > nbCommentPerPage %}
+    <div class="nav_page">Pages :
+        {% set max = (numberComment / nbCommentPerPage)|round(0, 'ceil') %}
+        {% for i in 1..max %}
+            <a class="btn small-btn {% if page is defined and page == i %}active{% endif %}" href="{{ path }}/{{ i }}">{{ i }}</a>
+        {% endfor %}
+    </div>
+{% endif %}

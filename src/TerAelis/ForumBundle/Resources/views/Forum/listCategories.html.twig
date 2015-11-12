@@ -1,0 +1,19 @@
+<ul class="cat_pole {{ pole }}">
+    {% for categorie in categories %}
+        {% if not voirCategorie is empty and voirCategorie[categorie.id] is defined and voirCategorie[categorie.id] == 1 %}
+            <li class="expandable" id="cat-{{ categorie.id }}">
+                <a class="expand" href="cat-{{ categorie.id }}" src-plus="{{ asset('bundles/teraelisforum/img/global/plus.jpg') }}" src-moins="{{ asset('bundles/teraelisforum/img/global/moins.png') }}"><img src="{{ asset('bundles/teraelisforum/img/global/moins.png') }}" alt="minimiser" title="Minimiser" /></a> <a href="{{ path("taforum_forum", {'pole': pole_aff, 'slug': categorie.slug}) }}">
+                    <h2>{{ categorie.title }}</h2>
+                </a>
+                {% include "TerAelisForumBundle:Forum:listSubCategories.html.twig" with {
+                    'categories': categorie.children,
+                    'voirCategorie': voirCategorie,
+                    'pole': pole,
+                    'pole_aff': pole_aff
+                } %}
+
+                <hr />
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

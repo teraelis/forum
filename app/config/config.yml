@@ -1,0 +1,139 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: %locale% }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_proxies: ~
+    session:         ~
+    fragments:       ~
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+    globals:
+        litterature: 5
+        graphisme: 6
+        rolisme: 7
+        interpole: 8
+        blog: -1
+
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:        [ "TerAelisForumBundle", "TerAelisTChatBundle" ]
+    filters:
+        cssrewrite: ~
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: %kernel.root_dir%/data/data.db3
+        # path:     %database_path%
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+    spool:     { type: memory }
+
+# FOSUser Configuration
+fos_user:
+    db_driver:     orm                        # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
+    firewall_name: main                       # Le nom du firewall derrière lequel on utilisera ces utilisateurs
+    user_class:    TerAelis\UserBundle\Entity\User # La classe de l'entité User que nous utilisons
+    group:
+        group_class: TerAelis\UserBundle\Entity\Group
+
+# Stof\DoctrineExtensionBundle configuration
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true
+            tree: true
+
+fm_bbcode:
+    filter_sets:
+        my_default_filter:
+            strict: false # if you want to parse attr values without quotes
+            locale: %locale%
+            xhtml: true
+            filters: [ default, text, block, code, image, list, table, quote, url, iframe, ancre, nicetext ]
+        my_admin_filter:
+            strict: false # if you want to parse attr values without quotes
+            escaping: false
+            locale: %locale%
+            xhtml: true
+            filters: [ default, text, block, code, image, list, table, quote, url, iframe, ancre, nicetext ]
+    emoticon:
+        resource: %kernel.root_dir%/../src/TerAelis/ForumBundle/Resources/config/emoticons.yml
+    config:
+        templates:
+            - path: @TerAelisForumBundle/Resources/views/templates
+
+services:
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+            - { name: twig.extension }
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+
+sensio_framework_extra:
+    view:
+        annotations: false
+#
+#p2_ratchet:
+#    provider: ~             # The client provider to use, null for default
+#    address: 0.0.0.0        # The address to receive sockets on (0.0.0.0 means receive from any)
+#    port: 8080              # The port the socket server will listen on
+
+lexik_maintenance:
+    authorized:
+        host: teraelis.vlynn.fr
+        ips: ['127.0.0.1']
+    driver:
+        ttl: 600                                                                  # Optional ttl option, can be not set
+
+         # File driver
+        class: '\Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver'                # class for file driver
+        options: {file_path: %kernel.root_dir%/cache/lock}                         # file_path is the complete path for create the file
+
+        # Database driver:
+        class: 'Lexik\Bundle\MaintenanceBundle\Drivers\DatabaseDriver'             # class for database driver
+
+    #Optional. response code and status of the maintenance page
+    response:
+        code: 503
+        status: "Service Temporarily Unavailable"

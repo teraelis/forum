@@ -1,0 +1,27 @@
+{% if answer is not defined or answer == 0 %}
+<div class="thread_buttons">
+    {% if moderer %}
+        <div class="moderation">
+            <a class="small-btn" href="{{ path('taforum_publie', {'pole': pole_aff, 'id': sujet.id }) }}">
+                (Dé)Publier
+            </a>
+            <a class="small-btn img-btn" href="{{ path('taforum_lock', {'pole': pole_aff, 'id': sujet.id }) }}">
+                <img src="{{ asset('bundles/teraelisforum/img/global/verouiller.jpg') }}" alt="(Dé)Verrouiller" title="(Dé)Verrouiller" />
+            </a>
+            <a class="small-btn img-btn" href="{{ path('taforum_supprimer', {'pole': pole_aff, 'id': sujet.id }) }}">
+                <img src="{{ asset('bundles/teraelisforum/img/global/delete.jpg') }}" alt="Supprimer" title="Supprimer" />
+            </a>
+            <a class="small-btn img-btn" href="{{ path('taforum_deplacer', {'pole': pole_aff, 'id': sujet.id }) }}">
+                <img src="{{ asset('bundles/teraelisforum/img/global/move.jpg') }}" alt="Déplacer" title="Déplacer" />
+            </a>
+            {#<a class="small-btn" href="{{ path('taforum_duppliquer_liste_categorie', {'pole': pole_aff, 'id': sujet.id}) }}">Liste catégorie d'affichage</a>#}
+        </div>
+    {% endif %}
+
+    {% if thread.lock %}
+        <span class="btn-disabled">Verrouillé</span>
+    {% elseif peutRepondre %}
+        <a class="btn" href="{{ path("tacomment_repondre", {'pole': pole_aff, 'id': thread.id}) }}">Répondre</a>
+    {% endif %}
+</div>
+{% endif %}

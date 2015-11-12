@@ -1,0 +1,70 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    <h1 class="titreBundle">Répondre</h1>
+
+    {% if notAllowed is defined %}
+        <div class="block">{{ notAllowed }}</div>
+    {% endif %}
+
+    {% if comment is defined and comment is not null %}
+    <div class="comments">
+        {% include 'TerAelisCommentBundle:Comment:view.html.twig' with {
+        'comment': comment,
+        'editerMessage': 0,
+        'moderer': 0,
+        'supprimerMessage': 0,
+        'answer': 1,
+        'thread': thread,
+        'pole': pole_aff
+        } %}
+    </div>
+    {% endif %}
+
+
+    <a href="{{ path('taforum_voirSujet', {
+        pole: pole_aff,
+        slug: post.slug
+    }) }}">Revenir au sujet</a>
+
+
+    <div class="formulaire">
+        <form method="post" {{ form_enctype(form) }}>
+
+            <div class="error">
+                {{ form_errors(form) }}
+            </div>
+
+            <div class="form-field">
+                <div class="form-group">
+                    <div class="form-label">
+                        Contenu de la réponse
+                    </div>
+                    <div class="form-input contenu bbcode">
+                        {{ bbcodeInput('comment', form_errors(form.body), form_widget(form.body)) }}
+                    </div>
+                </div>
+            </div>
+            <div class="single-ligne" style="text-align:center">
+                {{ form_label(form.previsualiser, { 'label': 'Prévisualiser' }) }}
+                {{ form_label(form.publier, { 'label': 'Publier' }) }}
+                {{ form_rest(form) }}
+            </div>
+        </form>
+    </div>
+
+    {{ render(controller('TerAelisCommentBundle:Thread:getThread' , {
+        'pole': pole,
+        'user' : user,
+        'slug': post.slug,
+        'categorie': categorie,
+        'thread' : thread,
+        'answer': 1
+    })) }}
+
+    {% include 'TerAelisForumBundle:Forum:firstPost.html.twig' with {
+        'pole': pole,
+        'answer': 1,
+        'sujet': post
+    } %}
+{% endblock %}

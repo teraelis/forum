@@ -1,0 +1,16 @@
+parameters:
+    nb_commentaires: 15
+    nb_sujets: 15
+    nb_ailleurs: 4
+    nb_slide: 4
+    nb_event: 5
+    featured: -1
+    litterature: 5
+    graphisme: 6
+    rolisme: 7
+    interpole: 8
+    blog: -1
+
+#    invites: 1
+    users:
+        invites: 1

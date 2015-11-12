@@ -1,0 +1,79 @@
+teraelis_tchat_lone_user:
+    pattern:   /messagerie/user/{userId}
+    defaults:  { _controller: TerAelisTChatBundle:Salon:privateDiscussion }
+    requirements:
+        id: \d+
+
+teraelis_tchat:
+    pattern:   /messagerie
+    defaults:  { _controller: TerAelisTChatBundle:Salon:list }
+
+teraelis_tchat_create:
+    pattern:   /messagerie/new
+    defaults:  { _controller: TerAelisTChatBundle:Salon:create }
+
+teraelis_tchat_show:
+    pattern:   /messagerie/{id}
+    defaults:  { _controller: TerAelisTChatBundle:Salon:show }
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+teraelis_tchat_change_name_salon:
+    pattern:   /messagerie/{id}/change
+    defaults:  { _controller: TerAelisTChatBundle:Salon:changeName }
+    requirements:
+        id: \d+
+
+teraelis_tchat_quit:
+    pattern:   /messagerie/{id}/quit/{userId}
+    defaults:  { _controller: TerAelisTChatBundle:Salon:quit, userId: 0 }
+    requirements:
+        id: \d+
+        userId: \d+
+
+teraelis_tchat_addUser:
+    pattern:   /messagerie/{id}/add
+    defaults:  { _controller: TerAelisTChatBundle:Salon:addUser }
+    requirements:
+        id: \d+
+        userId: \d+
+
+teraelis_tchat_promoteUser:
+    pattern:   /messagerie/{id}/up/{userId}
+    defaults:  { _controller: TerAelisTChatBundle:Salon:setModerator }
+    requirements:
+        id: \d+
+        userId: \d+
+
+teraelis_tchat_downgradeUser:
+    pattern:   /messagerie/{id}/down/{userId}
+    defaults:  { _controller: TerAelisTChatBundle:Salon:setUser }
+    requirements:
+        id: \d+
+        userId: \d+
+
+teraelis_tchat_hideMessage:
+    pattern:   /messagerie/{idMessage}/hide
+    defaults:  { _controller: TerAelisTChatBundle:Salon:hide, newVal: 1 }
+    requirements:
+        idMessage: \d+
+    options:
+        expose: true
+
+teraelis_tchat_showMessage:
+    pattern:   /messagerie/{idMessage}/show
+    defaults:  { _controller: TerAelisTChatBundle:Salon:hide, newVal: 0 }
+    requirements:
+        idMessage: \d+
+    options:
+        expose: true
+
+teraelis_tchat_getLastMessage:
+    pattern:   /messagerie/{idSalon}/last/{timestamp}
+    defaults:  { _controller: TerAelisTChatBundle:Message:last }
+    requirements:
+        idSalon: \d+
+    options:
+        expose: true

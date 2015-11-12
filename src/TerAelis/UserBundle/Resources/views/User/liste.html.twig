@@ -1,0 +1,75 @@
+{% extends 'TerAelisUserBundle:User:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - Membres{% endblock %}
+
+{% block page %}
+    <h1>Liste des membres</h1>
+    <table class="listSujets">
+        <thead>
+        <tr>
+            <th width="32%">
+                {% if sort == 'username' and order == 1 %}
+                    <a href="{{ path('user_liste', { sort: 'username', order: 0 }) }}">
+                {% else %}
+                    <a href="{{ path('user_liste', { sort: 'username', order: 1 }) }}">
+                {% endif %}
+                    Nom
+                </a>
+            </th>
+            <th width="17%">
+                {% if sort == 'nbSujets' and order == 1 %}
+                    <a href="{{ path('user_liste', { sort: 'nbSujets', order: 0 }) }}">
+                {% else %}
+                    <a href="{{ path('user_liste', { sort: 'nbSujets', order: 1 }) }}">
+                {% endif %}
+                    Sujets
+                </a>
+            </th>
+            <th width="17%">
+                {% if sort == 'nbCommentaires' and order == 1 %}
+                    <a href="{{ path('user_liste', { sort: 'nbCommentaires', order: 0 }) }}">
+                {% else %}
+                    <a href="{{ path('user_liste', { sort: 'nbCommentaires', order: 1 }) }}">
+                {% endif %}
+                    Commentaires
+                </a>
+            </th>
+            <th width="17%">
+                {% if sort == 'lastVisit' and order == 1 %}
+                    <a href="{{ path('user_liste', { sort: 'lastVisit', order: 0 }) }}">
+                {% else %}
+                    <a href="{{ path('user_liste', { sort: 'lastVisit', order: 1 }) }}">
+                {% endif %}
+                    Dernière visite
+                </a>
+            </th>
+            <th width="17%">Contacter</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>
+                    {{ showUsername(user) }}
+                </td>
+                <td>
+                    {{ user.nbSujets }}
+                </td>
+                <td>
+                    {{ user.nbCommentaires }}
+                </td>
+                <td>
+                    {% if user.visible %}
+                        {{ user.lastVisit | localizeddate('none', 'short') }} - {{ user.lastVisit |localizeddate('medium', 'none') }}
+                    {% else %}
+                        Inconnue
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('teraelis_tchat_lone_user', {userId: user.id}) }}">Discuter</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

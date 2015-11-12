@@ -1,0 +1,44 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+{% set __index_ = 'true' %}
+
+{% block above_path %}
+    {% if categories_pole is defined and categories_pole != null %}
+        {% spaceless %}
+        <div class="cat_shortcuts">
+            {% for categorie in categories_pole %}
+                {% if not voirCategorie is empty and voirCategorie[categorie.id] is defined and voirCategorie[categorie.id] == 1 %}
+                    {% if categorie.image is not empty %}
+                        <a class="cat_pole_left {% if loop.index0 % 2 == 0 %}odd{% endif %}" href="{{ path('taforum_forum', {
+                            pole: pole_aff,
+                            slug: categorie.slug
+                        }) }}"><img src="{{ asset(categorie.image) }}" alt="{{ categorie.title }}" title="Raccourci vers {{ categorie.title }}"/></a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endspaceless %}
+    {% endif %}
+{% endblock %}
+
+{% block page %}
+
+    {# Categories #}
+    {# Affichage des catégories relayées par le controlleur #}
+    {% if categories_pole is defined and categories_pole != null %}
+        {% include "TerAelisForumBundle:Forum:listCategories.html.twig" with {
+        'pole': pole,
+        'pole_aff': pole,
+        'categories': categories_pole,
+        } %}
+    {% endif %}
+
+    {% if categories_inter is defined and categories_inter != null %}
+        {% include "TerAelisForumBundle:Forum:listCategories.html.twig" with {
+        'pole': 'interpole',
+        'pole_aff': pole_aff,
+        'categories': categories_inter,
+        } %}
+    {% endif %}
+
+    {% include "TerAelisForumBundle:Forum:path.html.twig" with {'pole': pole_aff, 'path': path} %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block page %}
+    <h2 class="titrePage">Administration :</h2>
+    <ul>
+        <li><a href="{{ path('admin_typeSujet') }}">Types de sujets</a></li>
+        <li><a href="{{ path('admin_categories') }}">Catégories</a></li>
+        <li><a href="{{ path('admin_users') }}">Utilisateurs</a></li>
+        <li><a href="{{ path('admin_groups') }}">Groupes</a></li>
+        <li><a href="{{ path('admin_rangs') }}">Rangs</a></li>
+        <li><a href="{{ path('admin_modules') }}">Modules - sidebar du blog</a></li>
+        <li><a href="{{ path('taforum_admin_pages') }}">Pages</a></li>
+    </ul>
+{% endblock %}

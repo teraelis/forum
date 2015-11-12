@@ -1,0 +1,37 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block title %}{{ parent() }} - Types de Sujets{% endblock %}
+
+{% block page %}
+    <h2 class="titrePage">Types de sujet</h2>
+    <a href="{{ path('admin_typeSujet_creer') }}">Ajouter un type de sujet</a>
+
+    <table>
+        <tr>
+            <th></th>
+            <th>Type de Sujet</th>
+            <th>Valider</th>
+        </tr>
+        {% for f in form %}
+        <tr>
+            <form method="post" {{ form_enctype(f) }}>
+                <td>
+                    <a href="./types/up/{{ f.vars.value.id }}">Monter</a>
+                    <a href="./types/down/{{ f.vars.value.id }}">Descendre</a>
+                </td>
+                <td>
+                    {{ form_label(f.nom) }}
+                    {{ form_errors(f.nom) }}
+                    {{ form_widget(f.nom) }}
+                </td>
+                <td>
+                    {{ form_rest(f) }}
+                    <input type="submit" class="btn btn-primary" />
+                </td>
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="">Ajouter un type de sujet</a>
+{% endblock %}

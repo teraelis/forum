@@ -1,0 +1,64 @@
+{% extends 'TerAelisUserBundle:User:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ user.username }} - Liste des commentaires{% endblock %}
+
+{% block page %}
+    <h1>Liste des commentaires de {{ showUsername(user) }}</h1>
+    <div class="posts">
+        {% if user.nbCommentaires > nbCommentPerPage %}
+            {% include "TerAelisForumBundle:Forum:pageNav.html.twig" with {
+            numberComment: user.nbCommentaires,
+            nbCommentPerPage: nbCommentPerPage,
+            active: page,
+            path: path('user_listCommentaire', {id: user.id})
+            } %}
+        {% endif %}
+
+        <table class="listSujets">
+            <thead>
+            <tr>
+                <th width="2%"></th>
+                <th width="20%">Titre</th>
+                <th width="20%">Date</th>
+                <th width="58%">Contenu</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for post in sujets %}
+                    <tr class="post">
+                        {% if post['root'] == litte %}
+                            {% set pole_couleur = 'litterature' %}
+                        {% elseif post['root'] == rp %}
+                            {% set pole_couleur = 'rolisme' %}
+                        {% elseif post['root'] == gfx %}
+                            {% set pole_couleur = 'graphisme' %}
+                        {% else %}
+                            {% set pole_couleur = '' %}
+                        {% endif %}
+                        <td class="pole {{ pole_couleur }}"></td>
+                        <td class="title">
+                            <a href="{{ path("taforum_voirSujet_last", {'pole': pole, 'slug': post['slug']}) }}">
+                                <h4>{%  if post['court'] is not null %}[{{ post['court'] }}]{% endif %} {{ post['title'] }}</h4>
+                            </a>
+                        </td>
+                        <td class="contenu">
+                            {{ post[0].createdAt | localizeddate('none', 'short') }} - {{ post[0].createdAt |localizeddate('medium', 'none') }}
+                        </td>
+                        <td class="contenu">
+                            <p>{{ shortComment(post[0])|bbcode_filter('my_default_filter') }}</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% if user.nbCommentaires > nbCommentPerPage %}
+            {% include "TerAelisForumBundle:Forum:pageNav.html.twig" with {
+            numberComment: user.nbCommentaires,
+            nbCommentPerPage: nbCommentPerPage,
+            active: page,
+            path: path('user_listCommentaire', {id: user.id})
+            } %}
+        {% endif %}
+    </div>
+{% endblock %}

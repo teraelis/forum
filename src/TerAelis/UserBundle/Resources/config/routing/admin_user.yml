@@ -1,0 +1,14 @@
+admin_users:
+    path:      /admin/users
+    defaults:  { _controller: TerAelisUserBundle:AdminUser:index }
+
+admin_registration_message:
+    path:      /admin/users/registration
+    defaults:  { _controller: TerAelisUserBundle:AdminUser:updateRegistrationMessage }
+
+admin_users_change:
+    path:      /admin/users/{username}
+    defaults:  { _controller: TerAelisUserBundle:AdminUser:change }
+    requirements:
+        username: .+
+

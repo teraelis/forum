@@ -1,0 +1,86 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    {% if sujet.datePublication > date() %}
+        <div class="block">
+            ATTENTION : Ce sujet n'est pas encore paru. Vous ne pouvez donc pas poster de commentaire.<br />
+            Il sera publier le {{ sujet.datePublication | localizeddate('long', 'none') }} - {{ sujet.datePublication | localizeddate('none', 'medium') }}
+        </div>
+    {% endif %}
+
+    {% if not sujet.publie %}
+        <div class="block">
+            ATTENTION : Ce sujet n'est pas publié. Demandez à un modérateur de le publier afin qu'il soit de nouveau disponible aux autres utilisateurs.
+        </div>
+    {% endif %}
+
+    {% if sondageExiste %}
+        {% if form is defined %}
+            {% include 'TerAelisForumBundle:Forum:firstPost.html.twig' with {
+                'pole': pole,
+                'sondageExiste': sondageExiste,
+                'sondageOuvert': sondageOuvert,
+                'form': form,
+                'choix': choix,
+                'sujet': sujet,
+                'tags': tags,
+                'editerMessage': editerMessage,
+                'supprimerMessage': supprimerMessage,
+                'repondreSujet': repondreSujet,
+                'moderer': moderer,
+                'nonVu': nonVu,
+                'lock': lock
+            } %}
+        {% else %}
+            {% include 'TerAelisForumBundle:Forum:firstPost.html.twig' with {
+                'pole': pole,
+                'sondageExiste': sondageExiste,
+                'sondageOuvert': sondageOuvert,
+                'choix': choix,
+                'sujet': sujet,
+                'tags': tags,
+                'editerMessage': editerMessage,
+                'supprimerMessage': supprimerMessage,
+                'repondreSujet': repondreSujet,
+                'moderer': moderer,
+                'nonVu': nonVu,
+                'lock': lock
+            } %}
+        {% endif %}
+    {% else %}
+        {% include 'TerAelisForumBundle:Forum:firstPost.html.twig' with {
+            'pole': pole,
+            'sondageExiste': sondageExiste,
+            'sujet': sujet,
+            'tags': tags,
+            'editerMessage': editerMessage,
+            'supprimerMessage': supprimerMessage,
+            'repondreSujet': repondreSujet,
+            'moderer': moderer,
+            'nonVu': nonVu,
+            'lock': lock
+        } %}
+    {% endif %}
+
+    {% if sujet.datePublication <= date() %}
+        {% for thread in threads %}
+            {{ render(controller('TerAelisCommentBundle:Thread:getThread' , {
+                'moderer': moderer,
+                'pole': pole,
+                'user' : user,
+                'categorie': categorie,
+                'slug': slug,
+                'post': sujet,
+                'thread': thread,
+                'perm': perm,
+                'page': page,
+                'nonVu': nonVu
+            })) }}
+        {% endfor %}
+    {% endif %}
+
+
+    {% if path is defined %}
+        {% include "TerAelisForumBundle:Forum:path.html.twig" with {'pole': pole, 'path': path} %}
+    {% endif %}
+{% endblock %}

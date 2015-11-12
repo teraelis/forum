@@ -1,0 +1,66 @@
+group_liste:
+    pattern:   /group
+    defaults:  { _controller: TerAelisUserBundle:Group:liste }
+
+group_view:
+    path:      /group/{id}
+    defaults:  { _controller: TerAelisUserBundle:Group:view }
+    requirements:
+        id:  \d*
+
+admingroup_up:
+    path:      /admin/group/{id}/up
+    defaults:  { _controller: TerAelisUserBundle:Group:ordre, sens: -1 }
+    requirements:
+        id:  \d*
+
+admingroup_down:
+    path:      /admin/group/{id}/down
+    defaults:  { _controller: TerAelisUserBundle:Group:ordre, sens: 1 }
+    requirements:
+        id:  \d*
+
+group_add_user:
+    pattern:   /group/{id}/add
+    defaults:  {_controller: TerAelisUserBundle:Group:addUser }
+    requirements:
+        id: \d*
+
+group_remove_user:
+    pattern:   /group/{id}/remove/{idUser}
+    defaults:  {_controller: TerAelisUserBundle:Group:removeUser }
+    requirements:
+        id: \d*
+        idUser: \d*
+
+admin_groups:
+    path:      /admin/groups
+    defaults:  { _controller: TerAelisUserBundle:AdminGroup:index }
+
+admin_group_add:
+    path:      /admin/group/add
+    defaults:  { _controller: TerAelisUserBundle:AdminGroup:add }
+
+admin_group_view:
+    path:      /admin/group/{id}
+    defaults:  { _controller: TerAelisUserBundle:AdminGroup:view }
+    requirements:
+        id:  \d*
+
+admin_group_edit:
+    path:      /admin/group/{id}/edit
+    defaults:  { _controller: TerAelisUserBundle:AdminGroup:edit }
+    requirements:
+        id:  \d*
+
+admin_group_remove:
+    path:      /admin/group/{id}/remove
+    defaults:  { _controller: TerAelisUserBundle:AdminGroup:remove }
+    requirements:
+        id:  \d*
+
+admin_group_permissions:
+    path:      /admin/group/{id}/permissions
+    defaults:  { _controller: TerAelisForumBundle:Permission:viewGroupe }
+    requirements:
+        id:  \d*

@@ -1,0 +1,12 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block page %}
+    <h2 class="titrePage">Gestion des modules</h2>
+    <a href="{{ path('admin_creerModule') }}">Ajouter un module</a>
+
+    <ul>
+    {% for mod in modules %}
+        <li>{{ mod.title }} - <a href="{{ path('admin_editModule', {id: mod.id}) }}">Modifier</a> - <a href="{{ path('admin_delModule', {id: mod.id}) }}">Supprimer</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

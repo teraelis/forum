@@ -1,0 +1,10 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    <div class="formulaire">
+        <form method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-primary" value="Duppliquer" />
+        </form>
+    </div>
+{% endblock %}

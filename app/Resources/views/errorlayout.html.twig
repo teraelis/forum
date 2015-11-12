@@ -1,0 +1,18 @@
+{% extends "::index.html.twig" %}
+
+{% block title %}Ter Aelis - Une erreur est survenue !{% endblock %}
+{% block content %}
+    <h1>{% block errorTitle %}Oops, une erreur est survenue.{% endblock %}</h1>
+
+    {% block page %}
+        {% block errorSpecific %}
+
+        {% endblock %}
+        {% block errorGlobal %}
+            <p>
+                Nous sommes désolé pour la gêne occasionnée.<br>
+                Si l'erreur persiste, veuillez contacter un administrateur pour que celle-ci soit résolue.
+            </p>
+        {% endblock %}
+    {% endblock %}
+{% endblock %}

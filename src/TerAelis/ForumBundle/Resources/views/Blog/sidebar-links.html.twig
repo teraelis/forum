@@ -1,0 +1,14 @@
+<div class="sub">
+    <h2>Logistique</h2>
+    <ul>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {% if is_granted("ROLE_ADMIN") %}
+                <li><a href="{{ path('admin_home') }}">Panneau d'administration</a></li>
+            {% endif %}
+            <li><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>
+        {% else %}
+            <li><a href="{{ path('fos_user_registration_register') }}">S'enregistrer</a></li>
+            <li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
+        {% endif %}
+    </ul>
+</div>

@@ -1,0 +1,27 @@
+<div class="enligne">
+    <img class="left" src="{{ asset('bundles/teraelisforum/img/global/enligne.jpg') }}" alt="qui est en ligne" title="Qui est en ligne ?" />
+    <h2>Qui est en ligne ?</h2>
+    <div class="statistiques">
+        <h3>Statistiques</h3>
+        <p>Total de messages : <em>{{ nbMessages }}</em> - Total de sujets : <em>{{ nbSujets }}</em> - Membres inscrits <em>{{ nbMembres }}</em><br />
+        <a href="{{ path('ter_aelis_statistiques_homepage') }}">Plus de statistiques</a></p>
+    </div>
+
+    <div class="users">
+        <p>{{ nbUser }} utilisateurs en ligne : {{ nbUser - invisible }} enregistrés, {{ invisible }} invisibles</p>
+        <h3>Membres connectés</h3>
+        <p>
+            {% for user in users %}
+                {% if user.visible %}<span class="user">{{ showUsername(user) }}</span>{% endif %}
+            {% endfor %}
+            <a href="{{ path('user_liste') }}">Voir la liste des membres</a>
+        </p>
+    </div>
+
+    <div class="groups">
+        <h3><a href="{{ path('group_liste') }}">Légende :</a></h3>
+        <p>{% for group in groups %}
+            [ {{ showGroup(group) }}</a> ]
+        {% endfor %}</p>
+    </div>
+</div>

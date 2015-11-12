@@ -1,0 +1,5 @@
+<ul class="shortUserList">
+    {% for user in liste %}
+        <li><a href="{{ path("teraelis_tchat_lone_user", {'pole': pole, 'id': user.id}) }}">{{ user.username }}</a></li>
+    {% endfor %}
+</ul>

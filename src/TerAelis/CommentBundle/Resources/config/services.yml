@@ -1,0 +1,4 @@
+services:
+    ter_aelis_forum.permission:
+        class: TerAelis\ForumBundle\PermissionsService\ForumPermission
+        arguments: ['@doctrine', '%users.group_default%' ]

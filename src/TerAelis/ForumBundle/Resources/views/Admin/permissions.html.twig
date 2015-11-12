@@ -1,0 +1,49 @@
+<table>
+    <thead>
+        <tr>
+            <th>Nom de la catégorie</th>
+            <th>Voir Catégorie</th>
+            <th>Voir Sujet</th>
+            <th>Créer Sujet</th>
+            <th>Créer Special</th>
+            <th>Répondre Sujet</th>
+            <th>Editer Message</th>
+            <th>Supprimer Message</th>
+            <th>Créer sondage</th>
+            <th>Voter</th>
+            <th>Modérer</th>
+            <th>Modifier</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% set checked = '<img src="http://illiweb.com/fa/admin/icones/ajouter.png" title="checked" alt="checked" />' %}
+    {% set notChecked = '<img src="http://illiweb.com/fa/admin/icones/supprimer.png" title="unchecked" alt="unchecked" />' %}
+        {% for permission in permissions %}
+        <tr>
+            {# Nom de la ligne #}
+            {% if categorie is defined %}
+                <th>{{ permission.group.name }}</th>
+            {% elseif groupe is defined %}
+                <th class="align-left">
+                    {% if permission.categorie.lvl > 0 %}
+                        {% for i in 1..permission.categorie.lvl %}|----{% endfor %}
+                    {% endif %}
+                    {{ permission.categorie.title }}
+                </th>
+            {% endif %}
+            {# Valeurs #}
+            <td>{% if permission.voirCategorie %} {{ checked|raw }} {% else %} {{ notChecked|raw }} {% endif %}</td>
+            <td>{% if permission.voirSujet %} {{ checked|raw }} {% else %} {{ notChecked|raw }} {% endif %}</td>
+            <td>{% if permission.creerSujet %} {{ checked|raw }} {% else %} {{ notChecked|raw }} {% endif %}</td>
+            <td>{% if permission.creerSpecial %} {{ checked|raw }} {% else %} {{ notChecked|raw }} {% endif %}</td>
+            <td>{% if permission.repondreSujet %} {{ checked|raw }} {% else %} {{ notChecked|raw }} {% endif %}</td>
+            <td>{% if permission.editerMessage %} {{ checked|raw }} {% else %} {{ notChecked|raw }} {% endif %}</td>
+            <td>{% if permission.supprimerMessage %} {{ checked|raw }} {% else %} {{ notChecked|raw }} {% endif %}</td>
+            <td>{% if permission.creerSondage %} {{ checked|raw }} {% else %} {{ notChecked|raw }} {% endif %}</td>
+            <td>{% if permission.voter %} {{ checked|raw }} {% else %} {{ notChecked|raw }} {% endif %}</td>
+            <td>{% if permission.moderer %} {{ checked|raw }} {% else %} {{ notChecked|raw }} {% endif %}</td>
+            <td><a href="{{ path("admin_permission_edit", {'idGroupe': permission.group.id, 'idCategorie': permission.categorie.id, 'type': type}) }}">Modifier</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

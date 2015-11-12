@@ -1,0 +1,30 @@
+<div class="title">
+    <h1>
+        {% if answer is not defined or answer == 0 %}
+        <a href="{{ path('taforum_voirSujet', {'pole': pole, 'slug': sujet.slug}) }}">
+        {% endif %}
+            {% if sujet.getTypeSujet() is not null %}
+                {{ sujet.getTypeSujet().getNom() }} :
+            {% endif %}
+            {%  if sujet.getBalise() is not null %}
+                [{{ sujet.getBalise().getCourt() }}]
+            {% endif %}
+            {{ sujet.title }}
+        {% if answer is not defined or answer == 0 %}
+        </a>
+        {% endif %}
+    </h1>
+    <h2>
+        {{ sujet.subTitle }}
+    </h2>
+    {# Tags #}
+    {% if (answer is not defined or answer == 0) and sujet.tags is defined and sujet.tags is not null and sujet.tags is not empty %}
+        <div class="sujet_tags">
+            Tags :
+            {% for tag in sujet.tags %}
+                <a href="{{ path('taforum_tag_slug', {'pole': pole, 'slug': tag.slug }) }}">{{ tag.tag }}</a>
+                {% if not loop.last %} / {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

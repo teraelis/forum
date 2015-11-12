@@ -1,0 +1,1620 @@
+$rootImgDir: '../../bundles/teraelisforum/img';
+$fontFamily: Verdana, Arial, Helvetica, sans-serif;
+
+html {
+  margin:0;
+  padding:0;
+}
+body {
+  font-size: 13px;
+  padding: 0px;
+  margin: 0 0 -10px 0;
+  background-color: $backgroundColor;
+  word-wrap:break-word;
+}
+
+div, span {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $fontFamily;
+  color: $fontColor;
+}
+
+p {
+  word-wrap: break-word;
+}
+
+em {
+  font-weight: 400;
+  font-style: italic;
+}
+
+a {
+  color: $fontColor;
+  text-decoration: none;
+}
+
+p a {
+  text-decoration: underline;
+}
+
+a.pseudo {
+  font-weight: 700;
+}
+
+.btn, .small-btn, .btn-disabled {
+  color: $buttonFontColor;
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: Oswald, sans-serif;
+  letter-spacing: 0.13em;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.btn {
+  padding: 5px 15px;
+  color: $buttonWhite;
+  background-color: $buttonAnswer;
+}
+.btn-disabled {
+  padding: 5px 15px;
+  background-color: $buttonAnswer;
+  color: $buttonFadeWhite;
+}
+
+.small-btn {
+  font-size: 0.76em;
+  padding: 2px 5px;
+  color: $buttonFadeColor;
+  border-color: $buttonFadeBorderColor;
+  background-color: $buttonFadeBackground;
+  margin: 2px 0;
+  text-align: center;
+}
+
+.sujet_contenu .small-btn {
+  display: inline-block;
+  margin: 0;
+  color: $buttonWhite;
+  background: $buttonDelete;
+  border: none;
+  padding: 5px 10px;
+}
+.small-btn.edit {
+  background: $buttonEdit;
+}
+.small-btn.quote {
+  background: $buttonQuote;
+}
+.small-btn.profile {
+  color: $buttonProfile;
+  border: 1px solid $buttonProfile;
+  background: transparent;
+}
+.contact .profile.img-profile{
+  background: url($rootImgDir + '/' + $pole_image_location + '/profile.jpg') 2px 2px no-repeat;
+  padding-left: 27px;
+}
+.contact .profile.img-mp{
+  background: url($rootImgDir + '/' + $pole_image_location + '/mp.jpg') 2px 2px no-repeat;
+  padding-left: 27px;
+}
+
+.btn:hover, .btn:focus, .btn:active, .small-btn:hover, .small-btn:focus, .small-btn:active {
+  background-color: $buttonEdit;
+  color: $buttonWhite;
+  text-decoration: none;
+}
+
+.btn.active, .btn:active, .small-btn:active {
+  background-color: $buttonEdit;
+  color: $buttonWhite;
+}
+
+.btn.main {
+  display: block;
+  margin: 0 auto;
+}
+
+.single-ligne div {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-justify {
+  text-align: justify;
+}
+
+blockquote::before {
+  content: 'Citation :';
+  opacity: 0.75;
+}
+blockquote {
+  border-left: 3px solid  rgba($interpoleColor, 0.5);
+  padding-left: 10px;
+  opacity: 0.8;
+}
+
+.interpole a {
+  color: $interpoleColor;
+}
+
+.#{$pole} a {
+  color: $titleColor;
+}
+
+.#{$pole} a:hover, .interpole a:hover {
+  color: $fontColor;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: $linkHoverColor;
+}
+
+h1, h2, h3, h4, .title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.title h2 {
+  font-size: 1.3em;
+  margin: 0;
+}
+
+hr {
+  border-width: 0;
+  border-top: 1px solid $contentBorderColor;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.table {
+  display: table;
+  width: 100%;
+}
+
+.row {
+  display: table-row;
+}
+
+input[type="submit"], input[type="checkbox"], input[type="radio"] {
+  cursor: pointer;
+}
+
+.left {
+  float: left;
+}
+
+.container {
+  margin: 0 auto;
+  background-color: $backgroundColor;
+  background: url($rootImgDir + '/' + $pole_image_location + '/content_slide.jpg') repeat-y center;
+}
+
+.block {
+  display: block;
+  margin: 15px 0;
+  background-color: $contentBackground;
+  color: $contentFontColor;
+  border: solid $tableBorder;
+  border-width: 1px 1px 1px 1px;
+  padding: 15px;
+}
+
+.separation {
+  margin: 5px 0;
+}
+
+.separation--important {
+  margin: 5px 0 0 !important;
+}
+
+.text--not-emphasized {
+  opacity: 0.75;
+  font-size: 0.9em;
+}
+
+/* Header */
+#header {
+  position:relative;
+  z-index: 100;
+  background-color: $headerBackground;
+  margin: 0 auto -1px auto;
+  text-align: center;
+  padding: 0px;
+  height: 391px;
+}
+
+#header_left {
+  position: absolute;
+  left: -45px;
+  width: 90px;
+  height: 330px;
+  background: url($rootImgDir + '/' + $pole_image_location + '/header_left.jpg') no-repeat;
+  z-index: 0;
+}
+
+#header_right {
+  position: absolute;
+  right: -90px;
+  width: 90px;
+  height: 330px;
+  background: url($rootImgDir + '/' + $pole_image_location + '/header_right.jpg') no-repeat;
+  z-index: 0;
+}
+
+#header header {
+  width: 985px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#header header > a {
+  display: block;
+  margin: 0 0 0 45px;
+  background: url($rootImgDir + '/' + $pole_image_location + '/header.jpg') no-repeat center;
+  height: 330px;
+  width: 940px;
+
+}
+
+#header header > a > img {
+  position: absolute;
+  display: inline-block;
+  margin-left: -86px;
+  margin-top: 200px;
+}
+
+#header header nav {
+  display: block;
+  margin: 0 0 0 45px;
+  background: $menuHighlightColor url($rootImgDir + '/' + $pole_image_location + '/header_slide.png') repeat-x;
+  height: 60px;
+  width: 940px;
+  border-bottom: 1px solid $menuBorder;
+  text-align: left;
+}
+
+#header header ul {
+  margin: 0 10px 0 10px;
+  padding: 0px;
+  width: 400px;
+}
+
+#header header .nav-user {
+  float: left;
+  height: 60px;
+}
+
+#header header .poles {
+  float: right;
+  text-align: right;
+}
+
+#header header li {
+  display: inline-block;
+  position: relative;
+  text-align:center;
+  width: 60px;
+  height: 50px;
+  padding: 3px 10px;
+}
+
+.navbar_pole {
+  position: absolute;
+  width:62px;
+  height:32px;
+  display: block;
+  padding-top: 97px;
+  font-family: Oswald, sans-serif;
+  font-size: 1.3em;
+  color: #ffffff;
+}
+
+.navbar_pole.gfx {
+  background: url($rootImgDir + '/' + $pole_image_location + '/new_gfx.png') no-repeat top;
+}
+
+.navbar_pole.rp {
+  background: url($rootImgDir + '/' + $pole_image_location + '/new_roliste.png') no-repeat top;
+}
+
+.navbar_pole.litte {
+  background: url($rootImgDir + '/' + $pole_image_location + '/new_litte.png') no-repeat top;
+}
+
+.navbar_pole:hover {
+  text-decoration: none;
+  color: #cccccc;
+}
+
+/* Content */
+#content {
+  width: 985px;
+  margin: 0 auto 0 auto;
+  clear:both;
+  background: $outerBackgroundColor;
+  position: relative;
+}
+
+#background_left {
+  position: absolute;
+  left: -235px;
+  width: 280px;
+  height: 800px;
+  background: url($rootImgDir + '/' + $pole_image_location + '/content_left.jpg') no-repeat right;
+  z-index: 0;
+}
+
+#background_right {
+  position: absolute;
+  float: right;
+  right: -280px;
+  width: 280px;
+  height: 800px;
+  background: url($rootImgDir + '/' + $pole_image_location + '/content_right.jpg') no-repeat right;
+  z-index: 0;
+}
+
+#content_center {
+  background: url($rootImgDir + '/' + $pole_image_location + '/content_slide.jpg') repeat-y center;
+  background-color: $behindContentBackground;
+}
+
+/* Nav */
+.sidebar {
+  position: relative;
+  margin-top: 100px;
+  float: left;
+  z-index: 100;
+}
+
+.sidebar > div {
+  width: 190px;
+  background-color: #323232;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  margin-bottom: 10px;
+}
+
+.sidebar .sub {
+  border-bottom: 3px solid #505050;
+  color: #dddddd;
+}
+
+.bottom-img {
+  vertical-align: bottom;
+}
+
+.sidebar .sub > div {
+  padding: 0 15px;
+}
+
+.sidebar .sub p {
+  color: #dddddd;
+}
+
+.sidebar .sub .listSalon .expand, .sidebar .sub .listContact .expand {
+  float: left;
+  margin-top: 2px;
+  margin-right: 5px;
+}
+
+.sidebar .panelContent {
+  padding: 10px 5px;
+}
+
+.userPanel .current {
+  background-color: #505050;
+  padding: 10px 15px;
+}
+
+.userPanel .status {
+  display: block;
+  height: 20px;
+}
+
+.userPanel .status p {
+  display: block;
+  margin: 3px 0 3px 0;
+  padding: 0 5px;
+  background-color: #79e021;
+  color: #505050;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 45%;
+  float: left;
+}
+
+.userPanel .status a {
+  display: block;
+  margin: 3px 0 3px 10px;
+  padding: 0 5px;
+  background-color: #808080;
+  color: #dddddd;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  width: 36%;
+  float: left;
+}
+
+.userPanel .current .user {
+  font-family: "Oswald";
+  font-size: 1.3em;
+}
+
+
+
+.sidebar h3 {
+  margin: 0;
+  padding: 5px 10px 5px 15px;
+  background-color: #666666;
+  color: #ffffff
+}
+
+.sidebar h3 a.expand {
+  float: right;
+}
+
+.sidebar h3 img {
+  padding-top: 2px;
+  margin-right: 5px;
+}
+
+.sidebar input[type="text"], .sidebar input[type="password"] {
+  background-color: #d2d2d2;
+  border: 0;
+  color: $interpoleColor;
+  margin: 5px 0;
+}
+
+#_submit, #username, #password {
+  width: 100%;
+}
+
+.sidebar input[type="submit"] {
+  border: 0;
+  margin: 5px 0;
+  background-color: #808080;
+  color: #ffffff;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sidebar a {
+  color: #ffffff;
+}
+
+.sidebar .posts .post {
+  margin: 1px 1px 0 -14px;
+  padding: 1px;
+  width: 186px;
+  background-color: $contentBackground;
+  color: $contentFontColor;
+  display: table;
+  table-layout: fixed;
+}
+
+.sidebar .sub ul {
+  margin:15px 0;
+  padding-left: 0;
+}
+.sidebar .sub li {
+  display: block;
+  margin-left: 0;
+}
+
+.connected {
+  width: 5px;
+  height: 5px;
+  margin: 2px;
+  display: inline-block;
+}
+
+.connected.on {
+  background-color: #79e021;
+  box-shadow: 0 0 4px #79e021;
+}
+
+.connected.away {
+  background-color: #ff7c21;
+  box-shadow: 0 0 4px #ff7c21;
+}
+
+.post .pole {
+  width: 10px;
+  height: 100%;
+  display: table-cell;
+  background-color: $interpoleColor;
+}
+
+.post .pole.litterature {
+  background-color: $poleLitte;
+}
+
+.post .pole.graphisme {
+  background-color: $poleGFX;
+}
+
+.post .pole.rolisme {
+  background-color: $poleRP;
+}
+
+.post .contenu {
+  display: table-cell;
+  padding: 5px;
+}
+
+.post .contenu p {
+  margin: 0;
+}
+
+.sidebar .posts h4, .post .title h4  {
+  color: $contentFontColor;
+  margin: 0 0 5px 0;
+  font-family: Rambla, sans-serif;
+  font-weight: 700;
+  text-decoration: underline;
+  text-transform: none;
+  font-size: 1.1em;
+}
+
+.sidebar .sub .posts a {
+  color: $contentFontColor;
+}
+
+.sidebar .post .meta a {
+  display: block;
+  margin-top: 8px;
+}
+
+.sidebar .post {
+  font-size: 13px;
+  line-height: 1.4em;
+}
+.sidebar .post p {
+  color: $contentFontColor;
+  margin: 8px 0;
+  overflow: hidden;
+  max-height: 197px;
+}
+
+
+/* Page */
+.content {
+  position: relative;
+  margin-left: 45px;
+  padding: 90px 10px 10px 155px;
+  background-color: $innerBackgroundColor;
+  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  z-index: 50;
+}
+
+.content h1 {
+  margin-top: 2px;
+}
+
+.nav_path {
+  text-transform: uppercase;
+  margin: 10px 0 5px 0;
+}
+
+.nav_path a {
+  text-decoration: none;
+}
+
+.nav_see_post {
+  text-align:right;
+  width: 100%;
+  margin: 0;
+  text-decoration: underline;
+  font-size: 0.85em;
+}
+
+.cat_pole {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.cat_shortcuts {
+  margin: 10px 0;
+}
+.cat_shortcuts img {
+  content: '';
+  display: block;
+}
+
+.cat_pole_right {
+  float: right;
+}
+
+.cat_pole_left {
+  display:inline-block;
+  margin: 0 0 -2px 0;
+}
+.cat_pole_left.odd {
+  margin-right: 1px;
+}
+
+.cat_pole > li {
+  display: block;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+.cat_pole > li h2 {
+  display: inline-block;
+  margin: 0 0 -5px 0;
+  padding: 0;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.categories {
+  display: table;
+  width: 775px;
+  padding: 0;
+}
+
+.cat {
+  display: table-row;
+  width: auto;
+  clear: both;
+  height: 100px;
+  padding: 5px 0 5px 0;
+}
+
+.expandable hr {
+  display: none;
+}
+
+.cat span {
+  display: table-column;
+  float: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.cat_state {
+  background-color: $catStateBackground;
+  width: 101px;
+  height: 100px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  z-index: 100;
+}
+
+.cat_description {
+  margin-left: 3px;
+  height: 88px;
+  width: 469px;
+  padding: 5px 15px 5px 15px;
+  color: $fontColor;
+  text-overflow: ellipsis;
+  border: 1px solid $lastBackground;
+  box-shadow: 0 0 25px rgba(0,0,0,0.1) inset,
+  0 0 10px rgba(0,0,0,0.25);
+  z-index: 10;
+}
+
+.#{$pole} .cat_description {
+  border: 1px solid $lastPoleBackground;
+}
+
+.cat_description h3 {
+  font-size: 25px;
+  margin: 0;
+}
+
+.cat_description h3 a {
+  color: $fontColor;
+}
+
+.cat_description p {
+  margin: 0;
+}
+
+.cat_description em {
+  font-weight: 700;
+  font-style: normal;
+}
+
+.cat_last {
+  height: 100px;
+  width: 150px;
+  background-color: $lastBackground;
+  color: $lastColor;
+  padding: 0 0 0 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.cat_last .lienimage {
+  float: left;
+  margin-left: -41px;
+  margin-top: 13px;
+}
+
+
+.listSujets .post_last .post_last_content {
+  padding-top: 6px;
+  padding-left: 17px;
+}
+
+.post_last .lienimage {
+  position: absolute;
+  left: -21px;
+  top: 11px;
+}
+
+.#{$pole} .cat_last, .listSujets .post_last {
+  background-color: $lastPoleBackground;
+  color: $lastPoleColor;
+  position: relative;
+}
+
+.cat_last h4 {
+  font-size: 9px;
+  font-weight: 300;
+  padding: 0;
+  margin: 4px 0 0 0;
+  letter-spacing: 4.5px;
+}
+
+.cat_last p {
+  font-size: 10px;
+  margin: 2px 0 0 0;
+  line-height: 18px;
+  color: $lastColor;
+}
+
+.cat_last a {
+  font-size: 12px;
+  color: $lastLinkColor;
+  font-weight: 700;
+  text-decoration: underline;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+.cat_last .pseudo {
+  text-decoration: none;
+}
+.cat_last .cat_last_title {
+  display: block;
+  float: none;
+  max-height: 38px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.operations {
+  font-family: Oswald, sans-serif;
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-size: 1.5em;
+}
+
+.categories.posts {
+  margin: 20px 0;
+  width: 100%;
+}
+
+.listSujets {
+  border: 1px solid $titleBackground;
+  width: 100%;
+  //border-spacing: 1;
+  border-collapse: collapse;
+}
+
+.listSujets th {
+  background-color: $titleBackground;
+  height: 20px;
+  color: $titleFontColor;
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  letter-spacing: 4.5px;
+  font-size: 11px;
+  text-transform: uppercase;
+  padding: 10px;
+  border-bottom: 1px solid $titleBorderColor;
+}
+
+.listSujets th a {
+  color: $titleFontColor;
+}
+
+.listSujets td {
+  height: 20px;
+  border: 1px solid $tableBorder;
+  background-color: $contentBackground;
+  color: $contentFontColor;
+  padding: 5px;
+}
+.listSujets .table-separation {
+  height: 0;
+  padding: 2px;
+}
+
+.listSujets th.first {
+  width: 45%;
+}
+
+.listSujets td.center {
+  font-size: 0.9em;
+}
+
+.listSujets .vu {
+  color: $backgroundColor;
+}
+.listSujets a {
+  color: $contentFontColor;
+}
+
+.listSujets h3 {
+  font-family: "Rambla", sans-serif;
+  text-transform: none;
+  margin: 0;
+  text-decoration: underline;
+  font-size: 1.15em;
+}
+
+.listSujets h4 {
+  font-family: "Rambla", sans-serif;
+  text-transform: none;
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.listSujets .empty {
+  color: $lastColor;
+  background-color: $lastBackground;
+  padding: 5px;
+}
+
+.listSujets .center, .categories.posts .center {
+  text-align: center;
+}
+
+/* Mise en page d'un sujet */
+.sujet, .sondage {
+  margin-top: 10px;
+}
+
+.sujet article, .sondage {
+  border: solid $tableBorder;
+  border-width: 1px 1px 1px 1px;
+}
+
+.sujet .title, .sondage .title {
+  margin: 0;
+  background-color: $titleBackground;
+  color: $titleFontColor;
+  border-bottom: 1px solid $titleBorderColor;
+}
+.sujet .title {
+  padding: 5px 0 8px 180px;
+}
+.sondage .title {
+  padding: 5px 10px 5px;
+}
+.sondage .title h2 {
+  margin: 5px;
+}
+
+.sujet .title h1 {
+  font-size: 1.8em;
+  letter-spacing: 0.13em;
+  font-weight: 300;
+  margin: 0;
+}
+
+.sujet .title a {
+  color: $titleFontColor;
+}
+
+.sujet_tags {
+  font-size: 0.8em;
+}
+
+.sujet_tags, .sujet .sujet_tags a {
+  color: $titleFadeColor;
+}
+
+.sujet_main, .sondage {
+  background-color: $contentBackground;
+  color: $contentFontColor;
+}
+
+.sondage_results {
+  text-align: center;
+  margin: 10px 10px 5px;
+}
+.sondage_content {
+  display: table;
+  width: 65%;
+  margin: 5px auto;
+  padding: 0;
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+
+.sondage_option {
+  display: table-row;
+}
+
+.sondage_option_title {
+  display: table-cell;
+  width: 25%;
+}
+.sondage_option_value {
+  display: table-cell;
+  width: 15%;
+}
+.sondage_option_vote {
+  display: table-cell;
+  width: 60%;
+  padding: 0;
+  vertical-align: middle;
+}
+.sondage_option_vote span {
+  display: block;
+  height: 1em;
+  background: $titleBackground;
+  border: 1px solid $tableBorder;
+  vertical-align: bottom;
+}
+
+article:not(:last-child) .sujet_main {
+  border-bottom: 1px solid $contentBorderColor;
+}
+.sujet_main {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.sujet_contenu {
+  display: table-cell;
+  padding: 0 10px 46px;
+  position:relative;
+  width: 100%;
+  overflow: auto;
+  font-size: 13px;
+  line-height: 1.5em;
+  color: $contentFontColor;
+}
+.sujet_contenu--padding {
+  padding: 15px;
+}
+
+.sujet_contenu table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+.sujet_contenu td, .sujet_contenu th {
+  border: 1px solid $contentBorderColor;
+  padding: 5px;
+}
+.sujet_contenu th {
+  background: $titleBackground;
+  color: $titleFontColor;
+}
+
+.sujet_contenu .modification {
+  margin-top: 10px;
+  float: right;
+
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    color: $buttonWhite;
+  }
+}
+
+.sujet_contenu .date {
+  font-weight: bold;
+}
+
+.sujet_contenu a {
+  text-decoration: underline;
+  color: $linkColor;
+}
+.sujet_contenu a:hover {
+  color: $linkHoverColor;
+}
+
+.date img {
+  vertical-align: bottom;
+}
+
+.sujet_contenu .post_banniere {
+  padding: 5px 0 15px;
+  overflow: hidden;
+  max-width: 582px;
+}
+
+.banniere_separation {
+  margin: 30px 0 10px 0;
+}
+
+.sujet_profil {
+  width: 170px;
+  border-right: 1px solid $contentBorderColor;
+  display: table-cell;
+}
+
+.left_profil {
+  text-align: right;
+  width: 150px;
+  padding: 10px 10px 0;
+}
+
+.left_profil > div {
+  padding: 2px 0;
+}
+
+.left_profil .group {
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+.left_profil li {
+  display: block;
+}
+
+.left_profil .ranks {
+  margin: 0;
+  padding: 0;
+}
+
+.left_profil .ranks li {
+  text-align: right;
+  display: inline-block;
+}
+
+.left_profil .username a, .left_profil .group a {
+  text-decoration: none;
+}
+
+.profil_info ul {
+  padding: 0;
+  font-size: 0.85em;
+}
+
+.sujet_contact {
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid $contentBorderColor;
+  margin: 0 -10px;
+  padding: 10px 10px;
+  width: 582px;
+}
+
+.thread_buttons {
+  min-height: 10px;
+  margin: 10px 0;
+}
+
+.thread_buttons .moderation {
+  float: right;
+}
+
+.comments {
+  border: solid $contentBorderColor;
+  border-width: 1px;
+}
+
+.moderation {
+  text-align: right;
+  color: $poleColor;
+}
+
+.moderation .small-btn {
+  background: $buttonDelete;
+  color: $buttonWhite;
+}
+.moderation .small-btn.img-btn {
+  padding: 0;
+  height: 22px;
+  margin-top: 2px;
+}
+
+.enligne {
+  margin-top: 45px;
+  margin-left: 45px;
+  margin-bottom: 25px;
+  padding: 5px;
+  background-color: $innerBackgroundColor;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  position: relative;
+  z-index: 50;
+  min-height: 250px;
+}
+
+.enligne .statistiques, .enligne .users, .enligne .groups {
+  margin-left: 165px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.enligne h2 {
+  margin: 0 0 0 155px;
+  padding: 1px 0 0 10px;
+  font-size: 24px;
+  font-weight: 300;
+  background-color: $EnligneFontColor;
+}
+
+.enligne h3 {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.enligne .users h3, .enligne .groups h3 {
+  text-transform: none;
+  font-family: Rambla, sans-serif;
+  font-size: 1.25em;
+}
+
+.enligne .users a {
+  display: block;
+  margin-top: 8px;
+}
+
+.enligne .groups h3,.enligne .users p, .enligne .groups p {
+  display: inline-block;
+}
+
+.enligne p {
+  margin: 0;
+  font-size: 0.9em;
+  line-height: 15px;
+}
+
+.enligne a {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.enligne img.left {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 155px;
+  height: 250px;
+}
+
+.enligne .user {
+  display: inline-block;
+}
+
+section.infos {
+  margin-top: 10px;
+}
+
+section.infos .statut {
+  float: left;
+}
+
+section.infos .apropos {
+  margin-left: 170px;
+  border-left: 1px solid $contentBorderColor;
+  display: block;
+  width: 605px;
+  padding: 0 10px;
+}
+
+.apropos .contact, .apropos.statistiques {
+  display: table-cell;
+  padding: 0 10px;
+  width: 50%;
+}
+
+.bio {
+  min-height: 220px;
+  margin-left: 170px;
+  border-left: 1px solid $contentBorderColor;
+  border-top: 1px solid $contentBorderColor;
+  padding: 10px;
+}
+
+.apropos ul {
+  padding: 0;
+}
+
+.apropos li {
+  display: block;
+}
+
+section.infos h1 {
+  display: block;
+  margin: 0;
+  font-size: 2em;
+}
+
+section.infos h2 {
+  margin: 0;
+  font-size: 1.3em;
+}
+
+section.infos a {
+  text-decoration: underline;
+}
+
+section.infos h1 > a {
+  text-decoration: none;
+}
+
+.formulaire {
+  width: 100%;
+  margin: 10px auto;
+}
+
+.formulaire h1 {
+  margin: 0 0 20px 0;
+}
+
+.form-field {
+  display: table;
+  width: 100%;
+  border: solid $contentBorderColor;
+  border-width: 1px 1px 2px;
+  background-color: $formBackground;
+  margin: 10px auto;
+}
+
+.form-field.options {
+  /*display: none;*/
+}
+
+.form-group {
+  display: table-row;
+}
+
+.form-label {
+  display: table-cell;
+  vertical-align: top;
+  padding: 10px;
+  text-align: right;
+  width: 20%;
+  border-right: 1px solid $titleBorderColor;
+  border-bottom: 1px solid $titleBorderColor;
+  background-color: $titleBackground;
+  color: $titleFontColor;
+  font-family: Oswald, sans-serif;
+  font-size: 0.9em;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.form-small-label {
+  font-family: $fontFamily;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1.1em;
+  display: block;
+  line-height: 1.5em;
+  margin-top: 5px;
+}
+
+.form-input {
+  display: table-cell;
+  vertical-align: top;
+  padding: 10px;
+  width: 80%;
+  border-bottom: 1px solid $tableBorder;
+  color: $contentFontColor;
+}
+
+.form-input input {
+  background-color: $formBackground;
+  color: $contentFontColor;
+}
+
+.form-input textarea {
+  width: 100%;
+  min-height: 200px;
+  background-color: $formBackground;
+  color: $contentFontColor;
+}
+
+form .expandable {
+  margin: 0;
+  display: block;
+}
+
+form h2 {
+  display: inline-block;
+  margin: 10px 0 -10px;
+}
+
+.bbcode ul {
+  margin: 0 0 4px;
+  padding: 0;
+}
+
+.bbcode li {
+  display: inline-block;
+}
+
+.bbcode-btn {
+  border: 1px solid $buttonProfile;
+}
+
+ul.bbcode-bar {
+  background: #5b5b5b;
+  border-radius: 2px;
+}
+li:first-child .bbcode-img-btn{
+  padding-left:4px;
+}
+li:last-child .bbcode-img-btn{
+  padding-right:4px;
+}
+.bbcode-img-btn {
+  padding: 4px 0 2px;
+  background: none;
+  display: block;
+  margin: 0;
+}
+.bbcode-img-btn:hover, .bbcode-img-btn:focus, .bbcode-img-btn:active {
+  padding: 4px 0 2px;
+  background: none;
+  display: block;
+  margin: 0;
+}
+.bbcode-img-btn img {
+  vertical-align: bottom;
+}
+  //
+//.content .posts {
+//  background-color: $fontColor;
+//  padding: 1px 1px 1px 1px;
+//}
+//
+//.content .posts .post {
+//  margin-bottom: 1px;
+//  border: 1px solid #ffffff;
+//}
+//
+//.content .posts .contenu {
+//  background: #ffffff;
+//  width: 753px;
+//}
+//
+//.content .posts .contenu h4 {
+//  font-size: 1.3em;
+//  display: inline-block;
+//  margin: 0;
+//}
+//
+//.content .posts .nav_page {
+//  text-align: right;
+//  color: #ffffff;
+//  margin: 10px;
+//}
+//
+//.content .posts .nav_page a {
+//  color: #ffffff;
+//  text-decoration: underline;
+//}
+//
+//.content .posts .nav_page a:hover {
+//  color: #cccccc;
+//  text-decoration: none;
+//}
+//
+.nav_page {
+  margin: 10px 0;
+}
+
+.lastup {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+}
+
+.salon {
+  width: 765px;
+  display: table;
+}
+
+.salon img {
+  vertical-align: bottom;
+}
+
+.salon .users {
+  display: table-cell;
+  vertical-align: top;
+  overflow-y:scroll;
+  overflow-x:hidden;
+  padding: 5px;
+  width: 130px;
+}
+
+.salon .users h3 {
+  margin: 0;
+}
+
+.salon .users ul {
+  padding: 0px;
+  margin: 10px 0;
+}
+
+.salon .users li {
+  display: block;
+}
+
+.salon .info {
+  color: $contentFadeColor;
+  margin: 0 0 5px;
+}
+
+.salon .info a {
+  color: $contentFadeColor;
+}
+
+.salon .discussion {
+  display: table-cell;
+}
+
+.discussion ul {
+  margin: 0 1px 5px 1px;
+  padding: 0;
+  background-color: $contentBackground;
+  color: $contentFontColor;
+  overflow-y:scroll;
+  overflow-x:hidden;
+  min-height: 200px;
+  max-height: 500px;
+  border: solid $contentBorderColor;
+  border-width: 1px 1px 3px 1px;
+}
+
+.discussion form {
+  margin: 0 1px;
+}
+
+.salon textarea {
+  box-sizing: border-box;
+  padding: 5px;
+  height: 50px;
+  width: 100%;
+  background-color: $contentBackground;
+  border: solid $contentBorderColor;
+  border-width: 1px 1px 3px 1px;
+  color: $contentFontColor;
+}
+
+.salon input[type="submit"] {
+  float: right;
+  background-color: $buttonBackgroundColor;
+  color: $buttonFontColor;
+  margin: 5px 0;
+  font-size: 1em;
+}
+
+.salon .tools {
+  margin-top: 5px;
+  float: left;
+}
+
+.salon .tools .small-btn {
+  padding: 8px 5px;
+}
+
+.discussion li {
+  margin: 0 10px;
+  padding: 10px 0;
+  display: block;
+  background-color: $contentBackground;
+  color: $contentFontColor;
+  border-bottom: 1px solid $contentBorderColor;
+}
+
+/* Footer */
+
+.container > footer {
+  clear: both;
+  text-align: center;
+}
+
+.container > footer p {
+  margin: 15px 0 0 0;
+  padding: 15px;
+}
+
+.decoda-spoiler {
+  display: block;
+}
+.decoda-spoiler-button {
+  background: $buttonAnswer;
+  color: $buttonWhite;
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: Oswald, sans-serif;
+  letter-spacing: 0.13em;
+  font-size: 1em;
+  border: none;
+  padding: 5px;
+}
+
+.decoda-spoiler-button:hover {
+  background: $buttonEdit;
+}
+.decoda-spoiler-content {
+  padding: 15px;
+  border: 1px solid $tableBorder;
+}
+
+.decoda-quote::before {
+  content: '';
+}
+.decoda-quote-head {
+  opacity: 0.75;
+}
+
+.statistiques_value {
+  float: left;
+  display: block;
+}
+.statistiques_bars {
+  margin-left: 20%;
+  display: block;
+  height: 1em;
+  background: $titleBackground;
+  border: 1px solid $tableBorder;
+  vertical-align: bottom;
+}
+
+.cookiePanel {
+  width: 940px;
+  padding-left: 45px;
+  margin: 0 auto 0 auto;
+  clear:both;
+  position: relative;
+  text-align: center;
+  line-height: 30px;
+}
+
+.cookie-btn {
+  font-size: 13px;
+  line-height: 30px;
+  display: inline-block;
+  margin: 2px 0;
+  padding: 5px 15px;
+}

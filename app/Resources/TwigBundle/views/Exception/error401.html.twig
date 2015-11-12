@@ -1,0 +1,18 @@
+{% extends "::errorlayout.html.twig" %}
+
+{% block errorTitle %}
+    Vous n'avez pas les droits suffisants
+{% endblock %}
+{% block errorSpecific %}
+    <p>
+        L'opération que vous essayez d'effectuer ne vous est pas permise.
+    </p>
+{% endblock %}
+
+{% block errorGlobal %}
+    <p>
+        Nous sommes désolé pour la gêne occasionnée.<br>
+        Veuillez contacter un administrateur pour qu'il étudie votre demande.
+    </p>
+{% endblock %}
+

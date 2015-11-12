@@ -1,0 +1,22 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block page %}
+    <h2 class="titrePage">Gestion des groupes</h2>
+    <ul>
+        {% for group in groups %}
+            <li>
+                {% if loop.index != 1 %}
+                    <a href="{{ path("admingroup_up", {id:group.id}) }}">Monter</a>
+                {% endif %}
+                {% if loop.index != groups|length %}
+                <a href="{{ path("admingroup_down", {id:group.id}) }}">Descendre</a>
+                {% endif %}
+                <a href="{{ path("admin_group_view", {id: group.id}) }}">{{ group.name }}</a> -
+                <a href="{{ path("admin_group_edit", {id: group.id}) }}">Editer</a> -
+                <a href="{{ path("admin_group_remove", {id: group.id}) }}">Supprimer</a> -
+                <a href="{{ path("admin_group_permissions", {id: group.id}) }}">Permissions</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ path("admin_group_add") }}">Ajouter un groupe</a>
+{% endblock %}

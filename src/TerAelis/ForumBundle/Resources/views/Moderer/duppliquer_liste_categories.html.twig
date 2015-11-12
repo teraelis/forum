@@ -1,0 +1,40 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    <div class="formulaire">
+        <form method="post" {{ form_enctype(form) }}>
+            <table class="listSujets">
+                <thead>
+                <tr>
+                    <th>Sélectionner</th>
+                    <th>Titre</th>
+                    <th>Nombre de Sujets</th>
+                    <th>Nombre de Commentaires</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for id, child in form.categories %}
+                {% if perm['creerSujet'][id]
+                    and (perm['creerSondage'][id] == 1 or sondage == 0 )
+                    and (perm['creerSpecial'][id] == 1 or special == 0 ) %}
+                    {% set categorie = categories[id] %}
+                    <tr>
+                        <td>{{ form_widget(child) }}</td>
+
+                        <td>{% if categorie.lvl > 0 %}{% for i in 1..categorie.lvl %}|----{% endfor %}
+                            {% endif %}{{ categorie.title }}</td>
+                        <td>{{ categorie.numberPost }}</td>
+                        <td>{{ categorie.numberComment }}</td>
+                    </tr>
+                {% endif %}
+                {% endfor %}
+                {% do form.categories.setRendered %}
+                </tbody>
+            </table>
+            <div class="block">
+                {{ form_widget(form) }}
+            </div>
+            <input type="submit" class="btn btn-primary" />
+        </form>
+    </div>
+{% endblock %}

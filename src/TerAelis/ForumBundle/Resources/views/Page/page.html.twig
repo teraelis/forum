@@ -1,0 +1,19 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - {{ page.pageTitle }}{% endblock %}
+
+{% block content %}
+    <h1>{{ page.pageTitle }}</h1>
+
+    <section class="sujet">
+        <article>
+            <div class="sujet_main">
+                <div class="row">
+                    <div class="sujet_contenu sujet_contenu--padding">
+                        {{ page.content | bbcode_filter('my_admin_filter') }}
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+{% endblock %}

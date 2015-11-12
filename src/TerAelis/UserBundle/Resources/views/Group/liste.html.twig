@@ -1,0 +1,12 @@
+{% extends 'TerAelisUserBundle:Group:layout.html.twig' %}
+
+{% block page %}
+    Liste des groupes :
+    <ul>
+        {% for group in groups %}
+        <li>
+                <a href="{{ path("group_view", {id: group.id}) }}" style="color: {{ group.couleur }}">{{ group.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,47 @@
+user_liste:
+    pattern:  /
+    defaults: { _controller: TerAelisUserBundle:User:liste }
+
+user_profile:
+    pattern:  /{id}
+    defaults: { _controller: TerAelisUserBundle:User:profile }
+    requirements:
+        id: \d+
+
+user_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: TerAelisUserBundle:User:edit }
+    requirements:
+        id: \d+
+
+user_color:
+    pattern:  /{id}/color
+    defaults: { _controller: TerAelisUserBundle:User:editColor }
+    requirements:
+        id: \d+
+
+user_listSujet:
+    pattern:  /{id}/sujets/{page}
+    defaults: { _controller: TerAelisUserBundle:User:listSujet, page: 1 }
+    requirements:
+        id: \d+
+        page: \d+
+
+user_listCommentaire:
+    pattern:  /{id}/commentaires/{page}
+    defaults: { _controller: TerAelisUserBundle:User:listCommentaire, page: 1 }
+    requirements:
+        id: \d+
+        page: \d+
+
+user_groups:
+    pattern:  /{id}/groups
+    defaults: { _controller: TerAelisUserBundle:User:groups }
+    requirements:
+        id: \d+
+
+user_unpublished:
+    pattern: /{id}/non-publies
+    defaults: { _controller: TerAelisUserBundle:User:unpublished }
+    requirements:
+        id: \d+

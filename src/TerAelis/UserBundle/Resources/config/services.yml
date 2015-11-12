@@ -1,0 +1,36 @@
+parameters:
+  ter_aelis_user.nb_surveilles: 10
+  default_color: '#000000'
+  users.group_default: 1
+  default_bot_user_id: 20
+  teraelis.registration_message.file_path: '/bin/registration_message.txt'
+
+services:
+#    ter_aelis_user.example:
+#        class: %ter_aelis_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+  teraelis.user_stats:
+    class: TerAelis\UserBundle\Service\UpdateUser
+    arguments: [@doctrine.orm.entity_manager]
+
+  teraelis.registration.message_service:
+    class: TerAelis\UserBundle\Service\RegistrationMessageService
+    arguments:
+      - @kernel
+      - %teraelis.registration_message.file_path%
+
+  fos_user.registration.form.handler:
+    class: TerAelis\UserBundle\Form\Handler\RegistrationFormHandler
+    scope: request
+    arguments:
+      - @fos_user.registration.form
+      - @request
+      - @fos_user.user_manager
+      - @fos_user.mailer
+      - @fos_user.util.token_generator
+      - @fos_user.group_manager
+      - @doctrine.orm.entity_manager
+      - @teraelis.tchat.salon_manager
+      - @teraelis.tchat.persist_chat
+      - %default_bot_user_id%
+      - @teraelis.registration.message_service

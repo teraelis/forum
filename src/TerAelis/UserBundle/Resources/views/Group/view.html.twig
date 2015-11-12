@@ -1,0 +1,10 @@
+{% extends 'TerAelisUserBundle:Group:layout.html.twig' %}
+
+{% block page %}
+    <h2>Groupe : {{ group.name }}</h2>
+
+    <h3>Description</h3>
+    <p>{{ group.description }}</p>
+
+    {% include 'TerAelisUserBundle:Group:listeUsers.html.twig' with { mods: mods, users: users } %}
+{% endblock %}

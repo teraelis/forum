@@ -1,0 +1,27 @@
+{% extends 'TerAelisUserBundle:Group:layout.html.twig' %}
+
+{% block page %}
+    <h2>Groupe : {{ group.name }}</h2>
+
+    <div class="formulaire">
+        <form method="post" {{ form_enctype(form) }}>
+
+            {% if form.user is defined and form.user is not empty %}
+            <div class="form-field">
+                <div class="form-group">
+                    <div class="form-label">
+                        {{ form_label(form.user, 'nom de l\'utilisateur') }}
+                    </div>
+                    <div class="form-input">
+                        {{ form_errors(form.user) }}
+                        {{ form_widget(form.user) }}
+                    </div>
+                </div>
+            </div>
+                {% endif %}
+
+            {{ form_rest(form) }}
+            <input type="submit" class="btn btn-primary"{% if submit is defined and submit is not null %} value="{{ submit }}"{% endif %} />
+        </form>
+    </div>
+{% endblock %}

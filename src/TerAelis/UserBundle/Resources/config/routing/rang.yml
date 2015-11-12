@@ -1,0 +1,44 @@
+admin_rangs:
+    pattern: /
+    defaults: { _controller: TerAelisUserBundle:Rang:list }
+
+admin_rang_add:
+    pattern: /add
+    defaults: { _controller: TerAelisUserBundle:Rang:add }
+
+admin_rang_view:
+    pattern: /{id}
+    defaults: { _controller: TerAelisUserBundle:Rang:view }
+    requirements:
+        id:  \d*
+
+admin_rang_edit:
+    pattern: /{id}/edit
+    defaults: { _controller: TerAelisUserBundle:Rang:edit }
+    requirements:
+        id:  \d*
+
+admin_rang_remove:
+    pattern: /{id}/remove
+    defaults: { _controller: TerAelisUserBundle:Rang:remove }
+    requirements:
+        id:  \d*
+
+admin_rang_listUser:
+    pattern: /{id}/listUser
+    defaults: { _controller: TerAelisUserBundle:Rang:listUser }
+    requirements:
+        id:  \d*
+
+admin_rang_addUser:
+    pattern: /{id}/addUser
+    defaults: { _controller: TerAelisUserBundle:Rang:addToUser }
+    requirements:
+        id:  \d*
+
+admin_rang_removeUser:
+    pattern: /{id}/removeUser/{idUser}
+    defaults: { _controller: TerAelisUserBundle:Rang:removeToUser }
+    requirements:
+        id:  \d*
+        idUser:  \d*

@@ -1,0 +1,7 @@
+parameters:
+    ter_aelis_statistiques.example.class: TerAelis\StatistiquesBundle\DailyStats\DailyStatsService
+
+services:
+    ter_aelis_statistiques.daily_stats:
+        class: %ter_aelis_statistiques.example.class%
+        arguments: [@doctrine.orm.entity_manager]

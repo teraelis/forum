@@ -1,0 +1,78 @@
+$poleColor: #53a652;
+$interpoleColor: #464646;
+$poleLitte: #a65752;
+$poleGFX: #46a5c3;
+$poleRP: #53a652;
+
+
+$backgroundColor: #3C281D;
+$outerBackgroundColor: #a98265;
+$innerBackgroundColor: #312c29;
+$behindContentBackground: #A98265;
+$fontColor: #ffffff;
+$textColor: #ffffff;
+$titleColor: #309a72;
+$linkColor: $poleColor;
+$linkHoverColor: #999999;
+
+$emptyBackground: #fff;
+
+$headerBackground: #0a2616;
+$menuHighlightColor: #f1ece6;
+$menuBorder: #f1ece6;
+
+$catStateBackground: #737373;
+$postsBorder: #fff;
+$lightCellColor: #fff;
+
+
+$buttonFontColor: #ffffff;
+$buttonBackgroundColor: #00533f;
+$buttonBorderColor: #0a2616;
+$buttonHoverColor: #0a2616;
+$buttonHoverBackground: #0a2616;
+$buttonActiveBackground: #fff;
+$buttonFadeColor: #879b93;
+$buttonFadeBackground: #294030;
+$buttonFadeBorderColor: #3e594e;
+
+$buttonQuote: #477261;
+$buttonEdit: #16412d;
+$buttonDelete: #5a5a5c;
+$buttonAnswer: #20543e;
+$buttonProfile: #949597;
+$buttonWhite: #ffffff;
+$buttonFade: #949597;
+$buttonFadeWhite: #bbb;
+
+$tableBackground: #312c29;
+$tableBorder: #00533f;
+
+$titleBackground: #00533f;
+$titleBorderColor: #53a652;
+$titleFontColor: #fff;
+$titleFadeColor: #ccc;
+
+$contentBackground: $tableBackground;
+$contentBorderColor: $tableBorder;
+$contentFadeColor: #999;
+$contentFontColor: $fontColor;
+
+$lastPoleColor: #fff;
+$lastPoleBackground: #00533f;
+$lastPoleBorder: #00533f;
+$lastColor: #fff;
+$lastBackground: $interpoleColor;
+$lastBorder: $interpoleColor;
+$lastColor: #fff;
+$lastLinkColor: #fff;
+
+$formBackground: $tableBackground;
+
+$EnligneFontColor: #00533f;
+
+$pole: "rolisme";
+$pole_image_location: "rolisme";
+$global_image_location: "global";
+
+@import 'style';

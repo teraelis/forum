@@ -1,0 +1,22 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    <h2>
+        {{ title }}
+    </h2>
+    <div class="formulaire">
+        <form method="post" {{ form_enctype(form) }}>
+            {% include 'TerAelisForumBundle:Moderer:liste_sujets_form.html.twig' with {'form': form, 'posts': posts, 'valider': 0} %}
+
+            <div class="block">
+                {{ form_errors(form.categorie) }}
+                Déplacer vers la catégorie :
+                {{ form_widget(form.categorie) }}
+
+                {{ form_widget(form) }}
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="{{ button }}" />
+        </form>
+    </div>
+{% endblock %}

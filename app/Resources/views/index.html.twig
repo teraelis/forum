@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        {% block title %}Ter Aelis{% endblock %}
+    </title>
+
+    <link rel="icon" href="{{ asset('favicon.ico') }}" />
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Advent+Pro:200' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Rambla:400,700' rel='stylesheet' type='text/css'>
+
+    {% block stylesheets %}
+        {% stylesheets
+            "@TerAelisForumBundle/Resources/assets/css/style-global.css"
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% endstylesheets %}
+    {% endblock %}
+</head>
+<body>
+<div class="global">
+    <div class="container">
+        <header>
+            <h1><a href="{{ path("taforum_home") }}"><img src="{{ asset("bundles/teraelisforum/img/home/logo.png") }}" alt="Ter Aelis" title="Ter Aelis"/></a></h1>
+        </header>
+
+        <div id="content">
+            <div class="content">
+                {% block content %}
+                    <div class="left">
+                        <a href="{{ path('taforum_blog') }}" class="item">
+                            <div class="item-image">
+                                <img src="{{ asset('bundles/teraelisforum/img/home/blog_bg.png') }}" alt="" title="Aperçu de Ter Aelis Blog" />
+                            </div>
+                            <div class="item-logo">
+                                <img src="{{ asset('bundles/teraelisforum/img/home/logo_commu.png') }}" alt="" title="Logo de Ter Aelis" />
+                            </div>
+                            <div class="item-name blog">
+                                <h2>Blog</h2>
+                            </div>
+                        </a>
+                        <hr class="separation" />
+                        <a href="https://twitter.com/TerAelis" class="item">
+                            <div class="item-name twitter">
+                                <h2>Twitter</h2>
+                            </div>
+                        </a>
+                        <hr class="separation" />
+                        <a href="https://www.facebook.com/pages/Ter-Aelis-15/149435531824789" class="item">
+                            <div class="item-name facebook">
+                                <h2>Facebook</h2>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="right">
+                        <h2 class="forum">forums</h2>
+
+                        <a href="{{ path('taforum_pole', {pole: 'rolisme'}) }}" class="item">
+                            <div class="item-image">
+                                <img src="{{ asset('bundles/teraelisforum/img/home/rolsime_bg.jpg') }}" alt="" title="Aperçu de Ter Aelis Rôliste" />
+                            </div>
+                            <div class="item-logo">
+                                <img src="{{ asset('bundles/teraelisforum/img/home/logo_rp.png') }}" alt="" title="Logo de Ter Aelis Rôliste" />
+                            </div>
+                            <div class="item-name rp">
+                                <h2>
+                                    <span class="mot-qui-fait-joli">Aventure</span>
+                                    Rôliste
+                                </h2>
+                            </div>
+                        </a>
+                        <hr class="separation" />
+                        <a href="{{ path('taforum_pole', {pole: 'litterature'}) }}" class="item">
+                            <div class="item-image">
+                                <img src="{{ asset('bundles/teraelisforum/img/home/litte_bg.jpg') }}" alt="" title="Aperçu de Ter Aelis Littéraire" />
+                            </div>
+                            <div class="item-logo">
+                                <img src="{{ asset('bundles/teraelisforum/img/home/logo_litte.png') }}" alt="" title="Logo de Ter Aelis Littéraire" />
+                            </div>
+                            <div class="item-name litte">
+                                <h2>
+                                    <span class="mot-qui-fait-joli">échange</span>
+                                    Littéraire
+                                </h2>
+                            </div>
+                        </a>
+                        <hr class="separation" />
+                        <a href="{{ path('taforum_pole', {pole: 'graphisme'}) }}" class="item">
+                            <div class="item-image">
+                                <img src="{{ asset('bundles/teraelisforum/img/home/gfx_bg.jpg') }}" alt="" title="Aperçu de Ter Aelis Graphique" />
+                            </div>
+                            <div class="item-logo">
+                                <img src="{{ asset('bundles/teraelisforum/img/home/logo_gfx.png') }}" alt="" title="Logo de Ter Aelis Graphique" />
+                            </div>
+                            <div class="item-name gfx">
+                                <h2>
+                                    <span class="mot-qui-fait-joli">Partage</span>
+                                    Graphique
+                                </h2>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="center">
+                        <p>
+                            Ter Aelis est une plateforme de coopération  culturelle en ligne  autour de la <strong>littérature</strong>,
+                            du <strong>graphisme</strong> et du <strong>jeu de rôle</strong>, notamment narratif (forme de "rôlisme").
+                        </p>
+                        <p>
+                            Nous sommes aussi une communauté virtuelle qui trouve sa place dans le monde réel grâce à
+                            notre association loi 1901.
+                        </p>
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</div>
+</html>

@@ -1,0 +1,142 @@
+{% extends 'TerAelisUserBundle:User:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ user.username }} - Edition{% endblock %}
+
+{% block page %}
+<div class="formulaire">
+    <h1>Editer son profil</h1>
+    <form method="post" {{ form_enctype(form) }}>
+        <div class="error">
+            {{ form_errors(form) }}
+        </div>
+
+        <div class="mainForm form-field">
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.skype) }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.skype) }}
+                    {{ form_widget(form.skype) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.facebook) }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.facebook) }}
+                    {{ form_widget(form.facebook) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.twitter) }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.twitter) }}
+                    {{ form_widget(form.twitter) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.deviantArt) }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.deviantArt) }}
+                    {{ form_widget(form.deviantArt) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.site) }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.site) }}
+                    {{ form_widget(form.site) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-field">
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.allowMail) }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.allowMail) }}
+                    {{ form_widget(form.allowMail) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.showMail) }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.showMail) }}
+                    {{ form_widget(form.showMail) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.visible) }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.visible) }}
+                    {{ form_widget(form.visible) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.pole) }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.pole) }}
+                    {{ form_widget(form.pole) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-field">
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.file) }}
+                </div>
+                <div class="form-input">
+                    (200px H * 150px L)
+                    <hr>
+                    {{ form_errors(form.file) }}
+                    {{ form_widget(form.file) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-field">
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.signature) }}
+                </div>
+
+                <div class="form-input bbcode">
+                    {{ bbcodeInput('signature', form_errors(form.signature), form_widget(form.signature)) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-field">
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.biographie) }}
+                </div>
+
+                <div class="form-input bbcode">
+                    {{ bbcodeInput('biographie', form_errors(form.biographie), form_widget(form.biographie)) }}
+                </div>
+            </div>
+        </div>
+
+        {{ form_rest(form) }}
+        <input type="submit" class="btn btn-primary" value="Enregistrer les changements" />
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,102 @@
+<table class="listSujets">
+    <thead class="sortable">
+    <tr>
+        <th colspan="2" class="sujet first">Sujet</th>
+        <th>Auteurs</th>
+        <th>Réponses</th>
+        <th>Vues</th>
+        <th>Dernier message</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set empty = true %}
+    {% set sujetType = 'empty' %}
+    {% for sujet in sujets %}
+        {% if sujet.publie == 1 and sujet.datePublication < date() %}
+        {% set empty = false %}
+
+        {% if loop.first and sujet.getTypeSujet() is not empty %}
+            {% set typeSujet = sujet.getTypeSujet().getId() %}
+        {% endif %}
+
+        {% if sujet.getTypeSujet() is not empty %}
+            {% set currentSujetType = sujet.getTypeSujet().getId() %}
+        {% else %}
+            {% set currentSujetType = 'empty' %}
+        {% endif %}
+
+        {% if not loop.first and sujetType != currentSujetType %}
+            <tr><td colspan="6" class="table-separation"></td></tr>
+        {% endif %}
+        {% set sujetType = currentSujetType %}
+
+        <tr>
+            <td class="vu" width="5%">
+                <a href="{{ path("taforum_voirSujet_last", {'pole': pole_aff, 'slug': sujet.slug}) }}">
+                    {% if sujet.new is defined and sujet.new %}
+                        <img src="{{ asset('bundles/teraelisforum/img/'~pole_aff~'/message_nonvu.gif') }}" />
+                    {% else %}
+                        <img src="{{ asset('bundles/teraelisforum/img/'~pole_aff~'/message_vu.jpg') }}" />
+                    {% endif %}
+                </a>
+            </td>
+            <td>
+                {% if categorie_courante is defined and categorie_courante is not null and sujet.mainCategorie.id != categorie_courante.id %}
+                    Lien vers autre catégorie
+                {% endif %}
+                <h3>
+                    <a href="{{ path('taforum_voirSujet', {'pole': pole_aff, 'slug': sujet.slug}) }}">
+                        {% if sujet.getTypeSujet() is not null %}
+                            {{ sujet.getTypeSujet().getNom() }} :
+                        {% endif %}
+                        {%  if sujet.getBalise() is not null %}
+                            [{{ sujet.getBalise().getCourt() }}]
+                        {% endif %}
+                        {{ sujet.title }}
+                    </a>
+                </h3>
+                {% if sujet.subTitle is not empty %}
+                    <h4>
+                        {{ sujet.subTitle }}
+                    </h4>
+                {% endif %}
+                {% if sujet.tags is not empty %}
+                    Tags :
+                    {% for t in sujet.tags %}
+                        - <a href="{{ path('taforum_tag_slug', {'pole': pole_aff, 'slug': t.slug}) }}">{{ t.tag }}</a>
+                    {% endfor %}
+                {% endif %}
+            </td>
+            <td class="center">{{ authors(sujet.authors) }}</td>
+            <td class="center">{{ sujet.numberComment }}</td>
+            <td class="center">{% if views[sujet.id] is defined %}{{ views[sujet.id] }}{% else %}0{% endif %}</td>
+            <td class="center post_last">
+                <a class="lienimage" href="{{ path("taforum_voirSujet_last", {'pole': pole_aff, 'slug': sujet.slug}) }}">
+                    <img src="{{ asset('bundles/teraelisforum/img/'~pole_aff~'/last_message.png') }}" alt="lien vers le dernier message" title="Aller au dernier message" />
+                </a>
+                <div class="post_last_content">
+                    {% if sujet.getLastComment() is null %}
+                        {{ sujet.datePublication | localizeddate('none', 'short') }} - {{ sujet.datePublication |localizeddate('medium', 'none') }}
+                    {% else %}
+                        {{ sujet.lastComment | localizeddate('none', 'short') }} - {{ sujet.lastComment |localizeddate('medium', 'none') }}
+                    {% endif %}
+                    <br>
+                    par {{ showUsername(sujet.lastAuthor, true) }}
+                </div>
+            </td>
+        </tr>
+    {% endif %}
+    {% endfor %}
+    {% if empty %}
+        <tr>
+        <td class="center empty" colspan="6">
+            {% if default_message is defined and default_message != "" %}
+                {{ default_message }}
+            {% else %}
+                Aucun sujet n'a été publié.
+            {% endif %}
+        </td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>

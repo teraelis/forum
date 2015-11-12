@@ -1,0 +1,19 @@
+{% extends 'TerAelisUserBundle:User:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - Membres{% endblock %}
+
+{% block page %}
+    <h1>Liste de mes groupes</h1>
+    <ul>
+        {% for group in mygroups %}
+            <li{% if group['userRole'] == 'mod' %} class="mod"{% endif %}><a href="{{ path('group_view', {id: group[0].id}) }}">{{ showGroup(group[0]) }}</a>{% if group['userRole'] == 'mod' %} - modérateur du groupe{% endif %}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Autres groupes</h1>
+    <ul>
+        {% for group in groups %}
+            <li><a href="{{ path('group_view', {id: group.id}) }}">{{ showGroup(group) }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

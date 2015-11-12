@@ -1,0 +1,320 @@
+# src/TerAelis/ForumBundle/Resources/config/routing.yml
+
+taforum_home:
+    path:          /
+    defaults:  { _controller: TerAelisForumBundle:Home:index }
+
+# Poles
+taforum_blog:
+    path:        /blog
+    defaults:  { _controller: TerAelisForumBundle:Home:blog, slug: index }
+
+taforum_pole:
+    path:      /{pole}
+    defaults:  { _controller: TerAelisForumBundle:Forum:forum, slug: index }
+    requirements:
+        pole: litterature|graphisme|rolisme
+
+# Qui est en ligne ?
+taforum_enligne:
+    path:       /quiEstEnLigne
+    defaults:   { _controller: TerAelisForumBundle:Forum:enLigne }
+
+
+taforum_event_list:
+    path:      /{pole}/calendrier
+    defaults:  { _controller: TerAelisForumBundle:Event:all }
+    requirements:
+        pole: litterature|graphisme|rolisme
+
+taforum_event_show:
+    path:      /{pole}/calendrier/{eventId}
+    defaults:  { _controller: TerAelisForumBundle:Event:showEvent }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        eventId: \d+
+
+taforum_event_edit:
+    path:      /{pole}/calendrier/{eventId}/edit
+    defaults:  { _controller: TerAelisForumBundle:Event:editEvent }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        eventId: \d+
+
+taforum_event_delete:
+    path:      /{pole}/calendrier/{eventId}/delete
+    defaults:  { _controller: TerAelisForumBundle:Event:deleteEvent }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        eventId: \d+
+
+taforum_event_create:
+    path:      /{pole}/calendrier/create
+    defaults:  { _controller: TerAelisForumBundle:Event:createEvent }
+    requirements:
+        pole: litterature|graphisme|rolisme
+
+  ###########################
+  # Tags
+  ###########################
+taforum_tag:
+    path:      /{pole}/tags
+    defaults:  { _controller: TerAelisForumBundle:Tag:liste }
+    requirements:
+        pole: litterature|graphisme|rolisme
+
+taforum_tag_slug:
+    path:      /{pole}/tag/{slug}
+    defaults:  { _controller: TerAelisForumBundle:Tag:get }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        slug: ^[a-z0-9-]+$
+
+# Visualisation d'un sujet
+taforum_voirSujet:
+    path:      /{pole}/sujet/{slug}/{page}
+    defaults:  { _controller: TerAelisForumBundle:Post:voirSujet, page: 1 }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        slug: ^[a-z0-9-]+$
+        page: \d*
+
+taforum_voirSujet_last:
+    path:      /{pole}/sujet/{slug}/last
+    defaults:  { _controller: TerAelisForumBundle:Post:voirSujetLast }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        slug: ^[a-z0-9-]+$
+
+taforum_lock:
+    path:      /{pole}/sujet/{id}/lock
+    defaults:  { _controller: TerAelisForumBundle:Post:lock }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        slug: \d+
+
+taforum_publie:
+    path:      /{pole}/sujet/{id}/publie
+    defaults:  { _controller: TerAelisForumBundle:Post:publie }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        slug: \d+
+
+# Traitement d'un post
+taforum_creerSujet:
+    path:      /{pole}/{slug}/creerSujet/{upgrade}
+    defaults:  { _controller: TerAelisForumBundle:Post:creerSujet, upgrade: 0 }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        slug: ^[a-z0-9-]+$
+        upgrade: 0|1
+
+taforum_editer:
+    path:      /{pole}/editer/{id}
+    defaults:  { _controller: TerAelisForumBundle:Post:editerSujet }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        id:  \d*
+
+#################################
+# Modération
+#################################
+  ###########################
+  # Modération sujet unique
+  ###########################
+#taforum_creer_post_depuis_comment1:
+#    path:      /{pole}/upgrade/{id}
+#    defaults: { _controller: TerAelisForumBundle:Moderer:upgrade1 }
+#    requirements:
+#        pole: litterature|graphisme|rolisme
+#        id:  \d*
+#
+#taforum_creer_post_depuis_comment2:
+#    path:      /{pole}/upgrade/{id}/{type}
+#    defaults: { _controller: TerAelisForumBundle:Moderer:upgrade2 }
+#    requirements:
+#        pole: litterature|graphisme|rolisme
+#        id:  \d*
+#        type: 0|2
+
+taforum_deplacer:
+    path:      /{pole}/deplacer/{id}
+    defaults:  { _controller: TerAelisForumBundle:Moderer:deplacerSujet }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        id:  \d*
+
+taforum_supprimer:
+    path:      /{pole}/supprimer/{id}
+    defaults:  { _controller: TerAelisForumBundle:Moderer:deplacerSujet, type: 1 }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        id:  \d*
+
+taforum_delete_sujet:
+    path:      /{pole}/delete/{id}
+    defaults:  { _controller: TerAelisForumBundle:Post:supprimer }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        id:  \d*
+
+#taforum_duppliquer_liste_categorie:
+#    path:      /{pole}/duppliquer-liste/{id}
+#    defaults:  { _controller: TerAelisForumBundle:Moderer:duppliquerListe }
+#    requirements:
+#        pole: litterature|graphisme|rolisme
+#        id:  \d*
+
+  ###########################
+  # Modération liste de sujets
+  ###########################
+taforum_supprimer_liste:
+    path:      /{pole}/supprimer-liste/{id}/{page}
+    defaults:  { _controller: TerAelisForumBundle:Moderer:deplacerListeSujets, page: 1, type: 1 }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        id:   \d*
+        page: \d*
+
+taforum_deplacer_liste:
+    path:      /{pole}/deplacer-liste/{id}/{page}
+    defaults:  { _controller: TerAelisForumBundle:Moderer:deplacerListeSujets, page: 1, type : 0 }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        id:   \d*
+        page: \d*
+
+taforum_valider_liste:
+    path:      /{pole}/valider-liste/{id}/{page}
+    defaults:  { _controller: TerAelisForumBundle:Moderer:publierListe, page: 1 }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        id:   \d*
+        page: \d*
+
+# Voir les sujets non lus
+taforum_non_lus:
+    path:      /{pole}/nonlus
+    defaults:  { _controller: TerAelisForumBundle:Vu:nonLus }
+    requirements:
+        pole: litterature|graphisme|rolisme
+
+taforum_tous_marquer_lus:
+    path:      /{pole}/marquer-lu
+    defaults:  { _controller: TerAelisForumBundle:Vu:marquerVu, all: 1 }
+    requirements:
+        pole: litterature|graphisme|rolisme
+
+taforum_marquer_lus:
+    path:      /{pole}/marquer-lu/{slug}
+    defaults:  { _controller: TerAelisForumBundle:Vu:marquerVu }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        slug: ^[a-z0-9-]+$
+
+# Visualisation d'un forum/catégorie
+taforum_forum:
+    path:      /{pole}/{slug}/{page}
+    defaults:  { _controller: TerAelisForumBundle:Forum:forum, slug: index, page: 1 }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        slug: ^[a-z0-9-]+$
+        page: \d*
+
+#################################
+# Administration
+#################################
+# Accueil administration
+admin_home:
+    path:      /admin
+    defaults:  { _controller: TerAelisForumBundle:Admin:home }
+
+#################################
+# Administration des catégories
+#################################
+admin_categories:
+    path:      /admin/categories
+    defaults:  { _controller: TerAelisForumBundle:Admin:categories, slug: index }
+    requirements:
+        slug: ^[a-z0-9-]+$
+
+#Création d'une catégorie
+admin_creerCategorie:
+    path:      /admin/creerCategorie
+    defaults:  { _controller: TerAelisForumBundle:Admin:creerCategorie }
+
+# Paramètres d'une catégorie
+admin_param:
+    path:      /admin/categories/{slug}
+    defaults:  { _controller: TerAelisForumBundle:Admin:paramCategorie }
+    requirements:
+        slug: ^[a-z0-9-]+$
+
+# Ordre catégorie
+admin_orderUp:
+    path:      /admin/{slug}/{action}
+    defaults:   { _controller: TerAelisForumBundle:Admin:category }
+    requirements:
+        slug: ^[a-z0-9-]+$
+        action: up|down
+
+# Supprimer catégorie
+admin_supprCategorie:
+    path:      /admin/categorie/{slug}/supprimer
+    defaults:  { _controller: TerAelisForumBundle:Admin:supprimer }
+    requirements:
+        slug: ^[a-z0-9-]+$
+
+admin_categorie_permissions:
+    path:      /admin/categorie/{id}/permissions
+    defaults:  { _controller: TerAelisForumBundle:Permission:viewCategorie }
+    requirements:
+        id:    \d*
+
+admin_permission_edit:
+    path:      /admin/permissions/{idGroupe}/{idCategorie}/{type}
+    defaults:  { _controller:TerAelisForumBundle:Permission:edit }
+    requirements:
+        idGroupe:  \d*
+        idCategorie:  \d*
+        type: groupe|categorie
+
+#################################
+# Administration des Types de sujets
+#################################
+admin_typeSujet:
+    path:      /admin/types
+    defaults:  { _controller: TerAelisForumBundle:Admin:typesSujet }
+
+admin_typeSujet_creer:
+    path:      /admin/types/new
+    defaults: { _controller: TerAelisForumBundle:Admin:typeSujetCreer }
+
+admin_typeSujet_monter:
+    path:      /admin/types/{action}/{id}
+    defaults:  { _controller: TerAelisForumBundle:Admin:typeSujetMonter }
+    requirements:
+        id:  \d*
+        action: up|down
+
+
+## Administration des modules du blog
+admin_modules:
+    path:      /admin/modules
+    defaults:  { _controller:TerAelisForumBundle:Blog:listModules }
+
+admin_creerModule:
+    path:      /admin/modules/creer
+    defaults:  { _controller:TerAelisForumBundle:Blog:creerModule }
+
+admin_editModule:
+    path:      /admin/modules/edit/{id}
+    defaults:  { _controller:TerAelisForumBundle:Blog:editModule }
+    requirements:
+        id:  \d*
+
+admin_delModule:
+    path:      /admin/modules/delete/{id}
+    defaults:  { _controller:TerAelisForumBundle:Blog:deleteModule }
+    requirements:
+        id:  \d*

@@ -1,0 +1,22 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block page %}
+<h2 class="titrePage">Gestion des utilisateurs</h2>
+<h3>Edition du message d'accueil</h3>
+
+<div class="block">
+    {{ message | bbcode_filter }}
+</div>
+
+<div class="block">
+    {{ form_start(form) }}
+        <div class="form-group bbcode">
+            {{ bbcodeInput('message', form_errors(form.message), form_widget(form.message, { attr: {
+                rows: 20,
+                style: 'width: 100%'
+            }})) }}
+        </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+

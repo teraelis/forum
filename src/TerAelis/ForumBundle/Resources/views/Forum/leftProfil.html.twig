@@ -1,0 +1,33 @@
+<div class="left_profil">
+    {% if author is not empty %}
+        <div class="username">{{ showUsername(author) }}</div>
+        {% if author.groups|length > 0 %}
+            <div class="group">{{ showChosenGroup(author.chosenGroup) }}</div>
+        {% endif %}
+        <ul class="ranks">
+            {% for rank in author.getRangs() %}
+                <li><img src="{{ asset(rank.url) }}" alt="{{ rank.name }}" title="{{ rank.name }}"></li>
+            {% endfor %}
+        </ul>
+        {% if author.avatar != "" %}
+        <img src="{{ asset(author.avatar) }}" />
+        {% endif %}
+        <div class="profil_info">
+            {% if profil is defined and profil == 1 %}
+                {% if is_granted('ROLE_ADMIN') or (app.user is defined and app.user is not null and app.user.id == user.id) %}
+                    <ul>
+                        {% if app.user.id == user.id %}<li><a href="{{ path("fos_user_change_password") }}">Changer de mot de passe</a></li>{% endif %}
+                        <li><a href="{{ path("user_edit", {id: user.id}) }}">Editer ses informations</a></li>
+                        <li><a href="{{ path("user_color", {id: user.id}) }}">Changer de couleur</a></li>
+                        <li><a href="{{ path('user_groups', {id: user.id}) }}">Gérer ses groupes</a></li>
+                    </ul>
+                {% endif %}
+            {% else %}
+                <ul>
+                    <li>{{ author.nbSujets }} sujets</li>
+                    <li>{{ author.nbCommentaires }} réponses</li>
+                </ul>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>

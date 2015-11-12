@@ -1,0 +1,32 @@
+{% extends "::layout.html.twig" %}
+
+{% block stylesheets %}
+    {% stylesheets
+    "@TerAelisForumBundle/Resources/assets/css/style-admin.css"
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block title %}{{ parent() }} - Administration{% endblock %}
+
+{% block header %}
+    <a href="/TerAelis/web/app_dev.php/admin"><h1>TerAelis - Administration</h1></a>
+    <nav>
+        <ul>
+            <li><a href="{{ path('admin_home') }}">Administration</a></li>
+            <li><a href="{{ path('taforum_forum', {pole: 'litterature'}) }}">Pôle littéraire</a></li>
+            <li><a href="{{ path('taforum_forum', {pole: 'graphisme'}) }}">Pôle graphique</a></li>
+            <li><a href="{{ path('taforum_forum', {pole: 'rolisme'}) }}">Pôle roliste</a></li>
+            <li><a href="{{ path('taforum_blog') }}">Blog</a></li>
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block content %}
+    {% block page %}
+
+    {% endblock %}
+{% endblock %}

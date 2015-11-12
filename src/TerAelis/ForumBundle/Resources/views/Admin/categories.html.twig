@@ -1,0 +1,34 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block title %}{{ parent() }} - Catégories{% endblock %}
+
+{% block page %}
+<h2 class="titrePage">Catégories</h2>
+    <a href="./creerCategorie">Ajouter une catégorie</a>
+    <table>
+        <tr>
+            <th>Ordre</th>
+            <th>Titre des catégories</th>
+            <th>Administration</th>
+        </tr>
+    {% for categorie in tree %}
+        <tr>
+            <td>{% if categorie.lvl > 0 %}
+                <a href="{{ categorie.slug }}/up">Monter</a> <a href="{{ categorie.slug }}/down">Descendre</a></td>
+            {% endif %}<td>
+                {% if categorie.lvl > 0 %}
+                    {% for i in 1..categorie.lvl %}|----{% endfor %}
+                {% endif %}
+                {{ categorie.title }}<br />
+            </td>
+            <td>
+                <a href="{{ path("admin_param", {'slug': categorie.slug }) }}">Paramètres</a>
+                <a href="{{ path("admin_categorie_permissions", {id: categorie.id}) }}">Permissions</a>
+                <a href="{{ path("admin_supprCategorie", {'slug': categorie.slug }) }}">Supprimer</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <a href="./creerCategorie">Ajouter une catégorie</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block page %}
+    <h2 class="titrePage">Edition des permissions</h2>
+    <div class="formulaire">
+        <form method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-primary" />
+        </form>
+    </div>
+{% endblock %}

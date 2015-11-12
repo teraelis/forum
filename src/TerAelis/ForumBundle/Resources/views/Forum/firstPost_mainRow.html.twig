@@ -1,0 +1,55 @@
+<div class="sujet_main">
+    <div class="row">
+        <div class="sujet_profil">
+            {% include "TerAelisForumBundle:Forum:leftProfil.html.twig" with {'author': sujet.authors | first } %}
+        </div>
+        <div class="sujet_contenu">
+            {% if answer is not defined or answer == 0 %}
+                {# Boutons #}
+                <div class="modification">{% spaceless %}
+                    {% if not lock and (repondreSujet or moderer) %}
+                        <a class="small-btn quote" href="{{ path("tacomment_quote_sujet", {'pole': pole, 'threadId': sujet.threads.first.id, 'sujetId': sujet.id}) }}">Citer</a>
+                    {% endif %}
+                    {% if (not lock and editerMessage) or moderer %}
+                        <a class="small-btn edit" href="{{ path('taforum_editer', {'pole': pole, 'id': sujet.id}) }}">Editer</a>
+                    {% endif %}
+                    {% if (not lock and supprimerMessage) or moderer %}
+                        <a class="small-btn delete" href="{{ path('taforum_supprimer', {'pole': pole, 'id': sujet.id}) }}">Supprimer</a>
+                    {% endif %}
+                    {#{% if user is not null and sujet.isAuthor(user) %}#}
+                        {#<a class="small-btn" href="{{ path('taforum_duppliquer_liste_categorie', {'pole': pole, 'id': sujet.id}) }}">Liste catégorie d'affichage</a>#}
+                    {#{% endif %}#}
+                {% endspaceless %}</div>
+            {% endif %}
+
+            <p class="date">
+                {{ sujet.datePublication |localizeddate('medium', 'none') }} - {{ sujet.datePublication | localizeddate('none', 'short') }}
+            </p>
+
+            {% for content in sujet.getFormulaireDonnees() %}
+                {% if content.contenu is defined and content.contenu != null %}
+                    {% if content.type is defined and content.type.isTitleVisible() %}
+                        <h3>
+                            {{ content.type.nom }}
+                        </h3>
+                    {% endif %}
+                    <p class="paragraphe">{{ content.contenu|bbcode_filter('my_default_filter') }}</p>
+                {% endif %}
+            {% endfor %}
+
+            {% if author is not defined %}
+                {% set author = sujet.authors.first() %}
+            {% endif %}
+            {% if author.signature is defined and author.signature is not null %}
+                <hr class="banniere_separation">
+                <div class="paragraphe post_banniere">
+                    {{ cut_signature(author.signature) | bbcode_filter('my_default_filter') }}
+                </div>
+            {% endif %}
+
+            <div class="sujet_contact">
+                {% include "TerAelisForumBundle:Forum:contact.html.twig" with {'author': sujet.authors | first} %}
+            </div>
+        </div>
+    </div>
+</div>

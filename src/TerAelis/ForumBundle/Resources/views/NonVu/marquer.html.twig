@@ -1,0 +1,21 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    <div class="formulaire">
+        <form method="post" {{ form_enctype(form) }}>
+            {% if categorie is defined and categorie is not null %}
+                <h2>Etes vous certain de vouloir marquer cette catégorie comme lue ?</h2>
+                <ul>
+                    <li>Categorie : {{ categorie.title }}</li>
+            {% else %}
+                <h2>Etes vous certain de vouloir marquer tous les sujets comme lus ?</h2>
+                <ul>
+            {% endif %}<br />
+                <li>Nombre de post non lus : {{ count }}</li>
+            </ul>
+
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-primary" value="Marquer comme lus" />
+        </form>
+    </div>
+{% endblock %}

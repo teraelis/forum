@@ -1,0 +1,16 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block page %}
+<h2 class="titrePage">Gestion des rangs</h2>
+    <a href="{{ path('admin_rang_add') }}">Ajouter un rang</a>
+    <ul>
+        {% for r in rang %}
+            <li>
+                <a href="{{ path('admin_rang_view', {id: r.id}) }}">{{ r.name }}</a>
+                - <a href="{{ path('admin_rang_edit', {id: r.id}) }}">Editer</a>
+                - <a href="{{ path('admin_rang_remove', {id: r.id}) }}">Supprimer</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ path('admin_rang_add') }}">Ajouter un rang</a>
+{% endblock %}

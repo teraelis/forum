@@ -1,0 +1,71 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    <h1>Calendrier</h1>
+    <h2>{{ title }}</h2>
+
+    {{ form_start(form) }}
+
+        <div class="error">
+            {{ form_errors(form) }}
+        </div>
+
+        <div class="mainForm form-field">
+        {# Balise #}
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.name, 'Nom de l\'évènement') }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.date, 'Date') }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.date) }}
+                    {{ form_widget(form.date) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.url, 'Lien') }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.url) }}
+                    {{ form_widget(form.url) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.pole, 'Pôle') }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.pole) }}
+                    {{ form_widget(form.pole) }}
+                </div>
+            </div>
+            {% if form.priority is defined %}
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.priority, 'Prioritaire ?') }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.priority) }}
+                    {{ form_widget(form.priority) }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        {{ form_row(form.submit, {
+            'attr': {
+                'class': 'btn'
+            }
+        }) }}
+
+    {{ form_end(form) }}
+{% endblock %}

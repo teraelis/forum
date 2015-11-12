@@ -1,0 +1,16 @@
+{% if (not message.hide) or (message.hide and mod) %}
+<div class="message">
+    <div class="info">
+        {{ showUsername(message.user) }}
+        - {{ message.createdAt |localizeddate('medium', 'none') }} - {{ message.createdAt | localizeddate('none', 'short') }}
+        {% if mod %}-
+            {% if message.hide %}
+                <a href="{{ path('teraelis_tchat_showMessage', {idMessage: message.id}) }}">Réhabiliter le message</a>
+            {% else %}
+                <a href="{{ path('teraelis_tchat_hideMessage', {idMessage: message.id}) }}">Cacher le message</a>
+            {% endif %}
+        {% endif %}
+    </div>
+    {% if message.hide %}MESSAGE CACHE - {% endif %}{{ message.message|bbcode_filter('my_default_filter') }}
+</div>
+{% endif %}

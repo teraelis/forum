@@ -1,0 +1,12 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block page %}
+    <h2 class="titrePage">Etes vous sur de vouloir supprimer <emph>{{ categorie_courante.title }}</emph></h2>
+
+    <div class="formulaire">
+        <form method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-primary" value="Valider" />
+        </form>
+    </div>
+{% endblock %}

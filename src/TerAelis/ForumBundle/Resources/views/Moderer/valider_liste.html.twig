@@ -1,0 +1,15 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    <div class="formulaire">
+        <form method="post" {{ form_enctype(form) }}>
+            {% include 'TerAelisForumBundle:Moderer:liste_sujets_form.html.twig' with {'form': form, 'posts': posts, 'valider': 1} %}
+
+            <div class="separation">
+                {{ form_rest(form) }}
+
+                <input type="submit" class="btn btn-primary" value="Publier" />
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block page %}
+    <h2 class="titrePage">Gestion des utilisateurs</h2>
+
+    <div class="block">
+        {{ form(form) }}
+    </div>
+
+    <div class="block">
+        <a href="{{ path('admin_registration_message') }}">Changer le message d'accueil</a>
+    </div>
+{% endblock %}

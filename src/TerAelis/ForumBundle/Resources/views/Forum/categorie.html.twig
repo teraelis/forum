@@ -1,0 +1,67 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {% if categorie_courante is defined and categorie_courante != null %}{{ categorie_courante.title }}{% endif %}{% endblock %}
+
+{% block page %}
+    {# Categories #}
+    {# Affichage des catégories relayées par le controlleur #}
+    {% if categories is defined and categories != null %}
+        {% include "TerAelisForumBundle:Forum:listSubCategories.html.twig" with {
+            'categories': categories,
+            'voirCategorie': voirCategorie,
+            'pole': pole,
+            'pole_aff': pole_aff
+        } %}
+    {% endif %}
+
+    {# Sujets #}
+    {% if categorie_courante is defined and categorie_courante != null and categorie_courante.writable %}
+
+        {% if creerSujet is not empty and creerSujet[categorie_courante.id] == 1 %}
+            <a class="btn" href="{{ path('taforum_creerSujet', {'pole': pole_aff, 'slug': categorie_courante.slug}) }}">Ajouter un sujet</a>
+        {% endif %}
+
+        {# Affichage des sujets relayés par le controlleur #}
+        {# On affiche les pages #}
+        {% include "TerAelisForumBundle:Forum:pageNav.html.twig" with {
+            numberComment: nbCommentTotal,
+            nbCommentPerPage: nbCommentPerPage,
+            active: page,
+            path: path('taforum_forum', {'pole': pole_aff, 'slug': slug})
+        } %}
+
+
+        <div class="categories posts">
+            {% include "TerAelisForumBundle:Forum:listePosts.html.twig" with {'sujets': sujets, 'voirSujet': voirSujet} %}
+        </div>
+
+        {# On affiche les pages #}
+        {% include "TerAelisForumBundle:Forum:pageNav.html.twig" with {
+            numberComment: nbCommentTotal,
+            nbCommentPerPage: nbCommentPerPage,
+            active: page,
+            path: path('taforum_forum', {'pole': pole_aff, 'slug': slug})
+        } %}
+
+    {% endif %}
+
+    <div class="moderation">
+        {# Gestion des lus #}
+        {% if categorie_courante is defined and categorie_courante != null %}
+            <a class="small-btn" href="{{ path('taforum_marquer_lus', {'pole': pole_aff, 'slug': categorie_courante.slug}) }}">Marquer cette catégorie comme lue</a>
+        {% endif %}
+        <br>
+        {# Modération #}
+        {% if categorie_courante is defined and categorie_courante != null and moderer %}
+            <a class="small-btn" href="{{ path('taforum_valider_liste', {'pole': pole_aff, 'id': categorie_courante.id}) }}">Publier des sujets</a>
+            <a class="small-btn" href="{{ path('taforum_deplacer_liste', {'pole': pole_aff, 'id': categorie_courante.id}) }}">Déplacer des sujets</a>
+            <a class="small-btn" href="{{ path('taforum_supprimer_liste', {'pole': pole_aff, 'id': categorie_courante.id}) }}">Supprimer des sujets</a>
+        {% endif %}
+    </div>
+
+    {# Affichage de qui est en ligne #}
+    {% if categorie_courante is not defined or categorie_courante == null %}
+        {% render(controller("TerAelisForumBundle:Forum:enLigne")) %}
+    {% endif %}
+
+{% endblock %}

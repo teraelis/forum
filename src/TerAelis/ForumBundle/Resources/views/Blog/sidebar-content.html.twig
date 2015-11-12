@@ -1,0 +1,6 @@
+{% for module in modules %}
+    <div class="sub">
+        <h2>{{ module.title }}</h2>
+        {{ module.content|raw }}
+    </div>
+{% endfor %}

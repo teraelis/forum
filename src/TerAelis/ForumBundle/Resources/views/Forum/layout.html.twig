@@ -1,0 +1,26 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Forum{% endblock %}
+
+{% block header %}
+    {% include 'TerAelisForumBundle:Forum:forum_header.html.twig' with {pole: pole_aff} %}
+{% endblock %}
+
+{% block content %}
+    {% block above_path %}{% endblock %}
+        {% if path is defined %}
+            {% include "TerAelisForumBundle:Forum:path.html.twig" with {'pole': pole_aff, 'path': path} %}
+        {% endif %}
+
+    {% block users_link %}
+        <p class="nav_see_post">
+            <a href="{{ path('taforum_non_lus', {'pole': pole_aff}) }}">Voir les sujets non lus</a><br />
+            <a href="{{ path('taforum_tous_marquer_lus', {'pole': pole_aff}) }}">Marquer tous les sujets comme lus</a><br />
+            <a href="{{ path('taforum_forum', {'pole': pole_aff, 'slug': 'archives'}) }}">Accéder aux archives</a>
+        </p>
+    {% endblock %}
+
+    {% block page %}
+    {% endblock %}
+
+{% endblock %}

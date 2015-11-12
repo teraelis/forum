@@ -1,0 +1,83 @@
+{% extends 'TerAelisTChatBundle:Salon:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ salon.name }}{% endblock %}
+
+{% block titrepage %}{{ salon.name }}{% if otherUser is defined %} : {{ showUsername(otherUser) }}{% endif %}{% endblock %}
+{% block page %}
+    <div ng-app="TchatTerAelis">
+    <div class="salon">
+        <div class="row">
+            <div class="discussion" ng-controller="tchatController">
+                <ul class="messages" id="messages">
+                    {% for message in messages %}
+                        <li>{% include "TerAelisTChatBundle:Message:show.html.twig" with {message: message, mod: mod} %}</li>
+                    {% endfor %}
+                    <li ng-repeat="message in messages">
+                        <div class="message">
+                            <div class="info">{% verbatim %}<span ng-bind-html="message.user"></span> - {{ message.date }} - <span ng-bind-html="modMessage(message.mod, message.hide, message.id)"></span>{% endverbatim %}</div>
+                            {% verbatim %}<span ng-bind-html="message.message"></span>{% endverbatim %}
+                        </div>
+                    </li>
+                </ul>
+                <form ng-submit="submitMessage()" method="post" {{ form_enctype(form) }}>
+                    {{ form_errors(form) }}
+
+                    {{ form_widget(form.message, {'attr':{'ng-model':'message'}}) }}
+                    {% do form.message.setRendered %}
+                    {{ form_rest(form) }}
+                    <input type="hidden" id="salonId" name="salonId" value="{{ salon.id }}" />
+                    <input type="hidden" id="lastUpdate" name="lastUpdate" value="{{ date }}" />
+                    <input type="submit" class="btn btn-primary" value="Envoyer" />
+                </form>
+                {% if not salon.private %}
+                    <div class="tools moderation">
+                        <a class="small-btn" href="{{ path('teraelis_tchat_quit', {id: salon.id}) }}">Quitter le salon</a>
+                        {% if mod %}
+                            <a class="small-btn" href="{{ path('teraelis_tchat_addUser', {id: salon.id}) }}">Ajouter un utilisateur</a>
+                            <a class="small-btn" href="{{ path('teraelis_tchat_change_name_salon', {id: salon.id}) }}">Changer le nom du salon</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+            {% if not salon.private %}
+                <div class="users">
+                    <h3>Modérateurs</h3>
+                    <ul>
+                        {% for m in mods %}
+                            <li>
+                                {{ showUsername(m) }}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('teraelis_tchat_downgradeUser', {id: salon.id, userId: m.id}) }}">
+                                        <img src="{{ asset('bundles/teraelisforum/img/global/member_downgrade.jpg') }}" title="Rétrograder en tant que participant" alt="Rétrograder en tant que participant" />
+                                    </a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <h3>Participants</h3>
+                    <ul>
+                        {% for user in users %}
+                            <li>
+                                {{ showUsername(user) }}
+                                {% if mod %}
+                                    <a href="{{ path('teraelis_tchat_promoteUser', {id: salon.id, userId: user.id}) }}"><img src="{{ asset('bundles/teraelisforum/img/global/member_upgrade.jpg') }}" title="Promouvoir en tant que modérateur" alt="Promouvoir en tant que modérateur" /></a>
+                                    <a href="{{ path('teraelis_tchat_quit', {id: salon.id, userId: user.id}) }}"><img src="{{ asset('bundles/teraelisforum/img/global/member_delete.jpg') }}" title="Supprimer du groupe" alt="Supprimer du groupe" /></a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".discussion .messages").scrollTop($(".discussion .messages")[0].scrollHeight);
+        });
+    </script>
+{% endblock %}

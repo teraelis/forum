@@ -1,0 +1,24 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Tchat{% endblock %}
+
+{% block header %}
+    {% include 'TerAelisForumBundle:Forum:forum_header.html.twig' with {pole: pole} %}
+{% endblock %}
+
+{% block content %}
+    <h1>{% block titrepage %}Messagerie{% endblock %}</h1>
+    {% block page %}
+
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-resource.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-sanitize.min.js"></script>
+    {% javascripts '@TerAelisTChatBundle/Resources/assets/js/tchat.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

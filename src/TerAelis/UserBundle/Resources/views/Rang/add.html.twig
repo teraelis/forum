@@ -1,0 +1,16 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block page %}
+    <h2 class="titrePage">Gestion des rangs</h2>
+    <div class="formulaire">
+        {% if rang is defined and rang is not null and rang.url is not null %}
+            Image du rang :
+            <img src="{{ asset(rang.url) }}" />
+        {% endif %}
+        <form method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-primary" {% if submit is defined and submit is not null %}value="{{ submit }}" {% endif %}/>
+        </form>
+    </div>
+    <a href="{{ path('admin_rangs') }}">Retourner a la liste des rangs</a>
+{% endblock %}

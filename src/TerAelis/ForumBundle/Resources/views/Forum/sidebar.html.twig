@@ -1,0 +1,13 @@
+<div class="sidebar">
+    {% block sidebar %}
+        {{ render(controller('TerAelisTChatBundle:Sidebar:get' , {'pole': pole_aff})) }}
+    {% endblock %}
+
+    {% block calendrier %}
+        {{ render(controller('TerAelisForumBundle:Event:sidebar' , {'pole': pole_aff})) }}
+    {% endblock %}
+
+    {% block ailleursCaCause %}
+        {{ render(controller('TerAelisForumBundle:Forum:last', {'pole': pole_aff})) }}
+    {% endblock %}
+</div>

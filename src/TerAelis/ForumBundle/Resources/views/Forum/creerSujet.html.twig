@@ -1,0 +1,212 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+
+    {% if categories is defined and categories != null %}
+        <h2>Créer un sujet</h2>
+    {% else %}
+        <h2>Editer</h2>
+    {% endif %}
+
+    {% if notAllowed is defined %}
+        <div class="block">{{ notAllowed }}</div>
+    {% endif %}
+
+    {% if previsualiser is defined %}
+        <section class="sujet previsualiser">
+            <article>
+                <header>
+                    {% include "TerAelisForumBundle:Forum:firstPost_title.html.twig" with {
+                    'sujet': previsualiser,
+                    'answer': 1
+                    } %}
+                </header>
+            {% include "TerAelisForumBundle:Forum:firstPost_mainRow.html.twig" with {
+                'sujet': previsualiser,
+                'author': app.user,
+                'answer': 1
+            } %}
+            </article>
+        </section>
+    {% endif %}
+
+    <div class="formulaire">
+        <form method="post" {{ form_enctype(form) }}>
+
+        <div class="error">
+            {{ form_errors(form) }}
+        </div>
+
+        <div class="mainForm form-field">
+            {# Balise #}
+            {% if viewBalise %}
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.balise, 'Balise') }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.balise) }}
+                    {{ form_widget(form.balise) }}
+                </div>
+            </div>
+            {% endif %}
+            {% do form.balise.setRendered %}
+            {# Titre #}
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.title, 'Titre') }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.title) }}
+                    {{ form_widget(form.title,{
+                        attr: {
+                            title: 'Le titre ne peut pas être vide et ne peut pas contenir que des caractères spéciaux'
+                        }
+                    }) }}
+                </div>
+            </div>
+            {# Sous-titre #}
+            <div class="form-group">
+                <div class="form-label">
+                    {{ form_label(form.subTitle, 'Sous-titre') }}
+                </div>
+                <div class="form-input">
+                    {{ form_errors(form.subTitle) }}
+                    {{ form_widget(form.subTitle) }}
+                </div>
+            </div>
+            {# Contenu #}
+            {% for contenu in form.formulaireDonnees %}
+                <div class="form-group">
+                    <div class="form-label">
+                        {{ type[loop.index0].nom }}
+                        {% if type[loop.index0].description is defined and type[loop.index0].description is not empty %}
+                        <span class="form-small-label">
+                            {{ type[loop.index0].description }}
+                        </span>
+                        {% endif %}
+                    </div>
+                    <div class="form-input bbcode">
+                        {{ bbcodeInput('content'~loop.index0, form_errors(contenu), form_widget(contenu)) }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="expandable closed" id="form-options">
+            <a class="expand" href="form-options" src-plus="{{ asset('bundles/teraelisforum/img/global/plus.jpg') }}" src-moins="{{ asset('bundles/teraelisforum/img/global/moins.png') }}"><img src="{{ asset('bundles/teraelisforum/img/global/moins.png') }}" alt="minimiser" title="Minimiser" /></a> <h2>Options</h2>
+            <div class="options form-field change">
+                {% if form.date_publication is defined and form.date_publication is not empty %}
+                <div class="form-group">
+                    <div class="form-label">
+                        {{ form_label(form.date_publication, 'Date de publication') }}
+                    </div>
+                    <div class="form-input">
+                        {{ form_errors(form.date_publication) }}
+                        {{ form_widget(form.date_publication) }}
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <div class="form-label">
+                        {{ form_label(form.tags, 'Tags') }}
+                    </div>
+                    <div class="form-input">
+                        {{ form_errors(form.tags) }}
+                        {{ form_widget(form.tags) }}
+                    </div>
+                </div>
+
+                {% if creerSpecial == 1 %}
+                    <div class="form-group">
+                        <div class="form-label">
+                            {{ form_label(form.typeSujet, 'Type de sujet') }}
+                        </div>
+                        <div class="form-input">
+                            {{ form_errors(form.typeSujet) }}
+                            {{ form_widget(form.typeSujet) }}
+                        </div>
+                    </div>
+                {% endif %}
+                {% do form.typeSujet.setRendered %}
+
+                {% if creerSondage == 1 %}
+                    <div class="form-group">
+                        <div class="form-label">
+                            {{ form_label(form.sondage, 'Sondage') }}
+                        </div>
+                        <div class="form-input">
+                            {{ form_errors(form.sondage) }}
+                            {{ form_widget(form.sondage) }}
+                        </div>
+                    </div>
+                {% endif %}
+                {% do form.sondage.setRendered %}
+            </div>
+            <hr>
+        </div>
+
+        <div class="single-ligne" style="text-align:center">
+            {{ form_label(form.previsualiser, { 'label': 'Prévisualiser' }) }}
+            {{ form_label(form.publier, { 'label': 'Publier' }) }}
+            {{ form_rest(form) }}
+        </div>
+        </form>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var $containerTag = $('div#teraelis_forumbundle_posttype_tags');
+            var $lienAjoutTag = $('<a href="#" id="ajout_tags" class="btn">Ajouter un tag</a>');
+            var $containerChoix = $('div#teraelis_forumbundle_posttype_sondage_choix');
+            var $lienAjoutChoix = $('<a href="#" id="ajout_choix" class="btn">Ajouter un choix</a>');
+            var $indexTag = $containerTag.find(':input').length;
+            var $indexChoix = $containerChoix.find(':input').length;
+            var $index = $indexTag + $indexChoix;
+
+            $containerTag.append($lienAjoutTag);
+            $containerChoix.append($lienAjoutChoix);
+
+            $lienAjoutTag.click(function(e) {
+                ajouterTag($containerTag);
+                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                return false;
+            });
+            $lienAjoutChoix.click(function(e) {
+                ajouterTag($containerChoix);
+                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                return false;
+            });
+
+            $containerTag.children('div').each(function() {
+                ajouterLienSuppression($(this));
+            });
+
+            $containerChoix.children('div').each(function() {
+                ajouterLienSuppression($(this));
+            });
+
+            // La fonction qui ajoute un tags Categorie
+            function ajouterTag($container) {
+                var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, '')
+                        .replace(/__name__/g, $index));
+                ajouterLienSuppression($prototype);
+                $container.append($prototype);
+                $index++;
+            }
+
+            // La fonction qui ajoute un lien de suppression d'une catégorie
+            function ajouterLienSuppression($prototype) {
+                var $lienSuppression = $('<a href="#" class="delete">Supprimer</a>');
+                $prototype.append($lienSuppression);
+                $lienSuppression.click(function(e) {
+                    $prototype.remove();
+                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    return false;
+                });
+            }
+        });
+    </script>
+{% endblock %}

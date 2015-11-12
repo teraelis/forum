@@ -1,0 +1,12 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    <h2>Supprimer Sujet</h2>
+    <p>Etes vous certain de vouloir supprimer le sujet : {{ sujet.title }} ?</p>
+    <div class="formulaire">
+        <form method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-primary" value="Supprimer" />
+        </form>
+    </div>
+{% endblock %}

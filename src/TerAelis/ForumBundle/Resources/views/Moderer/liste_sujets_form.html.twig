@@ -1,0 +1,49 @@
+<table class="listSujets">
+    <thead>
+    <tr>
+        <th>Sélectionner</th>
+        <th>Titre</th>
+        <th>Auteurs</th>
+        <th>Nombre de commentaires</th>
+        <th>Dernier message</th>
+        {% if valider %}
+            <th>Date Publication</th>
+        {% endif %}
+    </tr>
+    </thead>
+    <tbody>
+    {% if form.posts is not empty %}
+        {% for id, child in form.posts %}
+            {% set post = posts[id] %}
+            {% set authors_string = "  Anonyme" %}
+            {% for author in post.authors %}
+                {% set authors_string = ', ' ~ author.username %}
+            {% endfor %}
+            {% set authors_string = authors_string[2:] %}
+            <tr>
+                <td>{{ form_widget(child) }}</td>
+                <td><a href="{{ path('taforum_voirSujet', {
+                        pole: pole_aff,
+                        slug: post.slug
+                    }) }}">{{ post.title }}</a></td>
+                <td>{{ authors_string }}</td>
+                <td>{{ post.numberComment }}</td>
+                <td>
+                    <a href="{{ path("taforum_voirSujet_last", {'pole': pole, 'slug': post.slug}) }}">{{ post.title }}</a><br />
+                    {{ post.lastComment | localizeddate('none', 'short') }} - {{ post.lastComment |localizeddate('medium', 'none') }}
+                </td>
+                {% if valider %}
+                    <td>{{ post.datePublication | localizeddate('none', 'short') }} - {{ post.datePublication |localizeddate('medium', 'none') }}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td class="center empty" colspan="{{ valider ? 6 : 5 }}">
+                Aucun sujet à modérer
+            </td>
+        </tr>
+    {% endif %}
+    {% do form.posts.setRendered %}
+    </tbody>
+</table>

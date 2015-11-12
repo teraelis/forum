@@ -1,0 +1,37 @@
+tacomment_repondre:
+    path: /{pole}/thread/{id}/repondre
+    defaults:  { _controller: TerAelisCommentBundle:Thread:answer }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        slug: ^[a-z0-9-]+$
+        id: \d*
+
+tacomment_quote_sujet:
+    path: /{pole}/thread/{threadId}/citer/sujet/{sujetId}
+    defaults:  { _controller: TerAelisCommentBundle:Thread:quotePost }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        threadId: \d*
+        sujetId: \d+
+
+tacomment_quote_comment:
+    path: /{pole}/comment/{threadId}/citer/comment/{commentId}
+    defaults:  { _controller: TerAelisCommentBundle:Thread:quoteComment }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        threadId: \d*
+        commentId: \d+
+
+tacomment_editer:
+    path: /{pole}/comment/{id}/editer
+    defaults:  { _controller: TerAelisCommentBundle:Thread:edit }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        id: \d*
+
+tacomment_supprimer:
+    path: /{pole}/comment/{id}/supprimer
+    defaults:  { _controller: TerAelisCommentBundle:Thread:delete }
+    requirements:
+        pole: litterature|graphisme|rolisme
+        id: \d*

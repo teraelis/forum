@@ -1,0 +1,16 @@
+{% extends 'TerAelisForumBundle:Admin:admin.html.twig' %}
+
+{% block page %}
+    <h2 class="titrePage">Groupe : {{ group.name }}</h2>
+
+    <a href="{{ path("admin_group_edit", {id: group.id}) }}">Editer</a><br />
+    <a href="{{ path("admin_group_permissions", {id: group.id}) }}">Permissions</a><br />
+    Roles :
+    <ul>
+    {% for role in group.roles %}
+        <li>{{ role }}</li>
+    {% endfor %}
+    </ul>
+
+    {% include 'TerAelisUserBundle:Group:listeUsers.html.twig' with { allow: true, mods: mods, users: users, groupId: group.id } %}
+{% endblock %}

@@ -1,0 +1,92 @@
+services:
+    ter_aelis_forum.permission:
+        class: TerAelis\ForumBundle\PermissionsService\ForumPermission
+        arguments: ['@doctrine', '%invites%' ]
+
+    ter_aelis_forum.lastpost:
+        class: TerAelis\ForumBundle\LastPostService\LastPostService
+        arguments: ['@doctrine']
+
+    ter_aelis_forum.non_vu:
+        class: TerAelis\ForumBundle\NonVuEvent\NonVuService
+        arguments: ['@doctrine.orm.entity_manager']
+
+    ter_aelis_forum.socialButtons:
+        class: TerAelis\ForumBundle\SocialButtonsService\SocialButtons
+        tags :
+            - {name : 'templating.helper', alias : 'social-buttons'}
+        arguments : [ @templating ]
+
+    twig.extension.ter_aelis_social_bar:
+        class: TerAelis\ForumBundle\Twig\Extensions\SocialButtonsBar
+        tags:
+            - { name: 'twig.extension' }
+        arguments : [ @service_container ]
+
+    twig.extension.ter_aelis_post_extension:
+        class: TerAelis\ForumBundle\Twig\Extensions\PostExtension
+        tags:
+            - { name: 'twig.extension' }
+        arguments : [ @router, @session, @teraelis.user_stats ]
+
+    ter_aelis_forum.decoda.textfilter:
+        class: TerAelis\ForumBundle\BBCodeService\IframeFilter
+        tags:
+            - { name: fm_bbcode.decoda.filter, id: iframe }
+
+    ter_aelis_forum.decoda.colorfilter:
+        class: TerAelis\ForumBundle\BBCodeService\ColorFilter
+        tags:
+            - { name: fm_bbcode.decoda.filter, id: color }
+
+    ter_aelis_forum.decoda.ancrefilter:
+        class: TerAelis\ForumBundle\BBCodeService\AncreFilter
+        tags:
+            - { name: fm_bbcode.decoda.filter, id: ancre }
+
+    ter_aelis_forum.decoda.nicetextfilter:
+        class: TerAelis\ForumBundle\BBCodeService\NiceTextFilter
+        tags:
+            - { name: fm_bbcode.decoda.filter, id: nicetext }
+
+    ter_aelis_forum.bbcode:
+        class: TerAelis\ForumBundle\BBCodeService\BBCodeService
+        arguments : [ @templating ]
+        tags :
+            - {name : 'templating.helper', alias : 'bbcode-service'}
+
+    twig.extension.ter_aelis_bbcode_extension:
+        class: TerAelis\ForumBundle\Twig\Extensions\BBCodeExtension
+        arguments : [ @service_container ]
+        tags:
+            - { name: 'twig.extension' }
+
+    ter_aelis_views.views:
+        class: TerAelis\StatistiquesBundle\ManageViewsService\ManageViews
+        arguments: ['@doctrine']
+
+    teraelis.updateUserListener:
+        class: TerAelis\ForumBundle\EventListener\TerAelisUpdateUser
+        arguments: ["@security.context", '@doctrine.orm.entity_manager', @request]
+        scope: request
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+
+    ter_aelis_forum.post_statistics:
+        class: TerAelis\ForumBundle\PostStatisticsService\PostStatistics
+        arguments: ['@doctrine.orm.entity_manager']
+
+    ter_aelis.form.optionsTransformer:
+        class: TerAelis\ForumBundle\Form\OptionsTransformerExtension
+        tags:
+            - { name: form.type_extension, alias: entity }
+
+    ter_aelis_forum.bbcode:
+        class: TerAelis\ForumBundle\BBCodeService\BBCodeService
+        arguments : [ @templating ]
+        tags :
+            - {name : 'templating.helper', alias : 'bbcode-service'}
+
+    teraelis.security.login_handler:
+        class: TerAelis\ForumBundle\EventListener\LoginHandler
+        arguments : [ @router ]

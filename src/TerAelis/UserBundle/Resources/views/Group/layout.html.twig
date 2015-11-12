@@ -1,0 +1,20 @@
+{% extends "::layout.html.twig" %}
+
+{% if app.request.cookies.has('pole') %}
+    {% set pole = app.request.cookies.get('pole') %}
+{% else %}
+    {% set pole = 'litterature' %}
+{% endif %}
+
+{% block title %}{{ parent() }} - Groupes{% endblock %}
+
+{% block header %}
+    {% include 'TerAelisForumBundle:Forum:forum_header.html.twig' with {pole: pole} %}
+{% endblock %}
+
+{% block content %}
+    <h1 class="titreBundle">Groupes</h1>
+    {% block page %}
+
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'TerAelisUserBundle:User:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ user.username }} - Edition{% endblock %}
+
+{% block page %}
+    <div>
+        <h1>Changer de couleur</h1>
+        <div class="formulaire">
+            <form method="post" {{ form_enctype(form) }}>
+                <div class="form-field">
+                    <div class="form-group">
+                        <div class="form-label">
+                            {{ form_label(form.id) }}
+                        </div>
+                        <div class="form-input">
+                            {{ form_widget(form.id) }}
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Changer" />
+                {{ form_end(form) }}
+            </form>
+        </div>
+    </div>
+{% endblock %}

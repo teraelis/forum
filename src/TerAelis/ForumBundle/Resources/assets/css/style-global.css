@@ -1,0 +1,152 @@
+body {
+  margin: 0;
+  background: url("../../bundles/teraelisforum/img/home/background_slide.jpg") repeat-y center top;
+  font-family: 'Rambla', sans-serif;
+  color: #66676B;
+  font-size: 13px; }
+
+.global {
+  background: url("../../bundles/teraelisforum/img/home/background.jpg") no-repeat center top; }
+
+.global::after {
+  content: '';
+  display: block;
+  clear: both; }
+
+h1, h2, h3 {
+  font-weight: 200;
+  font-family: 'Advent Pro', sans-serif;
+  text-transform: lowercase;
+  margin: 0; }
+
+a {
+  color: #4D3000;
+  text-decoration: none; }
+
+.container {
+  margin: 0 auto;
+  width: 950px;
+  text-align: center;
+  min-height: 1033px; }
+
+header {
+  padding-top: 40px; }
+
+#content {
+  margin-top: 240px; }
+
+.left {
+  float: left;
+  width: 390px;
+  padding-top: 60px; }
+
+.right {
+  float: right;
+  width: 390px; }
+
+.center {
+  margin: 0 390px;
+  text-align: justify;
+  padding: 60px 10px 0;
+  font-size: 0.95em;
+  line-height: 1.3em; }
+
+.item {
+  position: relative;
+  padding: 0 5px;
+  display: block;
+  min-height: 80px; }
+
+.item-logo {
+  position: absolute;
+  background: white;
+  border-radius: 30px;
+  height: 44px;
+  width: 44px;
+  padding: 5px;
+  box-sizing: border-box; }
+
+.separation {
+  height: 1px;
+  width: 100%;
+  border: none; }
+
+.left .item-image {
+  float: left; }
+.left .item-logo {
+  top: 18px;
+  left: 243px; }
+.left .item-name {
+  font-family: 'Advent Pro', 'sans-serif';
+  margin-left: 280px; }
+.left .separation {
+  background: url("../../bundles/teraelisforum/img/home/separation.png") 75% top no-repeat; }
+
+.right .item-image {
+  float: right; }
+.right .item-logo {
+  top: 18px;
+  left: 133px; }
+.right .item-name {
+  margin-right: 235px; }
+  .right .item-name h2 {
+    font-family: 'Oswald', 'sans-serif';
+    text-transform: uppercase;
+    font-size: 1.7em;
+    line-height: 1.15em;
+    letter-spacing: 2px; }
+    .right .item-name h2 .mot-qui-fait-joli {
+      font-size: 0.9em;
+      color: #66676B; }
+.right .separation {
+  background: url("../../bundles/teraelisforum/img/home/separation.png") 30% top no-repeat; }
+
+.item-name.blog {
+  padding: 15px 0; }
+  .item-name.blog h2 {
+    font-size: 3.5em; }
+
+.item-name.twitter {
+  padding: 15px 0; }
+  .item-name.twitter h2 {
+    font-size: 2.5em; }
+
+.item-name.facebook {
+  padding: 15px 0;
+  margin-left: 240px; }
+  .item-name.facebook h2 {
+    font-size: 2.5em; }
+
+.item-name.rp {
+  padding: 15px 0; }
+  .item-name.rp h2 {
+    letter-spacing: 6px;
+    color: #309A72; }
+    .item-name.rp h2 .mot-qui-fait-joli {
+      letter-spacing: 4px; }
+
+.item-name.litte {
+  padding: 15px 0; }
+  .item-name.litte h2 {
+    letter-spacing: 2px;
+    text-indent: 4px;
+    color: #B24F43; }
+    .item-name.litte h2 .mot-qui-fait-joli {
+      letter-spacing: 6px; }
+
+.item-name.gfx {
+  padding: 15px 0; }
+  .item-name.gfx h2 {
+    letter-spacing: 2px;
+    text-indent: 5px;
+    color: #00B8FC; }
+    .item-name.gfx h2 .mot-qui-fait-joli {
+      letter-spacing: 7px; }
+
+.forum {
+  font-size: 3.8em;
+  text-align: left;
+  margin-left: 20px;
+  color: #4D3000; }
+
+/*# sourceMappingURL=style-global.css.map */

@@ -1,0 +1,11 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    <h2 class="">Liste des sujets non lus</h2>
+
+    {% include 'TerAelisForumBundle:Forum:listePosts.html.twig' with {
+        pole: pole,
+        sujets: lastPost,
+        default_message: "Vous n'avez pas de message non lu."
+    } %}
+{% endblock %}

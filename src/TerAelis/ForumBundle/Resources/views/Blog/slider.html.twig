@@ -1,0 +1,12 @@
+<div id="slider">
+    <ul class="current">
+        {% for sujet in sujets %}
+        <li>{{ sujet.title }}</li>
+        {% endfor %}
+    </ul>
+    <ul class="links">
+        {% for sujet in sujets %}
+        <li><a href="{{ path('taforum_voirSujet', {pole: 'blog', slug: sujet.slug}) }}">{{ sujet.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

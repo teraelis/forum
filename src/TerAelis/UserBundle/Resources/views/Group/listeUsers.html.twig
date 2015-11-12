@@ -1,0 +1,19 @@
+{% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('group_add_user', {
+        id: group.id
+    }) }}">Ajouter un utilisateur</a>
+{% endif %}
+
+{#<h3>Liste des modérateurs</h3>#}
+{#<ul>#}
+    {#{% for mod in mods %}#}
+        {#<li>{{ showUsername(mod) }}</li>#}
+    {#{% endfor %}#}
+{#</ul>#}
+
+<h3>Liste des membres</h3>
+<ul>
+    {% for user in users %}
+        <li>{{ showUsername(user) }}{% if allow %} - <a href="{{ path('group_remove_user', {id: group.id, idUser: user.id}) }}">Retirer du groupe</a>{% endif %}</li>
+    {% endfor %}
+</ul>

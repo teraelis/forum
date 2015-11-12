@@ -1,0 +1,17 @@
+<p class="nav_path">
+    {% if path is defined and path != null %}
+        {% for cat in path %}
+            {% if cat.id == litterature %}
+                <a href="{{ path('taforum_pole', {'pole': 'litterature'}) }}">{{ cat.title }}</a> >
+            {% elseif cat.id == graphisme %}
+                <a href="{{ path('taforum_pole', {'pole': 'graphisme'}) }}">{{ cat.title }}</a> >
+            {% elseif cat.id == rolisme %}
+                <a href="{{ path('taforum_pole', {'pole': 'rolisme'}) }}">{{ cat.title }}</a> >
+            {% elseif cat.id == blog %}
+                <a href="{{ path('taforum_blog') }}">{{ cat.title }}</a> >
+            {% else %}
+                <a href="{{ path('taforum_forum', {'pole': pole, 'slug': cat.slug}) }}">{{ cat.title }}</a> >
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</p>

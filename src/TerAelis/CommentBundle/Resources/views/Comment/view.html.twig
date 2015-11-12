@@ -1,0 +1,49 @@
+<article {% if last is defined and last %}id="last"{% endif %}>
+    <div class="sujet_main" id="comment{{ comment.id }}">
+        <div class="row">
+            <div class="sujet_profil">
+                {% include "TerAelisForumBundle:Forum:leftProfil.html.twig" with {'author': comment.author} %}
+            </div>
+            <div class="sujet_contenu">
+                <div class="modification">
+                    {% spaceless %}
+                    {% if answer is not defined or answer == 0 %}
+                        {% set auteur = (user is not null and comment.author.id == user.id) %}
+                        {#{% if moderer or auteur %}<a class="small-btn quote" href="{{ path("taforum_creer_post_depuis_comment1", {'pole': pole, 'id': comment.id}) }}">Upgrade</a>{% endif %}#}
+                        {% if not thread.lock and (repondreSujet or moderer) %}<a class="small-btn quote" href="{{ path("tacomment_quote_comment", {'pole': pole, 'threadId': thread.id, 'commentId': comment.id}) }}">Citer</a>{% endif %}
+                        {% if (not thread.lock and editerMessage) or moderer %}<a class="small-btn edit" href="{{ path("tacomment_editer", {'pole': pole, 'id': comment.id}) }}">Editer</a>{% endif %}
+                        {% if (not thread.lock and supprimerMessage) or moderer %}<a class="small-btn" href="{{ path("tacomment_supprimer", {'pole': pole, 'id': comment.id}) }}">Supprimer</a>{% endif %}
+                    {% endif %}
+                    {% endspaceless %}
+                </div>
+
+                <p class="date">
+                    {% if slug is defined and slug is not empty %}
+                        {% spaceless %}
+                        <a href="{{ path('taforum_voirSujet', {'pole': pole, 'slug': slug, 'page': currentPage}) }}#comment{{ comment.id }}">{% if nonVu is defined and nonVu is not empty and nonVu.id <= comment.id %}
+                                <img src="{{ asset('bundles/teraelisforum/img/'~pole~'/active.png') }}" alt="Nouveau message posté le" title="Nouveau message" />
+                            {% else %}
+                                <img src="{{ asset('bundles/teraelisforum/img/'~pole~'/not_active.png') }}" alt="Message posté le" title="Message" />
+                            {% endif %}</a>{% endspaceless %}
+                    {% endif %}
+                    {{ comment.createdAt | localizeddate('none', 'short') }} - {{ comment.createdAt |localizeddate('medium', 'none') }}
+                </p>
+
+                <p>
+                    {{ comment.body|bbcode_filter('my_default_filter') }}
+                </p>
+
+                {% if comment.author.signature is defined and comment.author.signature is not null %}
+                    <hr class="banniere_separation">
+                    <div class="paragraphe post_banniere">
+                        {{ comment.author.signature | bbcode_filter('my_default_filter') }}
+                    </div>
+                {% endif %}
+
+                <div class="sujet_contact">
+                    {% include "TerAelisForumBundle:Forum:contact.html.twig" with {'author': comment.author} %}
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

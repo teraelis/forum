@@ -1,0 +1,11 @@
+<a href="{{ path("taforum_forum", {pole: pole}) }}"><img src="{{ asset("bundles/teraelisforum/img/"~pole~"/logo.png") }}" alt="Ter Aelis Litterature Logo" title="Ter Aelis - Pôle Littéraire"/></a>
+<nav>
+    <ul class="nav-user">
+        <li><a href="{{ path('taforum_page', {pagePermalink:'orientation'}) }}"><img src="{{ asset('bundles/teraelisforum/img/'~pole~'/orientation.png') }}" alt="Orientation" title="Orientation" /></a></li>
+        <li><a href="{{ path('user_liste') }}"><img src="{{ asset('bundles/teraelisforum/img/'~pole~'/membres.png') }}" alt="Membres" title="Membres" /></a></li>
+        {#<li><img src="{{ asset('bundles/teraelisforum/img/'~pole~'/rechercher.png') }}" alt="Rechercher" title="Rechercher" /></li>#}
+    </ul>
+
+    {% render(controller("TerAelisForumBundle:Forum:poleNonVus", {pole: pole})) %}
+
+</nav>

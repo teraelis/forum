@@ -1,0 +1,13 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block header %}
+    {% include 'TerAelisForumBundle:Forum:forum_header.html.twig' with {pole: pole} %}
+{% endblock %}
+
+{% block content %}
+    {% block page %}
+
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,64 @@
+{% if answer is not defined or answer == 0 %}
+    {% if sondageExiste %}
+        <div class="sondage">
+            <div class="title">
+                <h2>Sondage :  {{ question }}</h2>
+            </div>
+
+            {% if sondageOuvert == 1 %}
+                <div class="formulaire align-center">
+                    {{ form_start(form) }}
+                        {% for choix in form.choix %}
+                            <div class="separation">
+                                {{ form_widget(choix) }}
+                                {{ form_label(choix) }}
+                            </div>
+                        {% endfor %}
+                    <div class="separation">
+                        <input type="submit" class="btn btn-primary" value="Voter" />
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            {% else %}
+                <h3 class="sondage_results">Résultat des votes</h3>
+                <div class="sondage_content">
+                    {% for key, value in choix %}
+                        <div class="sondage_option">
+                            <span class="sondage_option_title align-right">{{ key }}</span>
+                            <span class="sondage_option_vote"><span style="width: {{ value.percentage }}%;"></span></span>
+                            <span class="sondage_option_value">{{ value.percentage }}% ({{ value.number }})</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endif %}
+
+<section class="sujet">
+    <article>
+        <header>
+            {% if answer is not defined %}
+                {% include "TerAelisForumBundle:Forum:firstPost_title.html.twig" with {
+                'sujet': sujet
+                } %}
+            {% else %}
+                {% include "TerAelisForumBundle:Forum:firstPost_title.html.twig" with {
+                'sujet': sujet,
+                'answer': answer
+                } %}
+            {% endif %}
+        </header>
+
+        {% if answer is not defined %}
+        {% include "TerAelisForumBundle:Forum:firstPost_mainRow.html.twig" with {
+            'sujet': sujet
+        } %}
+        {% else %}
+            {% include "TerAelisForumBundle:Forum:firstPost_mainRow.html.twig" with {
+            'sujet': sujet,
+            'answer': answer
+            } %}
+        {% endif %}
+    </article>
+</section>

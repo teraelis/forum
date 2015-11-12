@@ -1,0 +1,3 @@
+ter_aelis_statistiques_homepage:
+    pattern:  /statistiques
+    defaults: { _controller: TerAelisStatistiquesBundle:Statistiques:index }

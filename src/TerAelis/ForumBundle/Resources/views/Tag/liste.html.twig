@@ -1,0 +1,10 @@
+{% extends 'TerAelisForumBundle:Forum:layout.html.twig' %}
+
+{% block page %}
+    <h1>Liste des tags</h1>
+    <ul>
+    {% for tag in tags %}
+        <li>{{ tag.tag }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

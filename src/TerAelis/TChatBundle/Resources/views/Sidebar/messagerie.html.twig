@@ -1,0 +1,50 @@
+<div class="listSalon">
+    <a class="expand" href="salons" src-plus="{{ asset('bundles/teraelisforum/img/global/more_small.png') }}" src-moins="{{ asset('bundles/teraelisforum/img/global/less_small.png') }}">
+        <img src="{{ asset('bundles/teraelisforum/img/global/less_small.png') }}" alt="minimiser" title="Minimiser" width="10px" height="10px" />
+    </a>
+
+    <h4>Liste de vos salons :</h4>
+
+    {% if emptyRooms is not defined or emptyRooms %}
+        <p class="salons js-salons">Vous n'avez pas encore discuté avec qui que ce soit.</p>
+    {% else %}
+    <ul class="salons js-salons">
+        {% for s in salons %}
+            {% if not s.private %}
+                <li>
+                    <a href="{{ path('teraelis_tchat_show', {id: s.id}) }}">
+                        {% if s.new %}
+                            <img class="bottom-img" src="{{ asset('bundles/teraelisforum/img/global/active.png') }}" alt="Nouveau message dans" title="Nouveau message" />
+                        {% endif %}
+                        {{ s.name }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        {% if salons | length >= 5 %}
+            <li class="separation text--not-emphasized"><a href="{{ path('teraelis_tchat') }}">...</a></li>
+        {% endif %}
+    </ul>
+    {% endif %}
+</div>
+<div class="listContact">
+    <a class="expand" href="contacts" src-plus="{{ asset('bundles/teraelisforum/img/global/more_small.png') }}" src-moins="{{ asset('bundles/teraelisforum/img/global/less_small.png') }}"><img src="{{ asset('bundles/teraelisforum/img/global/less_small.png') }}" alt="minimiser" title="Minimiser" width="10px" height="10px" /></a> <h4>Liste de vos contacts :</h4>
+    {% if emptyContacts is not defined or emptyContacts %}
+    <p class="contacts js-contacts">Vous n'avez encore aucun contact.</p>
+    {% else %}
+    <ul class="contacts js-contacts">
+    {% for c in contacts %}
+        <li>
+            <span class="connected{% if c.connected %} on{% else %} away{% endif %}"></span>
+            {% if c.new %}
+                <img class="bottom-img" src="{{ asset('bundles/teraelisforum/img/global/active.png') }}" alt="Nouveau message dans" title="Nouveau message" />
+            {% endif %}
+            {{ tchatWith(c, true) }}
+        </li>
+    {% endfor %}
+        {% if contacts | length >= 5 %}
+            <li class="separation text--not-emphasized"><a href="{{ path('teraelis_tchat') }}">...</a></li>
+        {% endif %}
+    </ul>
+    {% endif %}
+</div>

@@ -1,0 +1,210 @@
+$rootImgDir: '../../bundles/teraelisforum/img';
+$color: #66676B;
+$linkColor: #4D3000;
+$poleLitte: #B24F43;
+$poleGFX: #00B8FC;
+$poleRP: #309A72;
+
+
+body {
+  margin: 0;
+  background: url($rootImgDir + '/home/background_slide.jpg') repeat-y center top;
+  font-family: 'Rambla', sans-serif;
+  color: $color;
+  font-size: 13px;
+}
+.global {
+  background: url($rootImgDir + '/home/background.jpg') no-repeat center top;
+}
+.global::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+h1,h2,h3 {
+  font-weight: 200;
+  font-family: 'Advent Pro', sans-serif;
+  text-transform: lowercase;
+  margin: 0;
+}
+
+a {
+  color: $linkColor;
+  text-decoration: none;
+}
+
+.container {
+  margin: 0 auto;
+  width: 950px;
+  text-align: center;
+  min-height: 1033px;
+}
+
+header {
+  padding-top: 40px;
+}
+
+#content {
+  margin-top: 240px;
+}
+
+$sideWidth: 390px;
+.left {
+  float: left;
+  width: $sideWidth;
+  padding-top: 60px;
+}
+
+.right {
+  float: right;
+  width: $sideWidth;
+}
+
+.center {
+  margin: 0 $sideWidth;
+  text-align: justify;
+  padding: 60px 10px 0;
+  font-size: 0.95em;
+  line-height: 1.3em;
+}
+
+.item {
+  position: relative;
+  padding: 0 5px;
+  display: block;
+  min-height: 80px;
+}
+
+.item-logo {
+  position: absolute;
+  background: white;
+  border-radius: 30px;
+  height: 44px;
+  width: 44px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.separation {
+  height: 1px;
+  width: 100%;
+  border: none;
+}
+
+.left {
+  .item-image {
+    float: left;
+  }
+
+  .item-logo {
+    top: 18px;
+    left: 243px;
+  }
+
+  .item-name {
+    font-family: 'Advent Pro', 'sans-serif';
+    margin-left: 280px;
+  }
+
+  .separation {
+    background: url($rootImgDir + '/home/separation.png') 75% top no-repeat;
+  }
+}
+
+.right {
+  .item-image {
+    float: right;
+  }
+
+  .item-logo {
+    top: 18px;
+    left: 133px;
+  }
+
+  .item-name {
+    margin-right: 235px;
+
+    h2 {
+      font-family: 'Oswald', 'sans-serif';
+      text-transform: uppercase;
+      font-size: 1.7em;
+      line-height: 1.15em;
+      letter-spacing: 2px;
+
+      .mot-qui-fait-joli {
+        font-size: 0.9em;
+        color: $color;
+      }
+    }
+  }
+
+  .separation {
+    background: url($rootImgDir + '/home/separation.png') 30% top no-repeat;
+  }
+}
+
+.item-name.blog {
+  padding: 15px 0;
+
+  h2 {
+    font-size: 3.5em;
+  }
+}
+.item-name.twitter {
+  padding: 15px 0;
+
+  h2 {
+    font-size: 2.5em;
+  }
+}
+.item-name.facebook {
+  padding: 15px 0;
+  margin-left: 240px;
+
+  h2 {
+    font-size: 2.5em;
+  }
+}
+.item-name.rp {
+  padding: 15px 0;
+  h2 {
+    letter-spacing: 6px;
+    color: $poleRP;
+
+    .mot-qui-fait-joli {
+      letter-spacing: 4px;
+    }
+  }
+}
+.item-name.litte {
+  padding: 15px 0;
+  h2 {
+    letter-spacing: 2px;
+    text-indent: 4px;
+    color: $poleLitte;
+
+    .mot-qui-fait-joli {
+      letter-spacing: 6px;
+    }
+  }
+}
+.item-name.gfx{
+  padding: 15px 0;
+  h2 {
+    letter-spacing: 2px;
+    text-indent: 5px;
+    color: $poleGFX;
+
+    .mot-qui-fait-joli {
+      letter-spacing: 7px;
+    }
+  }
+}
+
+.forum {
+  font-size: 3.8em;
+  text-align: left;
+  margin-left: 20px;
+  color: $linkColor;
+}

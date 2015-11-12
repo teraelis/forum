@@ -1,0 +1,31 @@
+{% extends "TerAelisTChatBundle:Salon:layout.html.twig" %}
+
+{% block page %}
+    <a href="{{ path('teraelis_tchat_create') }}">Créer un salon</a>
+    <h2>Liste de mes salons publics</h2>
+    <ul>
+        {% for salon in public %}
+            <li>
+                <a href="{{ path('teraelis_tchat_show', {id: salon.id}) }}">
+                    {% if salon.new %}
+                        <img src="{{ asset('bundles/teraelisforum/img/global/active.png') }}" />
+                    {% endif %}
+                    {{ salon.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Liste de mes salons privés</h2>
+    <ul>
+        {% for salon in private %}
+            <li>
+                {% if salon.new %}
+                    <img src="{{ asset('bundles/teraelisforum/img/global/active.png') }}" />
+                {% endif %}
+
+                {{ tchatWith(salon.user) }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

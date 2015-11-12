@@ -1,0 +1,380 @@
+body {
+    font-size: 14px;
+    font-family: Rambla;
+    padding: 0px;
+    margin: 0px;
+    background-color: #efe0cb;
+}
+
+div, span {
+    margin: 0;
+    padding: 0;
+}
+
+body, p {
+    font-family: Rambla, sans-serif;
+    color: #66676b;
+}
+
+em {
+    font-weight: 700;
+    font-style: normal;
+}
+
+a {
+    color: #66676b;
+    text-decoration: none;
+}
+
+.interpole a {
+    color: #464646;
+}
+
+.litterature a {
+    color: #a65752;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #464646;
+}
+
+h1, h2, h3, h4, .title {
+    font-family: 'SourceSansPro', 'Oswald', 'sans serif';
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+hr {
+    border-width: 0;
+    border-top: 1px solid #66676b;
+}
+
+input[type="submit"], input[type="checkbox"], input[type="radio"] {
+    cursor: pointer;
+}
+
+.left {
+    float: left;
+}
+
+.container {
+    margin: 0 auto;
+    background-color: #efe0cb;
+}
+
+/* Header */
+#header {
+    position:relative;
+    z-index: 100;
+    background-color: #955951;
+    margin: 0 auto -1px auto;
+    text-align: center;
+    padding: 0px;
+    height: 391px;
+}
+
+#header_left {
+    position: relative;
+    float: left;
+    margin-left: -235px;
+    width: 235px;
+    height: 391px;
+    background: red;
+    z-index: 0;
+}
+
+#header_right {
+    position: relative;
+    float: right;
+    margin-right: -235px;
+    width: 235px;
+    height: 391px;
+    background: red;
+    z-index: 0;
+}
+
+#header > header {
+    width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header > header > a {
+    display: block;
+    margin: 0;
+    background: url('/TerAelis/web/img/litte/header.jpg') no-repeat center;
+    height: 330px;
+    width: 940px;
+
+}
+
+#header > header > a > img {
+    position: absolute;
+    display: inline-block;
+    margin-left: -113px;
+    margin-top: 243px;
+}
+
+#header > header nav {
+    display: block;
+    margin: 0;
+    background: #f1ece6 url('/TerAelis/web/img/litte/menu_degrade.png') repeat-x;
+    height: 60px;
+    width: 940px;
+    border-bottom: 1px solid white;
+    text-align: left;
+}
+
+#header > header ul {
+    margin: 0 10px 0 10px;
+    padding: 0px;
+    width: 400px;
+}
+
+#header > header .nav-user {
+    float: left;
+    height: 60px;
+}
+
+#header > header .poles {
+    float: right;
+    text-align: right;
+}
+
+#header > header li {
+    display: inline-block;
+    text-align:center;
+    width: 60px;
+    height: 60px;
+    padding: 0 10px 0 10px;
+}
+
+/* Content */
+#content {
+    width: 940px;
+    margin: 0 auto 0 auto;
+    clear:both;
+}
+
+#background_left {
+    position: relative;
+    float: left;
+    margin-left: -235px;
+    margin-top: -90px;
+    width: 235px;
+    height: 750px;
+    background: url('/TerAelis/web/img/litte/bg_left.jpg') no-repeat right;
+    z-index: 0;
+}
+
+#slider {
+    margin-top: 90px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    width: 940px;
+    height: 300px;
+    overflow: hidden;
+}
+
+#slider .current {
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+#slider li {
+    display: block;
+    text-overflow: ellipsis;
+}
+
+#slider .current li {
+    width: 630px;
+    height: 300px;
+    float: left;
+}
+
+#slider li:nth-child(0) {
+    background-color: #ffff00;
+}
+
+#slider li:nth-child(1) {
+    background-color: #ff00ff;
+}
+
+#slider li:nth-child(2) {
+    background-color: #00ffff;
+}
+
+#slider li:nth-child(3) {
+    background-color: #ff0000;
+}
+
+#slider .links {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#slider .links li {
+    width: 150px;
+    height: 150px;
+}
+
+#content_center {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    direction: rtl;
+}
+
+/* Nav */
+.sidebar {
+    width: 310px;
+    display: table-cell;
+    direction: ltr;
+}
+
+.sidebar h2 {
+    margin: 0;
+    color: #c69c6d;
+}
+
+.sidebar .sub {
+    padding: 10px 10px 10px;
+}
+
+.sidebar .sub ul {
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar .sub li {
+    display: block;
+    padding: 5px 0;
+    border-bottom: 1px solid #000000;
+}
+
+/* Page */
+.content {
+    width: 620px;
+    padding: 10px;
+    display: table-cell;
+    direction: ltr;
+}
+
+#content_center:nth-child(3) {
+    margin-top: 90px;
+    padding-top: 0px;
+}
+
+.content > h1 {
+    margin: 0;
+}
+
+.articles {
+    display: block;
+    margin: 0 0 0 -10px;
+    padding: 0;
+}
+
+.articles > li {
+    display: block;
+    margin: 0;
+    background-color: #d1bfac;
+}
+
+section.sujet {
+    display: block;
+    margin: 0 0 0 -10px;
+    padding: 0;
+    background-color: #d1bfac;
+    color: #000000;
+}
+
+section.sujet p {
+    color: #000000;
+}
+
+section.sujet article {
+    padding: 10px 20px 0 20px;
+}
+
+section.sujet a {
+    color: #6e483f;
+}
+
+section.sujet span.categorie {
+    display: block;
+    float: left;
+    margin: 0 10px;
+}
+
+section.sujet span.nbCom {
+    display: block;
+    width: 17px;
+    height: 16px;
+    padding: 5px 5px 5px 12px;
+    text-align: center;
+    float: right;
+    margin: 10px 10px 0 0;
+    background-image: url('/TerAelis/web/img/blog/nbCommentaire.png');
+    color: #ffffff;
+}
+
+section.sujet span.info {
+    color: #6e483f;
+}
+
+section.sujet header h1 {
+    margin: 0;
+    padding-top: 5px;
+}
+
+section.sujet .modification {
+    text-align:center;
+}
+
+section.sujet footer {
+    background-color: #ffffff;
+    width: 630px;
+    margin: 0 -20px;
+    padding: 20px 10px;
+}
+
+section.sujet footer .authors p {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #d1bfac;
+}
+
+section.sujet footer .socialBar {
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #d1bfac;
+}
+
+section.thread article {
+    display: block;
+    margin: 0;
+    padding: 0;
+    background-color: #d1bfac;
+    color: #000000;
+}
+
+.lastup {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+}
+
+/* Footer */
+
+.container > footer {
+    clear: both;
+    text-align: center;
+    background-color: #aaaaaa;
+}

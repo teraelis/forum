@@ -1,0 +1,72 @@
+{% extends 'TerAelisUserBundle:User:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ user.username }} - Liste des sujets{% endblock %}
+
+{% block page %}
+<h1>Liste des sujets {% if unpublished is defined and unpublished %}non-publiés{% endif %} de {{ showUsername(user) }}</h1>
+<div class="posts">
+    {% if nbCommentPerPage is defined and user.nbSujets > nbCommentPerPage %}
+        {% include "TerAelisForumBundle:Forum:pageNav.html.twig" with {
+            numberComment: user.nbSujets,
+            nbCommentPerPage: nbCommentPerPage,
+            active: page,
+            path: path('user_listSujet', {id: user.id})
+        } %}
+    {% endif %}
+
+    <table class="listSujets">
+        <thead>
+            <tr>
+                <th width="2%"></th>
+                <th width="20%">Titre</th>
+                <th width="20%">Date</th>
+                <th width="58%">Contenu</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if sujets | length > 0 %}
+            {% for post in sujets %}
+                <tr class="post">
+                    {% if post.mainCategorie.root == litte %}
+                        {% set pole_couleur = 'litterature' %}
+                    {% elseif post.mainCategorie.root == rp %}
+                        {% set pole_couleur = 'rolisme' %}
+                    {% elseif post.mainCategorie.root == gfx %}
+                        {% set pole_couleur = 'graphisme' %}
+                    {% else %}
+                        {% set pole_couleur = 'interpole' %}
+                    {% endif %}
+                    <td class="pole {{ pole_couleur }}"></td>
+                    <td class="title">
+                        <a href="{{ path("taforum_voirSujet_last", {'pole': pole, 'slug': post.slug}) }}">
+                            <h4>{%  if post.getBalise() is not null %}[{{ post.getBalise().getCourt() }}]{% endif %} {{ post.title }}</h4>
+                        </a>
+                    </td>
+                    <td class="contenu">
+                        {{ post.lastComment | localizeddate('none', 'short') }} - {{ post.lastComment |localizeddate('medium', 'none') }}
+                    </td>
+                    <td class="contenu">
+                        <p>{{ shortText(post)|bbcode_filter('my_default_filter') }}</p>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr class="post">
+                <td class="center empty" colspan="4">
+                    Vous n'avez pas de sujet {% if unpublished is defined and unpublished %}non-publié{% endif %}.
+                </td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+
+    {% if nbCommentPerPage is defined and user.nbSujets > nbCommentPerPage %}
+        {% include "TerAelisForumBundle:Forum:pageNav.html.twig" with {
+            numberComment: user.nbSujets,
+            nbCommentPerPage: nbCommentPerPage,
+            active: page,
+            path: path('user_listSujet', {id: user.id})
+        } %}
+    {% endif %}
+</div>
+{% endblock %}

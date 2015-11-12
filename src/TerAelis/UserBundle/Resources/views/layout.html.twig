@@ -1,0 +1,14 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Membres{% endblock %}
+
+{% block header %}
+    {% include 'TerAelisForumBundle:Forum:forum_header.html.twig' with {pole: pole_aff} %}
+{% endblock %}
+
+{% block content %}
+    {% block page %}
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    {% endblock %}
+{% endblock %}

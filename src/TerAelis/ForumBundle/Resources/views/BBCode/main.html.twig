@@ -1,0 +1,91 @@
+{{ errors|raw }}
+<div class="post_content" class="bbcode" id="{{ id }}">
+    <div>
+        <ul class="bbcode-bar">
+            <li>
+                <button class="small-btn bbcode-img-btn bbcode-bold">
+                    <img src="{{ asset('bundles/teraelisforum/img/global/bbcode/Texte-Gras.jpg') }}" alt="Gras" title="Mettre le texte en gras" />
+                </button>
+            </li>
+            <li>
+                <button class="small-btn bbcode-img-btn bbcode-underline">
+                    <img src="{{ asset('bundles/teraelisforum/img/global/bbcode/Texte-souligne.jpg') }}" alt="Souligner" title="Souligner le texte" />
+                </button>
+            </li>
+            <li>
+                <button class="small-btn bbcode-img-btn bbcode-italic">
+                    <img src="{{ asset('bundles/teraelisforum/img/global/bbcode/Texte-Italique.jpg') }}" alt="Italique" title="Mettre le texte en italique" />
+                </button>
+            </li>
+            <li>
+                <button class="small-btn bbcode-img-btn bbcode-strike">
+                    <img src="{{ asset('bundles/teraelisforum/img/global/bbcode/Texte-Barre.jpg') }}" alt="Barrer" title="Barrer le texte" />
+                </button>
+            </li>
+            <li>
+                <button class="small-btn bbcode-img-btn bbcode-center">
+                    <img src="{{ asset('bundles/teraelisforum/img/global/bbcode/Centre.jpg') }}" alt="Centrer" title="Centrer le texte" />
+                </button>
+            </li>
+            <li>
+                <button class="small-btn bbcode-img-btn bbcode-justify">
+                    <img src="{{ asset('bundles/teraelisforum/img/global/bbcode/Justif.jpg') }}" alt="Justifier" title="Justifier le texte" />
+                </button>
+            </li>
+            <li>
+                <button class="small-btn bbcode-img-btn bbcode-left">
+                    <img src="{{ asset('bundles/teraelisforum/img/global/bbcode/FerrGauche.jpg') }}" alt="Gauche" title="Aligner sur la gauche" />
+                </button>
+            </li>
+            <li>
+                <button class="small-btn bbcode-img-btn bbcode-right">
+                    <img src="{{ asset('bundles/teraelisforum/img/global/bbcode/FerrDroite.jpg') }}" alt="Droite" title="Aligner sur la droite" />
+                </button>
+            </li>
+            <li>
+                <button class="small-btn bbcode-img-btn bbcode-color">
+                    <img src="{{ asset('bundles/teraelisforum/img/global/bbcode/Texte-Couleur.jpg') }}" alt="Couleur" title="Colorer le texte" />
+                </button>
+            </li>
+            <li>
+                <button class="small-btn bbcode-img-btn bbcode-size">
+                    <img src="{{ asset('bundles/teraelisforum/img/global/bbcode/Texte-Taille.jpg') }}" alt="Taille" title="Changer la taille du texte" />
+                </button>
+            </li>
+            <li>
+                <button class="small-btn bbcode-img-btn bbcode-font">
+                    <img src="{{ asset('bundles/teraelisforum/img/global/bbcode/Typos.jpg') }}" alt="Police" title="Changer la police du texte" />
+                </button>
+            </li>
+            <li>
+                <button class="small-btn bbcode-img-btn bbcode-link">
+                    <img src="{{ asset('bundles/teraelisforum/img/global/bbcode/Lien.jpg') }}" alt="Lien" title="Créer un lien hypertexte" />
+                </button>
+            </li>
+            <li>
+                <button class="small-btn bbcode-img-btn bbcode-quote">
+                    <img src="{{ asset('bundles/teraelisforum/img/global/bbcode/Quote.jpg') }}" alt="Citer" title="Créer une citation" />
+                </button>
+            </li>
+        </ul>
+        <ul class="left">
+            <li>
+                <button class="small-btn bbcode-btn bbcode-img">
+                    Image
+                </button>
+            </li>
+            <li><button class="small-btn bbcode-btn bbcode-indent">Indent</button></li>
+            <li><button class="small-btn bbcode-btn bbcode-spoiler">Spoiler</button></li>
+            <li><button class="small-btn bbcode-btn bbcode-soundcloud">soundcloud</button></li>
+            <li><button class="small-btn bbcode-btn bbcode-issuu">issuu</button></li>
+            <li><button class="small-btn bbcode-btn bbcode-ancre">Ancre</button></li>
+            <li><button class="small-btn bbcode-btn bbcode-toancre">Lien vers ancre</button></li>
+        </ul>
+        <div class="align-right">
+            <a target="_blank" class="small-btn bbcode-btn" href="http://www.hostingpics.net/">Uploader une image</a>
+        </div>
+    </div>
+    <div class="input">
+        {{ widget|raw }}
+    </div>
+</div>

@@ -1,0 +1,73 @@
+{% extends 'TerAelisForumBundle:Blog:layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ sujet.title }}{% endblock %}
+
+{% block page %}
+    <section class="sujet">
+        <article>
+            <header>
+                <span class="categorie"><img src="http://blog.ter-aelis.fr/wp-content/themes/teraelis/images/iconesCategorie/communaute.png" alt="icone communaute" title="Catégorie Ccmmunauté" />{#{{ sujet.mainCategorie.title }}#}</span>
+                <span class="nbCom">{{ sujet.numberComment }}</span>
+                <h1>
+                    <a href="{{ path('taforum_voirSujet', {pole: 'blog', slug: sujet.slug}) }}">
+                        {% if sujet.getTypeSujet() is not null %}
+                            {{ sujet.getTypeSujet().getNom() }}
+                        {% endif %}
+                        {%  if sujet.getBalise() is not null %}
+                            [{{ sujet.getBalise().getCourt() }}]
+                        {% endif %}
+                        {{ sujet.title }}
+                    </a>
+                </h1>
+                <span class="info">le {{ sujet.datePublication | localizeddate('none', 'short') }} - {{ sujet.datePublication |localizeddate('medium', 'none') }} par {{ authors(sujet.authors) }}</span>
+
+                <div class="modification">
+                    <p>
+                        {% if editerMessage or moderer %}
+                            <a href="{{ path('taforum_editer', {'pole': pole, 'id': sujet.id}) }}">Editer</a>
+                        {% endif %}
+                        {% if moderer or (editerMessage and supprimerMessage) %} - {% endif %}
+                        {% if supprimerMessage or moderer %}
+                            <a href="{{ path('taforum_supprimer', {'pole': pole, 'id': sujet.id}) }}">Supprimer</a>
+                        {% endif %}
+                        {% if user is not null and sujet.isAuthor(user) %}
+                            - <a href="{{ path('taforum_duppliquer_liste_categorie', {'pole': pole, 'id': sujet.id}) }}">Liste catégorie d'affichage</a>
+                        {% endif %}
+                    </p>
+                </div>
+            </header>
+
+            {% for content in sujet.getFormulaireDonnees() %}
+                {% if content.contenu is defined and content.contenu != null %}
+                    <p>{{ content.contenu|bbcode_filter('my_default_filter') }}</p>
+                {% endif %}
+            {% endfor %}
+
+            <footer>
+                <div class="profil">
+                    <span class="authors">
+                        {% for author in sujet.authors %}
+                            <p>{{ showUsername(author) }}</p>
+                        {% endfor %}
+                    </span>
+                </div>
+                {{ socialButtons({'url': 'http://ter-aelis.fr'}) }}
+
+                {# modération #}
+                {% if moderer %}
+                    <div class="moderation">
+                        <a href="{{ path('taforum_supprimer', {'pole': pole, 'id': sujet.id }) }}">Supprimer</a>
+                        <a href="{{ path('taforum_deplacer', {'pole': pole, 'id': sujet.id }) }}">Déplacer</a>
+                        <a href="{{ path('taforum_duppliquer_liste_categorie', {'pole': pole, 'id': sujet.id}) }}">Liste catégorie d'affichage</a>
+                    </div>
+                {% endif %}
+            </footer>
+        </article>
+    </section>
+
+    <section class="commentaires">
+    {% for thread in threads %}
+        {{ render(controller('TerAelisCommentBundle:Thread:getThread' , {'pole': pole, 'user' : user, 'categorie' : categorie, 'slug': slug, 'post': sujet, 'thread' : thread, 'perm': perm, 'page': page})) }}
+    {% endfor %}
+    </section>
+{% endblock %}

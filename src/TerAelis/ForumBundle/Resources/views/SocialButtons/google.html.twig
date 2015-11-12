@@ -1,0 +1,5 @@
+{% if url is not defined or url == null %}
+    {% set url = app.request.uri %}
+{% endif %}
+
+<div class="g-plus" data-action="share" data-annotation="bubble" data-height="15" data-href="{{ url }}"></div>
