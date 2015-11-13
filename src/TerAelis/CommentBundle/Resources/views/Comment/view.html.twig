@@ -4,7 +4,7 @@
             <div class="sujet_profil">
                 {% include "TerAelisForumBundle:Forum:leftProfil.html.twig" with {'author': comment.author} %}
             </div>
-            <div class="sujet_contenu">
+            <div class="sujet_contenu js-content">
                 <div class="modification">
                     {% spaceless %}
                     {% if answer is not defined or answer == 0 %}
@@ -36,7 +36,7 @@
                 {% if comment.author.signature is defined and comment.author.signature is not null %}
                     <hr class="banniere_separation">
                     <div class="paragraphe post_banniere">
-                        {{ comment.author.signature | bbcode_filter('my_default_filter') }}
+                        {{ comment.author.signature | bbcode_filter('banniere_filter') }}
                     </div>
                 {% endif %}
 

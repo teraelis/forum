@@ -1,7 +1,13 @@
 $(document).ready(function() {
-    var sideBar = JSON.parse(localStorage.getItem('expandSidebar'));
-    if(sideBar === null || typeof sideBar !== "object") {
+    var sideBar = localStorage.getItem('expandSidebar');
+    if(sideBar === null || typeof sideBar !== "string") {
         sideBar = {};
+    } else {
+        try {
+            sideBar = JSON.parse(sideBar);
+        } catch(e) {
+            sideBar = {};
+        }
     }
 
     var expandables = $(".sub a.expand");

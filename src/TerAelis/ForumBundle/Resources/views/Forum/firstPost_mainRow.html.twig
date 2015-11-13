@@ -3,7 +3,7 @@
         <div class="sujet_profil">
             {% include "TerAelisForumBundle:Forum:leftProfil.html.twig" with {'author': sujet.authors | first } %}
         </div>
-        <div class="sujet_contenu">
+        <div class="sujet_contenu js-content">
             {% if answer is not defined or answer == 0 %}
                 {# Boutons #}
                 <div class="modification">{% spaceless %}
@@ -43,7 +43,7 @@
             {% if author.signature is defined and author.signature is not null %}
                 <hr class="banniere_separation">
                 <div class="paragraphe post_banniere">
-                    {{ cut_signature(author.signature) | bbcode_filter('my_default_filter') }}
+                    {{ cut_signature(author.signature) | bbcode_filter('banniere_filter') }}
                 </div>
             {% endif %}
 

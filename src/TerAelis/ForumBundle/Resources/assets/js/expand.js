@@ -1,10 +1,15 @@
 $(document).ready(function() {
 
-    var cat = JSON.parse(localStorage.getItem('expandCat'));
-    if(cat === null || typeof cat !== "object") {
+    var cat = localStorage.getItem('expandCat');
+    if(cat === null || typeof cat !== "string") {
         cat = {};
+    } else {
+        try {
+            cat = JSON.parse(cat);
+        } catch(e) {
+            cat = {};
+        }
     }
-    console.log(cat);
 
     var expandableLinks = $(".expandable > a.expand");
     expandableLinks.each(function(event) {

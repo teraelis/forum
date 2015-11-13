@@ -1,0 +1,40 @@
+// TODO redirection des poles selon la catégorie visitée - DONE
+// TODO TchatBundle - DONE
+// TODO Statistiques - DONE
+// TODO upload d'images - DONE
+// TODO Suivant/Precedent message Utile pour tuto et blog
+
+// TODO Referencement
+[14:54:56] Lothindil: en français :
+- Abondance
+ - WebRankInfo
+ - Arobasenet
+ - Secrets2moteurs
+[14:55:12] Lothindil: (avec un petit + pour arobasenet perso ^^)
+http://static.googleusercontent.com/media/www.google.fr/fr/fr/intl/fr/webmasters/docs/search-engine-optimization-starter-guide-fr.pdf
+
+// TODO Tuto pour admin
+
+// TODO Blog
+// TODO Notification des nonVus que pour les users ayant acces
+    => ca veut dire qu'il faut passer par les groupes qui ont acces et notifier tous les users de ces groupes.
+
+// TODO
+Quand on fait la liste en fonction du blog, vérifier que les id des posts soient distincts
+=> voir comment faire en DQL
+
+
+// TODO
+Permissions des catégories admin
+-> faire un bouton pour reset
+
+
+// TODO BBCode
+Changer les images - DONE
+Quotes - DONE
+Changer police
+Taille
+Balise soundcloud
+Ajouter bouton dans liste sujet pour aller au dernier - DONE
+transférer avatars - DONE
+Signatures - DONE

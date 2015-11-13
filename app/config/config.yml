@@ -86,13 +86,18 @@ fm_bbcode:
             strict: false # if you want to parse attr values without quotes
             locale: %locale%
             xhtml: true
+            filters: [ default, text, block, code, resizable-image, list, table, quote, url, iframe, ancre, nicetext ]
+        banniere_filter:
+            strict: false # if you want to parse attr values without quotes
+            locale: %locale%
+            xhtml: true
             filters: [ default, text, block, code, image, list, table, quote, url, iframe, ancre, nicetext ]
         my_admin_filter:
             strict: false # if you want to parse attr values without quotes
             escaping: false
             locale: %locale%
             xhtml: true
-            filters: [ default, text, block, code, image, list, table, quote, url, iframe, ancre, nicetext ]
+            filters: [ default, text, block, code, resizable-image, list, table, quote, url, iframe, ancre, nicetext ]
     emoticon:
         resource: %kernel.root_dir%/../src/TerAelis/ForumBundle/Resources/config/emoticons.yml
     config:

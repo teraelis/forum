@@ -19,7 +19,7 @@
         </div>
     <?php } ?>
 
-    <div class="decoda-quote-body">
+    <div class="decoda-quote-body js-content">
         <?php echo $content; ?>
     </div>
 </blockquote>

@@ -4,9 +4,9 @@ html {
 
 body {
   font-size: 13px;
-  padding: 0px;
+  padding: 0;
   margin: 0 0 -10px 0;
-  background-color: #1e2531;
+  background-color: #1E2531;
   word-wrap: break-word; }
 
 div, span {
@@ -15,7 +15,7 @@ div, span {
 
 body {
   font-family: Verdana, Arial, Helvetica, sans-serif;
-  color: white; }
+  color: #ffffff; }
 
 p {
   word-wrap: break-word; }
@@ -25,7 +25,7 @@ em {
   font-style: italic; }
 
 a {
-  color: white;
+  color: #ffffff;
   text-decoration: none; }
 
 p a {
@@ -35,7 +35,7 @@ a.pseudo {
   font-weight: 700; }
 
 .btn, .small-btn, .btn-disabled {
-  color: white;
+  color: #fff;
   display: inline-block;
   text-transform: uppercase;
   font-family: Oswald, sans-serif;
@@ -44,16 +44,18 @@ a.pseudo {
 
 button {
   cursor: pointer; }
+  button [disabled] {
+    cursor: default; }
 
 .btn {
   padding: 5px 15px;
-  color: white;
+  color: #ffffff;
   background-color: #285a73; }
 
 .btn-disabled {
   padding: 5px 15px;
   background-color: #285a73;
-  color: #bbbbbb; }
+  color: #bbb; }
 
 .small-btn {
   font-size: 0.76em;
@@ -67,7 +69,7 @@ button {
 .sujet_contenu .small-btn {
   display: inline-block;
   margin: 0;
-  color: white;
+  color: #ffffff;
   background: #59595b;
   border: none;
   padding: 5px 10px; }
@@ -93,12 +95,17 @@ button {
 
 .btn:hover, .btn:focus, .btn:active, .small-btn:hover, .small-btn:focus, .small-btn:active {
   background-color: #264e67;
-  color: white;
+  color: #ffffff;
   text-decoration: none; }
 
 .btn.active, .btn:active, .small-btn:active {
   background-color: #264e67;
-  color: white; }
+  color: #ffffff; }
+
+.btn-disabled:hover, .btn-disabled:focus, .btn-disabled:active {
+  background-color: #285a73;
+  color: #bbb;
+  text-decoration: none; }
 
 .btn.main {
   display: block;
@@ -136,7 +143,7 @@ blockquote {
   color: #45a4c1; }
 
 .graphisme a:hover, .interpole a:hover {
-  color: white; }
+  color: #ffffff; }
 
 a:hover {
   text-decoration: underline;
@@ -175,14 +182,14 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 
 .container {
   margin: 0 auto;
-  background-color: #1e2531;
+  background-color: #1E2531;
   background: url("../../bundles/teraelisforum/img/graphisme/content_slide.jpg") repeat-y center; }
 
 .block {
   display: block;
   margin: 15px 0;
   background-color: #22262d;
-  color: white;
+  color: #ffffff;
   border: solid #005873;
   border-width: 1px 1px 1px 1px;
   padding: 15px; }
@@ -300,7 +307,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   width: 985px;
   margin: 0 auto 0 auto;
   clear: both;
-  background: #1e2531;
+  background: #1E2531;
   position: relative; }
 
 #background_left {
@@ -320,9 +327,20 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   background: url("../../bundles/teraelisforum/img/graphisme/content_right.jpg") no-repeat right;
   z-index: 0; }
 
+@media screen and (max-width: 985px) {
+  #background_right, #header_right {
+    width: 0; } }
+@media screen and (max-width: 1165px) {
+  #header_right {
+    right: calc((985px - 100vw) / 2);
+    width: calc((100vw - 985px) / 2); } }
+@media screen and (max-width: 1545px) {
+  #background_right {
+    right: calc((985px - 100vw) / 2);
+    width: calc((100vw - 985px) / 2); } }
 #content_center {
   background: url("../../bundles/teraelisforum/img/graphisme/content_slide.jpg") repeat-y center;
-  background-color: #2e4048; }
+  background-color: #2E4048; }
 
 /* Nav */
 .sidebar {
@@ -400,7 +418,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   margin: 0;
   padding: 5px 10px 5px 15px;
   background-color: #666666;
-  color: white; }
+  color: #ffffff; }
 
 .sidebar h3 a.expand {
   float: right; }
@@ -436,7 +454,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   padding: 1px;
   width: 186px;
   background-color: #22262d;
-  color: white;
+  color: #ffffff;
   display: table;
   table-layout: fixed; }
 
@@ -485,7 +503,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   margin: 0; }
 
 .sidebar .posts h4, .post .title h4 {
-  color: white;
+  color: #ffffff;
   margin: 0 0 5px 0;
   font-family: Rambla, sans-serif;
   font-weight: 700;
@@ -494,7 +512,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   font-size: 1.1em; }
 
 .sidebar .sub .posts a {
-  color: white; }
+  color: #ffffff; }
 
 .sidebar .post .meta a {
   display: block;
@@ -505,7 +523,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   line-height: 1.4em; }
 
 .sidebar .post p {
-  color: white;
+  color: #ffffff;
   margin: 8px 0;
   overflow: hidden;
   max-height: 197px; }
@@ -604,7 +622,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   height: 88px;
   width: 469px;
   padding: 5px 15px 5px 15px;
-  color: white;
+  color: #ffffff;
   text-overflow: ellipsis;
   border: 1px solid #464646;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.1) inset, 0 0 10px rgba(0, 0, 0, 0.25);
@@ -618,7 +636,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   margin: 0; }
 
 .cat_description h3 a {
-  color: white; }
+  color: #ffffff; }
 
 .cat_description p {
   margin: 0; }
@@ -631,7 +649,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   height: 100px;
   width: 150px;
   background-color: #464646;
-  color: white;
+  color: #fff;
   padding: 0 0 0 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); }
 
@@ -651,7 +669,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 
 .graphisme .cat_last, .listSujets .post_last {
   background-color: #005873;
-  color: white;
+  color: #fff;
   position: relative; }
 
 .cat_last h4 {
@@ -665,11 +683,11 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   font-size: 10px;
   margin: 2px 0 0 0;
   line-height: 18px;
-  color: white; }
+  color: #fff; }
 
 .cat_last a {
   font-size: 12px;
-  color: white;
+  color: #fff;
   font-weight: 700;
   text-decoration: underline;
   overflow: hidden;
@@ -703,23 +721,23 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 .listSujets th {
   background-color: #005873;
   height: 20px;
-  color: white;
+  color: #fff;
   font-family: "Oswald", sans-serif;
   font-weight: 400;
   letter-spacing: 4.5px;
   font-size: 11px;
   text-transform: uppercase;
   padding: 10px;
-  border-bottom: 1px solid white; }
+  border-bottom: 1px solid #fff; }
 
 .listSujets th a {
-  color: white; }
+  color: #fff; }
 
 .listSujets td {
   height: 20px;
   border: 1px solid #005873;
   background-color: #22262d;
-  color: white;
+  color: #ffffff;
   padding: 5px; }
 
 .listSujets .table-separation {
@@ -733,10 +751,10 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   font-size: 0.9em; }
 
 .listSujets .vu {
-  color: #1e2531; }
+  color: #1E2531; }
 
 .listSujets a {
-  color: white; }
+  color: #ffffff; }
 
 .listSujets h3 {
   font-family: "Rambla", sans-serif;
@@ -752,7 +770,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   font-size: 1.1em; }
 
 .listSujets .empty {
-  color: white;
+  color: #fff;
   background-color: #464646;
   padding: 5px; }
 
@@ -770,8 +788,8 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 .sujet .title, .sondage .title {
   margin: 0;
   background-color: #005873;
-  color: white;
-  border-bottom: 1px solid white; }
+  color: #fff;
+  border-bottom: 1px solid #fff; }
 
 .sujet .title {
   padding: 5px 0 8px 180px; }
@@ -789,7 +807,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   margin: 0; }
 
 .sujet .title a {
-  color: white; }
+  color: #fff; }
 
 .sujet_tags {
   font-size: 0.8em; }
@@ -799,7 +817,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 
 .sujet_main, .sondage {
   background-color: #22262d;
-  color: white; }
+  color: #ffffff; }
 
 .sondage_results {
   text-align: center;
@@ -853,7 +871,7 @@ article:not(:last-child) .sujet_main {
   overflow: auto;
   font-size: 13px;
   line-height: 1.5em;
-  color: white; }
+  color: #ffffff; }
 
 .sujet_contenu--padding {
   padding: 15px; }
@@ -868,7 +886,7 @@ article:not(:last-child) .sujet_main {
 
 .sujet_contenu th {
   background: #005873;
-  color: white; }
+  color: #fff; }
 
 .sujet_contenu .modification {
   margin-top: 10px;
@@ -876,7 +894,7 @@ article:not(:last-child) .sujet_main {
   .sujet_contenu .modification a {
     text-decoration: none; }
   .sujet_contenu .modification a:hover {
-    color: white; }
+    color: #ffffff; }
 
 .sujet_contenu .date {
   font-weight: bold; }
@@ -959,7 +977,7 @@ article:not(:last-child) .sujet_main {
 
 .moderation .small-btn {
   background: #59595b;
-  color: white; }
+  color: #ffffff; }
 
 .moderation .small-btn.img-btn {
   padding: 0;
@@ -1098,10 +1116,10 @@ section.infos h1 > a {
   padding: 10px;
   text-align: right;
   width: 20%;
-  border-right: 1px solid white;
-  border-bottom: 1px solid white;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
   background-color: #005873;
-  color: white;
+  color: #fff;
   font-family: Oswald, sans-serif;
   font-size: 0.9em;
   letter-spacing: 4px;
@@ -1122,17 +1140,17 @@ section.infos h1 > a {
   padding: 10px;
   width: 80%;
   border-bottom: 1px solid #005873;
-  color: white; }
+  color: #ffffff; }
 
 .form-input input {
   background-color: #22262d;
-  color: white; }
+  color: #ffffff; }
 
 .form-input textarea {
   width: 100%;
   min-height: 200px;
   background-color: #22262d;
-  color: white; }
+  color: #ffffff; }
 
 form .expandable {
   margin: 0;
@@ -1212,11 +1230,11 @@ li:last-child .bbcode-img-btn {
   display: block; }
 
 .salon .info {
-  color: #999999;
+  color: #999;
   margin: 0 0 5px; }
 
 .salon .info a {
-  color: #999999; }
+  color: #999; }
 
 .salon .discussion {
   display: table-cell; }
@@ -1225,7 +1243,7 @@ li:last-child .bbcode-img-btn {
   margin: 0 1px 5px 1px;
   padding: 0;
   background-color: #22262d;
-  color: white;
+  color: #ffffff;
   overflow-y: scroll;
   overflow-x: hidden;
   min-height: 200px;
@@ -1244,12 +1262,12 @@ li:last-child .bbcode-img-btn {
   background-color: #22262d;
   border: solid #005873;
   border-width: 1px 1px 3px 1px;
-  color: white; }
+  color: #ffffff; }
 
 .salon input[type="submit"] {
   float: right;
   background-color: #005873;
-  color: white;
+  color: #fff;
   margin: 5px 0;
   font-size: 1em; }
 
@@ -1265,7 +1283,7 @@ li:last-child .bbcode-img-btn {
   padding: 10px 0;
   display: block;
   background-color: #22262d;
-  color: white;
+  color: #ffffff;
   border-bottom: 1px solid #005873; }
 
 /* Footer */
@@ -1282,7 +1300,7 @@ li:last-child .bbcode-img-btn {
 
 .decoda-spoiler-button {
   background: #285a73;
-  color: white;
+  color: #ffffff;
   display: inline-block;
   text-transform: uppercase;
   font-family: Oswald, sans-serif;
@@ -1331,3 +1349,32 @@ li:last-child .bbcode-img-btn {
   display: inline-block;
   margin: 2px 0;
   padding: 5px 15px; }
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%; }
+
+.modal-overlay {
+  position: fixed;
+  background: #000000;
+  opacity: 0.85;
+  width: 100%;
+  height: 100%;
+  cursor: pointer; }
+
+.modal-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center; }
+
+.modal-content-menu ul {
+  padding: 0; }
+.modal-content-menu li {
+  display: inline-block; }
+
+/*# sourceMappingURL=style-graphisme.css.map */

@@ -4,7 +4,7 @@ html {
 
 body {
   font-size: 13px;
-  padding: 0px;
+  padding: 0;
   margin: 0 0 -10px 0;
   background-color: #efe0cb;
   word-wrap: break-word; }
@@ -35,7 +35,7 @@ a.pseudo {
   font-weight: 700; }
 
 .btn, .small-btn, .btn-disabled {
-  color: #66676b;
+  color: #66676B;
   display: inline-block;
   text-transform: uppercase;
   font-family: Oswald, sans-serif;
@@ -44,30 +44,32 @@ a.pseudo {
 
 button {
   cursor: pointer; }
+  button [disabled] {
+    cursor: default; }
 
 .btn {
   padding: 5px 15px;
-  color: white;
+  color: #ffffff;
   background-color: #a65752; }
 
 .btn-disabled {
   padding: 5px 15px;
   background-color: #a65752;
-  color: #bbbbbb; }
+  color: #bbb; }
 
 .small-btn {
   font-size: 0.76em;
   padding: 2px 5px;
   color: #737373;
-  border-color: #aaaaaa;
-  background-color: white;
+  border-color: #AAAAAA;
+  background-color: #FFFFFF;
   margin: 2px 0;
   text-align: center; }
 
 .sujet_contenu .small-btn {
   display: inline-block;
   margin: 0;
-  color: white;
+  color: #ffffff;
   background: #59595b;
   border: none;
   padding: 5px 10px; }
@@ -93,12 +95,17 @@ button {
 
 .btn:hover, .btn:focus, .btn:active, .small-btn:hover, .small-btn:focus, .small-btn:active {
   background-color: #9b4139;
-  color: white;
+  color: #ffffff;
   text-decoration: none; }
 
 .btn.active, .btn:active, .small-btn:active {
   background-color: #9b4139;
-  color: white; }
+  color: #ffffff; }
+
+.btn-disabled:hover, .btn-disabled:focus, .btn-disabled:active {
+  background-color: #a65752;
+  color: #bbb;
+  text-decoration: none; }
 
 .btn.main {
   display: block;
@@ -181,7 +188,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 .block {
   display: block;
   margin: 15px 0;
-  background-color: white;
+  background-color: #fff;
   color: #333333;
   border: solid #66676b;
   border-width: 1px 1px 1px 1px;
@@ -320,9 +327,20 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   background: url("../../bundles/teraelisforum/img/litterature/content_right.jpg") no-repeat right;
   z-index: 0; }
 
+@media screen and (max-width: 985px) {
+  #background_right, #header_right {
+    width: 0; } }
+@media screen and (max-width: 1165px) {
+  #header_right {
+    right: calc((985px - 100vw) / 2);
+    width: calc((100vw - 985px) / 2); } }
+@media screen and (max-width: 1545px) {
+  #background_right {
+    right: calc((985px - 100vw) / 2);
+    width: calc((100vw - 985px) / 2); } }
 #content_center {
   background: url("../../bundles/teraelisforum/img/litterature/content_slide.jpg") repeat-y center;
-  background-color: #f2dab7; }
+  background-color: #F2DAB7; }
 
 /* Nav */
 .sidebar {
@@ -400,7 +418,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   margin: 0;
   padding: 5px 10px 5px 15px;
   background-color: #666666;
-  color: white; }
+  color: #ffffff; }
 
 .sidebar h3 a.expand {
   float: right; }
@@ -435,7 +453,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   margin: 1px 1px 0 -14px;
   padding: 1px;
   width: 186px;
-  background-color: white;
+  background-color: #fff;
   color: #333333;
   display: table;
   table-layout: fixed; }
@@ -631,7 +649,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   height: 100px;
   width: 150px;
   background-color: #464646;
-  color: white;
+  color: #fff;
   padding: 0 0 0 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); }
 
@@ -651,7 +669,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 
 .litterature .cat_last, .listSujets .post_last {
   background-color: #994848;
-  color: white;
+  color: #fff;
   position: relative; }
 
 .cat_last h4 {
@@ -665,11 +683,11 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   font-size: 10px;
   margin: 2px 0 0 0;
   line-height: 18px;
-  color: white; }
+  color: #fff; }
 
 .cat_last a {
   font-size: 12px;
-  color: white;
+  color: #fff;
   font-weight: 700;
   text-decoration: underline;
   overflow: hidden;
@@ -703,7 +721,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 .listSujets th {
   background-color: #a65752;
   height: 20px;
-  color: white;
+  color: #fff;
   font-family: "Oswald", sans-serif;
   font-weight: 400;
   letter-spacing: 4.5px;
@@ -713,12 +731,12 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   border-bottom: 1px solid #66676b; }
 
 .listSujets th a {
-  color: white; }
+  color: #fff; }
 
 .listSujets td {
   height: 20px;
   border: 1px solid #66676b;
-  background-color: white;
+  background-color: #fff;
   color: #333333;
   padding: 5px; }
 
@@ -752,7 +770,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   font-size: 1.1em; }
 
 .listSujets .empty {
-  color: white;
+  color: #fff;
   background-color: #464646;
   padding: 5px; }
 
@@ -770,7 +788,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 .sujet .title, .sondage .title {
   margin: 0;
   background-color: #a65752;
-  color: white;
+  color: #fff;
   border-bottom: 1px solid #66676b; }
 
 .sujet .title {
@@ -789,16 +807,16 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   margin: 0; }
 
 .sujet .title a {
-  color: white; }
+  color: #fff; }
 
 .sujet_tags {
   font-size: 0.8em; }
 
 .sujet_tags, .sujet .sujet_tags a {
-  color: #cccccc; }
+  color: #ccc; }
 
 .sujet_main, .sondage {
-  background-color: white;
+  background-color: #fff;
   color: #333333; }
 
 .sondage_results {
@@ -868,7 +886,7 @@ article:not(:last-child) .sujet_main {
 
 .sujet_contenu th {
   background: #a65752;
-  color: white; }
+  color: #fff; }
 
 .sujet_contenu .modification {
   margin-top: 10px;
@@ -876,7 +894,7 @@ article:not(:last-child) .sujet_main {
   .sujet_contenu .modification a {
     text-decoration: none; }
   .sujet_contenu .modification a:hover {
-    color: white; }
+    color: #ffffff; }
 
 .sujet_contenu .date {
   font-weight: bold; }
@@ -959,7 +977,7 @@ article:not(:last-child) .sujet_main {
 
 .moderation .small-btn {
   background: #59595b;
-  color: white; }
+  color: #ffffff; }
 
 .moderation .small-btn.img-btn {
   padding: 0;
@@ -987,7 +1005,7 @@ article:not(:last-child) .sujet_main {
   padding: 1px 0 0 10px;
   font-size: 24px;
   font-weight: 300;
-  background-color: white; }
+  background-color: #ffffff; }
 
 .enligne h3 {
   margin: 0;
@@ -1083,7 +1101,7 @@ section.infos h1 > a {
   width: 100%;
   border: solid #66676b;
   border-width: 1px 1px 2px;
-  background-color: white;
+  background-color: #ffffff;
   margin: 10px auto; }
 
 .form-field.options {
@@ -1101,7 +1119,7 @@ section.infos h1 > a {
   border-right: 1px solid #66676b;
   border-bottom: 1px solid #66676b;
   background-color: #a65752;
-  color: white;
+  color: #fff;
   font-family: Oswald, sans-serif;
   font-size: 0.9em;
   letter-spacing: 4px;
@@ -1125,13 +1143,13 @@ section.infos h1 > a {
   color: #333333; }
 
 .form-input input {
-  background-color: white;
+  background-color: #ffffff;
   color: #333333; }
 
 .form-input textarea {
   width: 100%;
   min-height: 200px;
-  background-color: white;
+  background-color: #ffffff;
   color: #333333; }
 
 form .expandable {
@@ -1212,11 +1230,11 @@ li:last-child .bbcode-img-btn {
   display: block; }
 
 .salon .info {
-  color: #999999;
+  color: #999;
   margin: 0 0 5px; }
 
 .salon .info a {
-  color: #999999; }
+  color: #999; }
 
 .salon .discussion {
   display: table-cell; }
@@ -1224,7 +1242,7 @@ li:last-child .bbcode-img-btn {
 .discussion ul {
   margin: 0 1px 5px 1px;
   padding: 0;
-  background-color: white;
+  background-color: #fff;
   color: #333333;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -1241,15 +1259,15 @@ li:last-child .bbcode-img-btn {
   padding: 5px;
   height: 50px;
   width: 100%;
-  background-color: white;
+  background-color: #fff;
   border: solid #66676b;
   border-width: 1px 1px 3px 1px;
   color: #333333; }
 
 .salon input[type="submit"] {
   float: right;
-  background-color: white;
-  color: #66676b;
+  background-color: #fff;
+  color: #66676B;
   margin: 5px 0;
   font-size: 1em; }
 
@@ -1264,7 +1282,7 @@ li:last-child .bbcode-img-btn {
   margin: 0 10px;
   padding: 10px 0;
   display: block;
-  background-color: white;
+  background-color: #fff;
   color: #333333;
   border-bottom: 1px solid #66676b; }
 
@@ -1282,7 +1300,7 @@ li:last-child .bbcode-img-btn {
 
 .decoda-spoiler-button {
   background: #a65752;
-  color: white;
+  color: #ffffff;
   display: inline-block;
   text-transform: uppercase;
   font-family: Oswald, sans-serif;
@@ -1331,3 +1349,32 @@ li:last-child .bbcode-img-btn {
   display: inline-block;
   margin: 2px 0;
   padding: 5px 15px; }
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%; }
+
+.modal-overlay {
+  position: fixed;
+  background: #000000;
+  opacity: 0.85;
+  width: 100%;
+  height: 100%;
+  cursor: pointer; }
+
+.modal-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center; }
+
+.modal-content-menu ul {
+  padding: 0; }
+.modal-content-menu li {
+  display: inline-block; }
+
+/*# sourceMappingURL=style-litterature.css.map */

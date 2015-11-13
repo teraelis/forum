@@ -49,6 +49,11 @@ services:
         tags:
             - { name: fm_bbcode.decoda.filter, id: nicetext }
 
+    ter_aelis_forum.decoda.image_filter:
+        class: TerAelis\ForumBundle\BBCodeService\ImageFilter
+        tags:
+            - { name: fm_bbcode.decoda.filter, id: resizable-image }
+
     ter_aelis_forum.bbcode:
         class: TerAelis\ForumBundle\BBCodeService\BBCodeService
         arguments : [ @templating ]
