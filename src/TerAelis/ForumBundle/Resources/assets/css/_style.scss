@@ -264,7 +264,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   left: -45px;
   width: 90px;
   height: 330px;
-  background: url($rootImgDir + '/' + $pole_image_location + '/header_left.jpg') no-repeat;
+  background: url($rootImgDir + '/' + $pole_image_location + '/header_left.jpg') no-repeat right;
   z-index: 0;
 }
 
@@ -273,7 +273,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   right: -90px;
   width: 90px;
   height: 330px;
-  background: url($rootImgDir + '/' + $pole_image_location + '/header_right.jpg') no-repeat;
+  background: url($rootImgDir + '/' + $pole_image_location + '/header_right.jpg') no-repeat left;
   z-index: 0;
 }
 
@@ -387,7 +387,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   right: -280px;
   width: 280px;
   height: 800px;
-  background: url($rootImgDir + '/' + $pole_image_location + '/content_right.jpg') no-repeat right;
+  background: url($rootImgDir + '/' + $pole_image_location + '/content_right.jpg') no-repeat left;
   z-index: 0;
 }
 
