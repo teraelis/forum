@@ -2,6 +2,20 @@ $(document).ready(function() {
   var images = [];
   var lightboxOpened = false;
 
+  function pushToImages() {
+    var src = $(this).attr('src');
+    for(var key in images) {
+      if(images.hasOwnProperty(key) && images[key].src == src) {
+        return false;
+      }
+    }
+    images.push({
+      element: this,
+      src: src
+    });
+    return true;
+  }
+
   $('.js-modal')
     .on('open', function() {
       $(this).data('state', true);
@@ -172,6 +186,7 @@ $(document).ready(function() {
       var $lightbox = $('.js-lightbox');
       switch (keyId) {
         case 37:
+        case 8:
           $lightbox.trigger('prev');
           event.preventDefault();
           break;
@@ -207,13 +222,14 @@ $(document).ready(function() {
     }
   }
 
-  $('.js-content-image').each(function() {
-    var inLightBox = $(this).parents('a').length === 0;
+  var addImageToLightbox = function addImageToLightbox() {
+    var shouldBeInLightbox = $(this).parents('a').length === 0;
 
-    if(inLightBox) {
+    if (shouldBeInLightbox) {
       var index = images.length;
-      images.push(this);
+      var alreadyInLightbox = !pushToImages.call(this);
     }
+
     $(this).load(function () {
       var currentWidth = $(this).width();
       var currentHeight = $(this).height();
@@ -223,7 +239,7 @@ $(document).ready(function() {
         $(this).width(containerWidth);
       }
 
-      if(inLightBox) {
+      if (shouldBeInLightbox && !alreadyInLightbox) {
         images[index] = {
           src: $(this).attr('src'),
           width: currentWidth,
@@ -236,8 +252,18 @@ $(document).ready(function() {
         });
         $(this).css('cursor', 'pointer');
       }
-    }).each(function() {
-      if(this.complete) $(this).load();
+    }).each(function () {
+      if (this.complete) $(this).load();
     });
-  });
+  };
+
+  $('.js-content-image').each(addImageToLightbox);
+
+  if(typeof window.TA === "undefined") {
+    window.TA = {};
+  }
+
+  window.TA.addToLightbox = function addToLightbox($container) {
+    $container.find('.js-content-image').each(addImageToLightbox)
+  }
 });

@@ -1,5 +1,6 @@
 *~
 .idea
+*.map
 composer.phar
 bin
 vendor
