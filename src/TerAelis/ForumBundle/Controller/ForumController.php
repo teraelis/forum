@@ -366,50 +366,77 @@ class ForumController extends Controller
                 $readCategories[] = $cId;
         }
 
-        $repo = $this->get('doctrine.orm.entity_manager')
+        $result = array();
+
+        $nb_ailleurs = $this->container->getParameter("nb_ailleurs");
+        $em = $this->get('doctrine.orm.entity_manager');
+        $repo = $em
             ->getRepository('TerAelisForumBundle:Post');
         $posts = $repo->getLastPoles(
             $otherPoles,
-            $this->container->getParameter("nb_ailleurs"),
+            $nb_ailleurs,
             $readCategories
         );
 
-        $comments = array();
         foreach($posts as $p) {
-            if($p->getNumberComment() > 0) {
-                $thread = $p->getThreads()->first();
-                $c = $thread->getComments()->first();
-
-                $comments[] = array(
-                    'type' => 'comment',
-                    'slug' => $p->getSlug(),
-                    'title' => $p->getTitle(),
-                    'balise' => $p->getBalise(),
-                    'cat' => $p->getMainCategorie()->getRoot(),
-                    'lastComment' => $p->getLastComment(),
-                    'content' => $c,
-                    'author' => $c->getAuthor()
-                );
-            } else {
-                $comments[] = array(
+            if($p->getNumberComment() == 0) {
+                $result[] = array(
                     'type' => 'post',
                     'slug' => $p->getSlug(),
                     'title' => $p->getTitle(),
                     'balise' => $p->getBalise(),
                     'cat' => $p->getMainCategorie()->getRoot(),
-                    'lastComment' => $p->getLastComment(),
+                    'lastComment' => $p->getDatePublication(),
                     'content' => $p,
                     'authors' => $p->getAuthors()
                 );
             }
         }
+
+        $comments = $em
+            ->getRepository('TerAelisCommentBundle:Comment')
+            ->getLastPoles(
+                $otherPoles,
+                $nb_ailleurs,
+                $readCategories
+            );
+
+        foreach($comments as $com) {
+            $thread = $com->getThread();
+            $p = $thread->getPost();
+
+            $result[] = array(
+                'type' => 'comment',
+                'slug' => $p->getSlug(),
+                'title' => $p->getTitle(),
+                'balise' => $p->getBalise(),
+                'cat' => $p->getMainCategorie()->getRoot(),
+                'lastComment' => $com->getCreatedAt(),
+                'content' => $com,
+                'author' => $com->getAuthor()
+            );
+        }
+
+        usort($result, array($this, 'cmp'));
+        array_splice($result, $nb_ailleurs);
+
         return $this->render('TerAelisForumBundle:Forum:lastPostsSidebar.html.twig', array(
             'litte' => $this->container->getParameter('litterature'),
             'gfx' => $this->container->getParameter('graphisme'),
             'rp' => $this->container->getParameter('rolisme'),
             'pole' => $pole,
-            'posts' => $comments
+            'posts' => $result
         ));
+    }
+
+    private function cmp($a, $b) {
+        if($a['lastComment'] < $b['lastComment']) {
+            return 1;
+        } elseif($a['lastComment'] > $b['lastComment']) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 
     public function otherPoles($pole) {

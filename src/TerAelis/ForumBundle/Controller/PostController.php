@@ -62,6 +62,7 @@ class PostController extends Controller
                 array(
                      'pole' => $pole_aff,
                      'slug' => $slug,
+                     'page' => $page,
                 )
             ), 301);
         }
@@ -704,7 +705,7 @@ class PostController extends Controller
         }
         $url = $this->generateUrl('taforum_voirSujet', $arrayForward);
         if($idComment != null) {
-            $url = $url.'#comment'.$idComment;
+            $url .= '#comment'.$idComment;
         } else if (!empty($user)) {
             $url .= '#last';
         }

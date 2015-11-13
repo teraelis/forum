@@ -14,7 +14,12 @@
             {% endif %}
             <div class="pole {{ pole_couleur }}"></div>
             <div class="contenu">
-                <a href="{{ path("taforum_voirSujet_last", {'pole': pole, 'slug': post.slug}) }}"><h4>{%  if post.balise is not null %}[{{ post.balise.getCourt() }}]{% endif %} {{ veryShort(post.title) }}</h4></a>
+                <a href="{{ path("taforum_voirSujet_last", {
+                    'pole': pole,
+                    'slug': post.slug
+                }) }}">
+                    <h4>{%  if post.balise is not null %}[{{ post.balise.getCourt() }}]{% endif %} {{ veryShort(post.title) }}</h4>
+                </a>
                 <span class="meta">
                     {{ post.lastComment | localizeddate('none', 'short') }} - {{ post.lastComment |localizeddate('medium', 'none') }}<br />
                     {% if post.type == 'post' %}

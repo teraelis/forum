@@ -267,4 +267,33 @@ class CommentRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getLastPoles($arrayPoles, $nb, $categoriesId)
+    {
+        $where = "";
+        foreach ($arrayPoles as $p) {
+            $where = $where . ' or c.root = ' . $p;
+        }
+        $where = substr($where, 4);
+
+        $whereId = join(' or ', array_map(function($value) { return 'c.id = '.$value; }, $categoriesId));
+
+        return $this->createQueryBuilder('com')
+            ->join('com.author', 'au')
+            ->leftJoin('com.thread', 't')
+            ->leftJoin('t.post', 'p')
+            ->join('p.mainCategorie', 'c')
+            ->where($where)
+            ->andWhere($whereId)
+            ->leftJoin('p.balise', 'b')
+            ->addOrderBy('com.createdAt', 'DESC')
+            ->addSelect('p')
+            ->addSelect('c')
+            ->addSelect('t')
+            ->addSelect('b')
+            ->addSelect('au')
+            ->getQuery()
+            ->setMaxResults($nb)
+            ->getResult();
+    }
 }

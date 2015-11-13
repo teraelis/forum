@@ -103,7 +103,7 @@ class CategorieRepository extends NestedTreeRepository
     }
 
     /**
-     * @param Categorie[] $categorie
+     * @param Categorie[] $categorieList
      * @return Categorie[]
      */
     public function findAllChildrenPosts($categorieList)
@@ -114,8 +114,10 @@ class CategorieRepository extends NestedTreeRepository
         }
         $query = $this->createQueryBuilder('c')
             ->leftJoin('c.lastPost', 'p')
+            ->leftJoin('p.lastAuthor', 'a')
             ->leftJoin('c.children', 'child')
             ->addSelect('p')
+            ->addSelect('a')
             ->addSelect('child');
         if(!empty($where)) {
             $query->where(substr($where, 4));
