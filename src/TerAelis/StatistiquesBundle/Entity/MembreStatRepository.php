@@ -42,4 +42,22 @@ class MembreStatRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findBestUserLastWeek($nb)
+    {
+        $date = (new \DateTime())->modify('-1 weeks');
+        return $this->createQueryBuilder('s')
+            ->join('s.membre', 'u')
+            ->addSelect('u')
+            ->addSelect('sum(s.nbCommentaire) as nb_commentaire')
+            ->addSelect('sum(s.nbSujet) as nb_sujet')
+            ->addSelect('sum(s.nbSujet) + sum(s.nbCommentaire) as hidden nb_total')
+            ->groupBy('u.id')
+            ->orderBy('nb_total', 'DESC')
+            ->where('s.date > :start')
+            ->setParameter(':start', $date)
+            ->setMaxResults($nb)
+            ->getQuery()
+            ->getResult();
+    }
 }

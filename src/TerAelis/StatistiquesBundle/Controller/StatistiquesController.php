@@ -98,44 +98,15 @@ class StatistiquesController extends Controller
 
         $bestUsers = $em->getRepository('TerAelisStatistiquesBundle:MembreStat')
             ->findBestUser(10);
-        $membresActifs = [];
-        $nbCommentMaxGlobal = 0;
-        $nbSujetMaxGlobal = 0;
-        foreach($bestUsers as $stat) {
-            $membresActifs[] = array(
-                'user' => $stat[0]->getMembre(),
-                'nb_commentaire' => $stat['nb_commentaire'],
-                'nb_sujet' => $stat['nb_sujet'],
-            );
-            $nbCommentMaxGlobal = max($nbCommentMaxGlobal, $stat['nb_commentaire']);
-            $nbSujetMaxGlobal = max($nbSujetMaxGlobal, $stat['nb_sujet']);
-        }
-        $renderArray['membresActifs'] = array(
-            'total' => $membresActifs,
-            'total_comment_max' => $nbCommentMaxGlobal,
-            'total_sujet_max' => $nbSujetMaxGlobal
-        );
-
+        $renderArray['membresActifs'] = $this->sortBestUsers($bestUsers, $renderArray);
 
         $bestUsers = $em->getRepository('TerAelisStatistiquesBundle:MembreStat')
             ->findBestUserMonthly(10);
-        $membresActifs = [];
-        $nbCommentMaxGlobal = 0;
-        $nbSujetMaxGlobal = 0;
-        foreach($bestUsers as $stat) {
-            $membresActifs[] = array(
-                'user' => $stat[0]->getMembre(),
-                'nb_commentaire' => $stat['nb_commentaire'],
-                'nb_sujet' => $stat['nb_sujet'],
-            );
-            $nbCommentMaxGlobal = max($nbCommentMaxGlobal, $stat['nb_commentaire']);
-            $nbSujetMaxGlobal = max($nbSujetMaxGlobal, $stat['nb_sujet']);
-        }
-        $renderArray['membresActifsMonthly'] = array(
-            'total' => $membresActifs,
-            'total_comment_max' => $nbCommentMaxGlobal,
-            'total_sujet_max' => $nbSujetMaxGlobal
-        );
+        $renderArray['membresActifsMonthly'] = $this->sortBestUsers($bestUsers, $renderArray);
+
+        $bestUsers = $em->getRepository('TerAelisStatistiquesBundle:MembreStat')
+            ->findBestUserLastWeek(10);
+        $renderArray['membresActifsWeekly'] = $this->sortBestUsers($bestUsers, $renderArray);
 
         return $this->render(
             'TerAelisStatistiquesBundle:Statistiques:index.html.twig',
@@ -178,5 +149,30 @@ class StatistiquesController extends Controller
 
         }
         return $result;
+    }
+
+    /**
+     * @param $bestUsers
+     * @return array
+     */
+    public function sortBestUsers($bestUsers)
+    {
+        $membresActifs = [];
+        $nbCommentMaxGlobal = 0;
+        $nbSujetMaxGlobal = 0;
+        foreach ($bestUsers as $stat) {
+            $membresActifs[] = array(
+                'user' => $stat[0]->getMembre(),
+                'nb_commentaire' => $stat['nb_commentaire'],
+                'nb_sujet' => $stat['nb_sujet'],
+            );
+            $nbCommentMaxGlobal = max($nbCommentMaxGlobal, $stat['nb_commentaire']);
+            $nbSujetMaxGlobal = max($nbSujetMaxGlobal, $stat['nb_sujet']);
+        }
+        return array(
+            'total' => $membresActifs,
+            'total_comment_max' => $nbCommentMaxGlobal,
+            'total_sujet_max' => $nbSujetMaxGlobal
+        );
     }
 }

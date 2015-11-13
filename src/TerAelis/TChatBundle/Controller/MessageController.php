@@ -58,6 +58,7 @@ class MessageController extends Controller
 
         $returnMessages = array();
         $postExtension = $this->container->get('twig.extension.ter_aelis_post_extension');
+        $bbcodeExtension = $this->container->get('fm_bbcode.templating.helper');
 
         foreach($messages as $m) {
             $date = $m->getCreatedAt();
@@ -68,7 +69,7 @@ class MessageController extends Controller
                 'mod' => $mod,
                 'hide' => $m->getHide(),
                 'id' => $m->getId(),
-                'message' => $m->getMessage()
+                'message' => $bbcodeExtension->filter($m->getMessage(), 'my_default_filter')
             );
         }
 

@@ -90,7 +90,10 @@ class SalonController extends Controller
             return $this->redirect($this->generateUrl('teraelis_tchat'));
         }
 
-        return $this->render('TerAelisTChatBundle:Salon:create.html.twig', array('form' => $form->createView()));
+        return $this->render('TerAelisTChatBundle:Salon:create.html.twig', array(
+            'form' => $form->createView(),
+            'submit' => 'Créer',
+        ));
     }
 
     public function showAction(Request $request, $id) {

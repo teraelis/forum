@@ -99,6 +99,36 @@
 
     <hr />
 
+    <h2>Les membres les plus actifs de la semaine</h2>
+    <table class="listSujets">
+        <thead>
+        <tr>
+            <th width="20%">Pseudo</th>
+            <th width="40%">Nombre de sujets</th>
+            <th width="40%">Nombre de commentaires</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for stat in membresActifsWeekly.total %}
+            <tr>
+                <td>
+                    {{ showUsername(stat.user) }}
+                </td>
+                <td>
+                    <span class="statistiques_value">{{ stat.nb_sujet }}</span>
+                    <span class="statistiques_bars" style="width: {{ (100 - 25) * stat.nb_sujet / membresActifsWeekly.total_sujet_max }}%"></span>
+                </td>
+                <td>
+                    <span class="statistiques_value">{{ stat.nb_commentaire }}</span>
+                    <span class="statistiques_bars" style="width: {{ (100 - 25) * stat.nb_commentaire / membresActifsWeekly.total_comment_max }}%"></span>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <hr />
+
     <h2>Les membres les plus actifs du mois</h2>
     <table class="listSujets">
         <thead>
