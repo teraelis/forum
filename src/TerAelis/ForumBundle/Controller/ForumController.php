@@ -378,7 +378,7 @@ class ForumController extends Controller
         foreach($posts as $p) {
             if($p->getNumberComment() > 0) {
                 $thread = $p->getThreads()->first();
-                $c = $thread->getComments()->last();
+                $c = $thread->getComments()->first();
 
                 $comments[] = array(
                     'type' => 'comment',

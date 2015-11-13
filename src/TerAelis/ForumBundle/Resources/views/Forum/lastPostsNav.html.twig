@@ -1,4 +1,5 @@
 <ul class="poles">
+    <li><a class="navbar_pole blog" href="{{ path("taforum_blog") }}"></a></li>
     {% if pole != 'litterature' %}
         <li><a class="navbar_pole litte" href="{{ path("taforum_forum", {pole: "litterature"}) }}">{{ litte }}</a></li>
     {% endif %}

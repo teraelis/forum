@@ -254,7 +254,6 @@ class PostRepository extends EntityRepository
             ->leftJoin('com.author', 'au')
             ->orderBy('p.lastComment', 'DESC')
             ->addOrderBy('com.createdAt', 'DESC')
-            ->groupBy('t.id')
             ->addSelect('c')
             ->addSelect('a')
             ->addSelect('au')

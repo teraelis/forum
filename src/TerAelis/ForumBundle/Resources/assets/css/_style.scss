@@ -358,6 +358,10 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   background: url($rootImgDir + '/' + $pole_image_location + '/new_litte.png') no-repeat top;
 }
 
+.navbar_pole.blog {
+  background: url($rootImgDir + '/' + $pole_image_location + '/new_blog.png') no-repeat top;
+}
+
 .navbar_pole:hover {
   text-decoration: none;
   color: #cccccc;

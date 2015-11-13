@@ -298,6 +298,9 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 .navbar_pole.litte {
   background: url("../../bundles/teraelisforum/img/litterature/new_litte.png") no-repeat top; }
 
+.navbar_pole.blog {
+  background: url("../../bundles/teraelisforum/img/litterature/new_blog.png") no-repeat top; }
+
 .navbar_pole:hover {
   text-decoration: none;
   color: #cccccc; }
