@@ -592,14 +592,13 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   font-weight: 300; }
 
 .categories {
-  display: table;
-  width: 775px;
+  display: block;
+  width: 100%;
   padding: 0; }
 
 .cat {
-  display: table-row;
+  display: block;
   width: auto;
-  clear: both;
   height: 100px;
   padding: 5px 0 5px 0; }
 
@@ -607,7 +606,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   display: none; }
 
 .cat span {
-  display: table-column;
+  display: block;
   float: left;
   margin-top: 5px;
   margin-bottom: 5px; }
@@ -624,6 +623,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   margin-left: 3px;
   height: 88px;
   width: 469px;
+  width: calc(100% - 306px);
   padding: 5px 15px 5px 15px;
   color: #ffffff;
   text-overflow: ellipsis;
@@ -1379,5 +1379,28 @@ li:last-child .bbcode-img-btn {
   padding: 0; }
 .modal-content-menu li {
   display: inline-block; }
+
+@media screen and (min-width: 1015px) {
+  .sidebar {
+    margin-left: calc((985px - 100vw) / 2  + 15px); }
+
+  .content {
+    padding-left: calc((985px - 100vw) / 2 + 155px + 15px); } }
+@media screen and (min-width: 1215px) {
+  .sidebar {
+    margin-left: -100px; }
+
+  .content {
+    padding-left: 55px; } }
+.cat_state {
+  width: 101px; }
+
+.cat_description {
+  width: calc(80.5% - 124px);
+  height: 100px;
+  box-sizing: border-box; }
+
+.cat_last {
+  width: 19.5%; }
 
 /*# sourceMappingURL=style-graphisme.css.map */

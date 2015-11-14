@@ -716,15 +716,14 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 }
 
 .categories {
-  display: table;
-  width: 775px;
+  display: block;
+  width: 100%;
   padding: 0;
 }
 
 .cat {
-  display: table-row;
+  display: block;
   width: auto;
-  clear: both;
   height: 100px;
   padding: 5px 0 5px 0;
 }
@@ -734,7 +733,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 }
 
 .cat span {
-  display: table-column;
+  display: block;
   float: left;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -753,12 +752,12 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   margin-left: 3px;
   height: 88px;
   width: 469px;
+  width: calc(100% - 306px);
   padding: 5px 15px 5px 15px;
   color: $fontColor;
   text-overflow: ellipsis;
   border: 1px solid $lastBackground;
-  box-shadow: 0 0 25px rgba(0,0,0,0.1) inset,
-  0 0 10px rgba(0,0,0,0.25);
+  box-shadow: 0 0 25px rgba(0,0,0,0.1) inset, 0 0 10px rgba(0,0,0,0.25);
   z-index: 10;
 }
 
@@ -1684,4 +1683,41 @@ li:last-child .bbcode-img-btn{
   li {
     display: inline-block;
   }
+}
+
+$maxDecalage: 100px;
+$leftDecalage: 15px;
+@media screen and (min-width: 985px + 2 * $leftDecalage) {
+  .sidebar {
+    margin-left: calc((985px - 100vw) / 2  + #{$leftDecalage});
+  }
+
+  .content {
+    padding-left: calc((985px - 100vw) / 2 + 155px + #{$leftDecalage});
+  }
+}
+
+@media screen and (min-width: 985px + $maxDecalage * 2 + $leftDecalage * 2) {
+  .sidebar {
+    margin-left: 0 - $maxDecalage;
+  }
+
+  .content {
+    padding-left: 155px - $maxDecalage;
+  }
+}
+
+$catStateWidth: 101px;
+$catLastWidth: 19.5%;
+$catDescriptionWidth: (100% - $catLastWidth);
+.cat_state {
+  width: $catStateWidth;
+}
+.cat_description {
+  width: calc(#{$catDescriptionWidth} - 124px);
+  height: 100px;
+  box-sizing: border-box;
+}
+.cat_last {
+  width: $catLastWidth;
 }
