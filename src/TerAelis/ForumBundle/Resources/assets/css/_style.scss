@@ -1152,7 +1152,8 @@ article:not(:last-child) .sujet_main {
   border-top: 1px solid $contentBorderColor;
   margin: 0 -10px;
   padding: 10px 10px;
-  width: 582px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .thread_buttons {
