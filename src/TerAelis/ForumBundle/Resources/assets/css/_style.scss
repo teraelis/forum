@@ -682,7 +682,8 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 }
 
 .cat_shortcuts {
-  margin: 10px 0;
+  margin: 10px 0 30px;
+  text-align: center;
 }
 .cat_shortcuts img {
   content: '';
@@ -1481,7 +1482,7 @@ li:last-child .bbcode-img-btn{
 }
 
 .salon {
-  width: 765px;
+  width: 100%;
   display: table;
 }
 
@@ -1492,7 +1493,7 @@ li:last-child .bbcode-img-btn{
 .salon .users {
   display: table-cell;
   vertical-align: top;
-  overflow-y:scroll;
+  overflow-y:auto;
   overflow-x:hidden;
   padding: 5px;
   width: 130px;
