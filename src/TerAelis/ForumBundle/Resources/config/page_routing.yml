@@ -1,9 +1,3 @@
-taforum_page:
-    path:      /{pagePermalink}
-    defaults:  { _controller: TerAelisForumBundle:Page:page }
-    requirements:
-        pagePermalink: \w+
-
 taforum_admin_pages:
     path:      /admin/pages
     defaults:  { _controller: TerAelisForumBundle:Page:adminPages }
@@ -21,5 +15,11 @@ taforum_admin_page:
 taforum_admin_page_delete:
     path:      /admin/pages/{pagePermalink}/delete
     defaults:  { _controller: TerAelisForumBundle:Page:adminPageDelete }
+    requirements:
+        pagePermalink: \w+
+
+taforum_page:
+    path:      /{pagePermalink}
+    defaults:  { _controller: TerAelisForumBundle:Page:page }
     requirements:
         pagePermalink: \w+

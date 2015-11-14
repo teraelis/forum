@@ -26,7 +26,7 @@ class PageController extends Controller
                 )
             );
         } else {
-            return $this->createNotFoundException(
+            throw $this->createNotFoundException(
                 'La page demandée n\'existe pas.'
             );
         }
