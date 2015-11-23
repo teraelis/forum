@@ -66,6 +66,13 @@ button {
   margin: 2px 0;
   text-align: center; }
 
+.btn-img {
+  padding: 2px 5px;
+  line-height: 26px; }
+  .btn-img img {
+    height: 26px;
+    vertical-align: bottom; }
+
 .sujet_contenu .small-btn {
   display: inline-block;
   margin: 0;
@@ -1374,13 +1381,43 @@ li:last-child .bbcode-img-btn {
 .modal-content {
   position: absolute;
   top: 0;
-  left: 0;
-  text-align: center; }
+  left: 0; }
 
-.modal-content-menu ul {
-  padding: 0; }
-.modal-content-menu li {
-  display: inline-block; }
+.modal-content-main {
+  margin: 0 auto; }
+
+.modal-content-menu {
+  text-align: center; }
+  .modal-content-menu ul {
+    padding: 0; }
+  .modal-content-menu li {
+    display: inline-block; }
+
+.book-content {
+  margin-top: 0;
+  border: 1px solid #00533f;
+  padding: 15px; }
+
+.book-modal-container {
+  padding-bottom: 100px; }
+
+.book-modal-content {
+  padding-top: 30px; }
+
+.book-modal-light {
+  color: #222222; }
+  .book-modal-light .modal-overlay {
+    opacity: 1;
+    background: #e0e0e0; }
+
+.book-modal-dark {
+  color: #f9f9f9; }
+  .book-modal-dark .modal-overlay {
+    opacity: 1;
+    background: #343434; }
+
+.book-modal-content {
+  line-height: 1.4em; }
 
 @media screen and (min-width: 1015px) {
   .sidebar {

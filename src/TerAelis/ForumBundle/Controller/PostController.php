@@ -20,6 +20,7 @@ use TerAelis\CommentBundle\Entity\Thread;
 use TerAelis\ForumBundle\Entity\Vote;
 use TerAelis\ForumBundle\Form\PostType;
 use TerAelis\ForumBundle\Entity\Tag;
+use TerAelis\ForumBundle\Form\SondageType;
 use TerAelis\ForumBundle\Form\TagType;
 use TerAelis\ForumBundle\TerAelisForumBundle;
 
@@ -28,7 +29,14 @@ class PostController extends Controller
     const VISIBLE = 0;
     const CORBEILLE = 1;
 
-    public function voirSujetAction($pole, $slug, $page) {
+    /**
+     * @param Request $request
+     * @param $pole
+     * @param $slug
+     * @param $page
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function voirSujetAction(Request $request, $pole, $slug, $page) {
         // On vérifie que la page est valide
         if ($page < 0)
         {
@@ -88,16 +96,13 @@ class PostController extends Controller
             $sondageOuvert = empty($vote);
             if ($sondageOuvert) {
                 // On peut voter
-                $request = $this->getRequest();
+                $choices = $sondage->getChoix();
+
                 $form = $this->createFormBuilder()
                     ->add('choix', 'entity', array(
                         'class'         => 'TerAelisForumBundle:Choix',
-                        'query_builder' => function(ChoixRepository $cr) use ($idSujet) {
-                            return $cr->createQueryBuilder('c')
-                                ->join('c.sondage', 's')
-                                ->join('s.post', 'p')
-                                ->where('p.id = '.$idSujet);
-                        },
+                        'data_class'         => 'TerAelis\ForumBundle\Entity\Choix',
+                        'choices' => $choices,
                         'property' => 'name',
                         'expanded' => true,
                         'multiple' => false,

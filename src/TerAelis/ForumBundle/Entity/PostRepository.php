@@ -38,6 +38,11 @@ class PostRepository extends EntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * @param $slug
+     * @return Post
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getSujet($slug)
     {
         return $this->createQueryBuilder('p')
@@ -59,6 +64,8 @@ class PostRepository extends EntityRepository
             ->addSelect('b')
             ->leftJoin('p.sondage', 's')
             ->addSelect('s')
+            ->leftJoin('s.choix', 'choix')
+            ->addSelect('choix')
             ->leftJoin('p.formulaireDonnees', 'f')
             ->addSelect('f')
             ->leftJoin('f.type', 'ft')

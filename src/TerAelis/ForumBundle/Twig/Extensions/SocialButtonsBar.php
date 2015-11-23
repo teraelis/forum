@@ -2,6 +2,8 @@
 
 namespace TerAelis\ForumBundle\Twig\Extensions;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 class SocialButtonsBar extends \Twig_Extension{
 
     protected $container;

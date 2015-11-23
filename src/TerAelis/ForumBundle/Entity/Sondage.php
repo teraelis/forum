@@ -44,7 +44,7 @@ class Sondage
      * @var boolean
      * @ORM\Column(name="choix_multiples", type="boolean")
      */
-    private $choixMultiples;
+    private $choixMultiples = false;
 
     /**
      * @ORM\OneToMany(targetEntity="TerAelis\ForumBundle\Entity\Choix", mappedBy="sondage", cascade={"persist", "remove"})
@@ -104,9 +104,7 @@ class Sondage
     }
 
     /**
-     * Get choice
-     *
-     * @return \stdClass 
+     * @return Choix[]
      */
     public function getChoix()
     {

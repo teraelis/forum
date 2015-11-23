@@ -30,6 +30,7 @@ class PostExtension extends \Twig_Extension {
      * Constructor.
      * @param Router $router
      * @param Session $session
+     * @param UpdateUser $updateUser
      */
     public function __construct(Router $router, Session $session, UpdateUser $updateUser)
     {

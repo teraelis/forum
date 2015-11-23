@@ -54,6 +54,16 @@ services:
         tags:
             - { name: fm_bbcode.decoda.filter, id: resizable-image }
 
+    ter_aelis_forum.decoda.text_with_em_filter:
+        class: TerAelis\ForumBundle\BBCodeService\TextFilter
+        tags:
+            - { name: fm_bbcode.decoda.filter, id: text-with-em }
+
+    ter_aelis_forum.decoda.book_filter:
+        class: TerAelis\ForumBundle\BBCodeService\BookFilter
+        tags:
+            - { name: fm_bbcode.decoda.filter, id: book }
+
     ter_aelis_forum.bbcode:
         class: TerAelis\ForumBundle\BBCodeService\BBCodeService
         arguments : [ @templating ]
@@ -85,12 +95,6 @@ services:
         class: TerAelis\ForumBundle\Form\OptionsTransformerExtension
         tags:
             - { name: form.type_extension, alias: entity }
-
-    ter_aelis_forum.bbcode:
-        class: TerAelis\ForumBundle\BBCodeService\BBCodeService
-        arguments : [ @templating ]
-        tags :
-            - {name : 'templating.helper', alias : 'bbcode-service'}
 
     teraelis.security.login_handler:
         class: TerAelis\ForumBundle\EventListener\LoginHandler
