@@ -106,7 +106,8 @@ class PostController extends Controller
                         'property' => 'name',
                         'expanded' => true,
                         'multiple' => false,
-                        'required' => true))
+                        'required' => true
+                    ))
                     ->getForm();
 
                 if ($request->isMethod('POST')) {

@@ -26,7 +26,7 @@
                         <div class="sondage_option">
                             <span class="sondage_option_title align-right">{{ key }}</span>
                             <span class="sondage_option_vote"><span style="width: {{ value.percentage }}%;"></span></span>
-                            <span class="sondage_option_value">{{ value.percentage }}% ({{ value.number }})</span>
+                            <span class="sondage_option_value">{{ value.percentage | number_format(1, ',', ' ') }}% ({{ value.number }})</span>
                         </div>
                     {% endfor %}
                 </div>
