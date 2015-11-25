@@ -4,28 +4,8 @@
         <div class="modal-content-menu">
             <ul>
                 <li>
-                    <button class="btn btn-img js-book-toggle-style">
-                        <img src="{{ asset('bundles/teraelisforum/img/global/confort/background.png') }}" alt="Changer de fond" />
-                    </button>
-                </li>
-                <li>
-                    <button class="btn btn-img js-book-bigger-font">
-                        <img src="{{ asset('bundles/teraelisforum/img/global/confort/font_more.png') }}" alt="Plus gros" />
-                    </button>
-                </li>
-                <li>
-                    <button class="btn btn-img js-book-smaller-font">
-                        <img src="{{ asset('bundles/teraelisforum/img/global/confort/font_less.png') }}" alt="Plus petit" />
-                    </button>
-                </li>
-                <li>
-                    <button class="btn btn-img js-book-bigger-width">
-                        <img src="{{ asset('bundles/teraelisforum/img/global/confort/width_more.png') }}" alt="Plus large" />
-                    </button>
-                </li>
-                <li>
-                    <button class="btn btn-img js-book-smaller-width">
-                        <img src="{{ asset('bundles/teraelisforum/img/global/confort/width_less.png') }}" alt="Moins large" />
+                    <button class="btn js-book-config-toggle">
+                        Configurer
                     </button>
                 </li>
                 <li>
@@ -34,6 +14,59 @@
                     </button>
                 </li>
             </ul>
+
+            <form novalidate class="formulaire formulaire--small-width js-book-config"  style="display: none">
+                <div class="mainForm form-field">
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="">Taille de la police</label>
+                        </div>
+                        <div class="form-input">
+                            <input class="js-book-config-input" type="text" data-bind="modalFontSize" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="">Largeur du texte</label>
+                        </div>
+                        <div class="form-input">
+                            <input class="js-book-config-input" type="text" data-bind="modalWidth" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="">Type de Police</label>
+                        </div>
+                        <div class="form-input">
+                            <input class="js-book-config-input" type="text" data-bind="modalFontFamily" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="">Hauteur de ligne</label>
+                        </div>
+                        <div class="form-input">
+                            <input class="js-book-config-input" type="text" data-bind="modalLineHeight" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="">Couleur de la police</label>
+                        </div>
+                        <div class="form-input">
+                            <input class="js-book-config-input" type="color" data-bind="modalFontColor" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="">Couleur du fond</label>
+                        </div>
+                        <div class="form-input">
+                            <input class="js-book-config-input" type="color" data-bind="modalBackgroundColor" />
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="modal-content-main book-modal-content js-book-modal-content">
 

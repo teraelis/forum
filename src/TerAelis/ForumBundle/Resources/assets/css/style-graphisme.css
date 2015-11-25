@@ -1164,6 +1164,11 @@ section.infos h1 > a {
   background-color: #22262d;
   color: #ffffff; }
 
+.formulaire--small-width {
+  width: auto; }
+  .formulaire--small-width .form-input, .formulaire--small-width .form-label, .formulaire--small-width .form-field {
+    width: auto; }
+
 form .expandable {
   margin: 0;
   display: block; }

@@ -1394,6 +1394,13 @@ section.infos h1 > a {
   background-color: $formBackground;
   color: $contentFontColor;
 }
+.formulaire--small-width {
+  width: auto;
+
+  .form-input, .form-label, .form-field {
+    width: auto;
+  }
+}
 
 form .expandable {
   margin: 0;

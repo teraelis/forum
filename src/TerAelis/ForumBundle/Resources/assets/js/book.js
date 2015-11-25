@@ -1,43 +1,44 @@
 $(document).ready(function() {
   var opened = false;
 
-  var modalColor, modalFontSize, modalWidth;
+  var currentState = {
+    modalFontColor: '#333333',
+    modalBackgroundColor: '#eeeeee',
+    modalFontFamily: 'Georgia, serif',
+    modalLineHeight: 1.5,
+    modalFontSize: 18,
+    modalWidth: 600
+  };
+  var modalFontColor, modalBackgroundColor, modalFontFamily, modalFontSize, modalWidth;
 
-  function getLocalstorage() {
+  function initLocalStorage() {
     var savedData = window.localStorage.getItem('ta.book');
-    if(savedData !== null) {
+    if (savedData !== null) {
       try {
         savedData = JSON.parse(savedData);
-        modalColor = savedData.modalColor;
-        modalFontSize = savedData.modalFontSize;
-        modalWidth = savedData.modalWidth;
-      } catch(e) {
-        modalColor = 'light';
-        modalFontSize = 13;
-        modalWidth = 550;
+      }
+      catch (e) {
+        savedData = {};
+      }
+    }
+    else {
+      savedData = {};
+    }
+    for (var key in currentState) {
+      if (currentState.hasOwnProperty(key) && savedData.hasOwnProperty(key)) {
+        currentState[key] = savedData[key];
       }
     }
   }
-  getLocalstorage();
 
   function updateLocalstorage() {
-    window.localStorage.setItem('ta.book', JSON.stringify({
-      modalColor: modalColor,
-      modalFontSize: modalFontSize,
-      modalWidth: modalWidth
-    }));
+    window.localStorage.setItem('ta.book', JSON.stringify(currentState));
   }
 
   var $jsBookModal = $('.js-book-modal');
   $jsBookModal
-    .on('open', function(event, contentElement, styles) {
-      $(this).data('styles', styles);
-
-      var savedIndex = styles.indexOf(modalFontSize);
-      if(savedIndex === -1) {
-        savedIndex = 0;
-      }
-      $(this).data('current-style', savedIndex);
+    .on('open', function(event, contentElement) {
+      initLocalStorage();
 
       var modalContent = $(this).find('.js-book-modal-content');
       modalContent
@@ -49,30 +50,24 @@ $(document).ready(function() {
       $(this).show();
       $('body').scrollTop(0);
       $(this).trigger('updateView');
+      $(this).trigger('updateFields');
     })
     .on('close', function() {
       $(this).hide();
     })
     .on('updateView', function() {
+      console.log("test");
       $(this).find('.js-book-modal-content')
-        .css('font-size', modalFontSize+'px')
-        .css('width', modalWidth+'px');
+        .css('font-family', currentState.modalFontFamily)
+        .css('line-height', currentState.modalLineHeight+'em')
+        .css('font-size', currentState.modalFontSize+'px')
+        .css('width', currentState.modalWidth+'px');
 
-      var styles = $(this).data('styles');
-      if(styles.length > 1) {
-        styles.forEach((function (value) {
-          $(this).removeClass('book-modal-' + value);
-        }).bind(this));
+      $(this).find('.modal-overlay')
+        .css('opacity', 1)
+        .css('background-color', currentState.modalBackgroundColor);
 
-        var currentStyle = styles[$(this).data('current-style')];
-        $(this).addClass('book-modal-' + currentStyle);
-      } else if(styles.length == 1) {
-        $(this).addClass('book-modal-'+styles[0]);
-        $(this).find('.js-book-toggle-style').hide();
-      } else {
-        $(this).addClass('book-modal-light');
-        $(this).find('.js-book-toggle-style').hide();
-      }
+      $(this).css('color', currentState.modalFontColor);
 
       var width = $(this).find('.js-modal-container').width();
       var windowWidth = $('body').width();
@@ -80,51 +75,47 @@ $(document).ready(function() {
 
       updateLocalstorage();
     })
-    .on('toggle-style', function() {
-      var styles = $(this).data('styles');
-      var newStyleIndex = ($(this).data('currentStyle') + 1) % styles.length;
-
-      $(this).data('current-style', newStyleIndex);
-      modalColor = styles[newStyleIndex];
-
-      $(this).trigger('updateView');
+    .on('changeConfig', function(event, name, value) {
+      if(['modalFontSize', 'modalWidth'].indexOf(name) > -1) {
+        value = parseInt(value);
+      } else if(['modalFontColor', 'modalBackgroundColor'].indexOf(name) > -1) {
+        if(!(/^#[0-9A-F]{6}$/i).test(value)) {
+          if(name === 'modalFontColor') {
+            value = '#333333';
+          } else {
+            value = '#eeeeee';
+          }
+        }
+      }
+      currentState[name] = value;
     })
-    .on('smaller-font', function() {
-      modalFontSize--;
-      $(this).trigger('updateView');
-    })
-    .on('bigger-font', function() {
-      modalFontSize++;
-      $(this).trigger('updateView');
-    })
-    .on('smaller-width', function() {
-      modalWidth -= 10;
-      $(this).trigger('updateView');
-    })
-    .on('bigger-width', function() {
-      modalWidth += 10;
-      $(this).trigger('updateView');
+    .on('updateFields', function(event) {
+      $('.js-book-config-input').each(function() {
+        $(this).val(currentState[$(this).data('bind')])
+      })
     });
 
   /* Enable buttons */
-  [
-    'close',
-    'toggle-style',
-    'smaller-font',
-    'bigger-font',
-    'smaller-width',
-    'bigger-width'
-  ].forEach(function(value) {
-      $jsBookModal.find('.js-book-'+value).on('click', function() {
-        $jsBookModal.trigger(value);
-      });
-    });
+  function updateConfig(forceUpdateFields) {
+    return function() {
+      var name = $(this).data('bind');
+      $jsBookModal.trigger('changeConfig', [name, $(this).val()]);
+      $jsBookModal.trigger('updateView');
+      if(forceUpdateFields) {
+        $jsBookModal.trigger('updateFields');
+      }
+    }
+  }
 
-  function open(styles) {
-    $('.js-book-modal').trigger('open', [
-      this,
-      styles
-    ]);
+  $('.js-book-config-input')
+    .on('change', updateConfig(true));
+
+  $('.js-book-config-toggle').click(function() {
+    $('.js-book-config').toggle();
+  });
+
+  function open() {
+    $('.js-book-modal').trigger('open', [this]);
   }
 
   $(window).resize(function() {
