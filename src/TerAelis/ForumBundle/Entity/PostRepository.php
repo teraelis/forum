@@ -176,34 +176,42 @@ class PostRepository extends EntityRepository
             return [];
         }
 
-        $whereTag = join(' or ', array_map(function($t) {
-            return 't.id = '.((int)$t->getId());
-        }, $tags));
+        if(!empty($tags)) {
+            $whereTag = join(' or ', array_map(function ($t) {
+                return 't.id = ' . ((int)$t->getId());
+            }, $tags));
+        } else {
+            $whereTag = '';
+        }
 
-        $wherePerm = $perm['voirSujet'];
-        array_walk(
-            $wherePerm,
-            function(&$value, $key) use (&$wherePerm) {
-                if($value || $value == 1) {
-                    $value = 'c.id = ' . ((int)$key);
-                }
-            }
-        );
-
-        $wherePerm = join(
-            ' or ',
-            array_filter(
+        if(!empty($perm) && !empty($perm['voirSujet'])) {
+            $wherePerm = $perm['voirSujet'];
+            array_walk(
                 $wherePerm,
-                function($value) {
-                    return $value !== 0;
+                function (&$value, $key) use (&$wherePerm) {
+                    if ($value || $value == 1) {
+                        $value = 'c.id = \'' . ((int)$key) . '\'';
+                    }
                 }
-            )
-        );
+            );
+
+            $wherePerm = join(
+                ' or ',
+                array_filter(
+                    $wherePerm,
+                    function ($value) {
+                        return !empty($value) && $value !== 0;
+                    }
+                )
+            );
+        } else {
+            $wherePerm = '';
+        }
 
         $posts = $this->createQueryBuilder('p')
             ->join('p.tags', 't')
             ->where($whereTag)
-            ->join('p.categories', 'c')
+            ->join('p.mainCategorie', 'c')
             ->andwhere($wherePerm)
             ->andWhere('p.publie = 1')
             ->andWhere('p.datePublication < :today')
