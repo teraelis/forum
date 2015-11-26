@@ -29,4 +29,21 @@ class TagRepository extends EntityRepository
         }
 
     }
+
+    public function findBySlugs($arrayTag) {
+        $where = "";
+        foreach($arrayTag as $t) {
+            $where = $where." or t.slug = '".$t."'";
+        }
+        if($where == "") {
+            return [];
+        } else {
+            $where = substr($where, 4);
+            return $this->createQueryBuilder('t')
+                ->where($where)
+                ->getQuery()
+                ->getResult();
+        }
+
+    }
 }

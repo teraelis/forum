@@ -409,9 +409,9 @@ class Post
      * @param \TerAelis\ForumBundle\Entity\Tag $tags
      * @return Post
      */
-    public function addTag(\TerAelis\ForumBundle\Entity\Tag $tags)
+    public function addTag(\TerAelis\ForumBundle\Entity\Tag $tag)
     {
-        $this->tags[] = $tags;
+        $this->tags[] = $tag;
 
         return $this;
     }
@@ -434,13 +434,6 @@ class Post
     public function getTags()
     {
         return $this->tags;
-    }
-
-    /**
-     * Set tags
-     */
-    public function setTagsNull() {
-        $this->tags = null;
     }
 
     /**
@@ -806,5 +799,10 @@ class Post
     {
         $this->createdAt = $createdAt;
         return $this;
+    }
+
+    public function setTagsNull()
+    {
+        $this->tags = [];
     }
 }

@@ -32,7 +32,6 @@ class Tag
     /**
      * @var string
      *
-     * @Gedmo\Slug(fields={"tag"})
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -58,6 +57,9 @@ class Tag
     public function setTag($tag)
     {
         $this->tag = $tag;
+        $this->slug = preg_replace('/[^a-zA-Z0-9\']/', '-', $tag);
+        $this->slug = preg_replace('/-+/', '-', $this->slug);
+        $this->slug = strtolower($this->slug);
 
         return $this;
     }

@@ -237,7 +237,7 @@ class PostController extends Controller
         return $response;
     }
 
-    public function creerSujetAction($pole, $slug, $upgrade)
+    public function creerSujetAction(Request $request, $pole, $slug, $upgrade)
     {
         $repository = $this->getDoctrine()
             ->getManager()
@@ -272,7 +272,7 @@ class PostController extends Controller
         // On ajoute les formulaires a remplir
         $types = [];
         $i = 0;
-        $session = $this->getRequest()->getSession();
+        $session = $request->getSession();
         foreach($categorie->getFormulaire() as $formulaire) {
             $donnee = new FormulaireDonnees();
             $donnee->setPost($post);
@@ -353,38 +353,30 @@ class PostController extends Controller
 
                         // Tags
                         $tagArray = array();
+                        $tagSlugs = array();
                         $tags = $post->getTags();
-
                         // On lie les tags à ceux qui existent déjà
                         if (!empty($tags)) {
                             foreach ($tags as $t) {
-                                $tagArray[] = $t->getTag();
+                                $tagArray[$t->getSlug()] = $t;
+                                $tagSlugs[] = $t->getSlug();
                             }
                         }
 
-                        $tags = $em->getRepository('TerAelisForumBundle:Tag')
-                            ->findByNames($tagArray);
-                        if (!empty($tags)) {
+                        if(!empty($tagArray)) {
+                            $tags = $em->getRepository('TerAelisForumBundle:Tag')
+                                ->findBySlugs($tagSlugs);
+
                             $post->setTagsNull();
-                            foreach ($tags as $t) {
+                            foreach ($tags as $index => $t) {
                                 $post->addTag($t);
+                                unset($tagArray[$t->getSlug()]);
                             }
 
                             /* On crée les nouveaux tags */
-                            if (count($tagArray) > count($post->getTags())) {
+                            if (count($tagArray) > 0) {
                                 foreach ($tagArray as $tag) {
-                                    $found = false;
-                                    $tagsExistant = $post->getTags();
-                                    foreach ($tagsExistant as $tagExistant) {
-                                        if ($tagExistant->getSlug() === $tag->getSlug()) {
-                                            $found = true;
-                                            break;
-                                        }
-                                    }
-
-                                    if (!$found) {
-                                        $post->addTag($tag);
-                                    }
+                                    $post->addTag($tag);
                                 }
                             }
                         }
@@ -544,15 +536,34 @@ class PostController extends Controller
 
                     // Tags
                     $tagArray = array();
-                    foreach($sujet->getTags() as $t) {
-                        $tagArray[] = $t->getTag();
+                    $tagSlugs = array();
+                    $tags = $sujet->getTags();
+                    // On lie les tags à ceux qui existent déjà
+                    if (!empty($tags)) {
+                        foreach ($tags as $t) {
+                            $tagArray[$t->getSlug()] = $t;
+                            $tagSlugs[] = $t->getSlug();
+                        }
                     }
-                    $sujet->setTagsNull();
-                    $tags = $em->getRepository('TerAelisForumBundle:Tag')
-                        ->findByNames($tagArray);
-                    foreach($tags as $t) {
-                        $sujet->addTag($t);
+
+                    if(!empty($tagArray)) {
+                        $tags = $em->getRepository('TerAelisForumBundle:Tag')
+                            ->findBySlugs($tagSlugs);
+
+                        $sujet->setTagsNull();
+                        foreach ($tags as $index => $t) {
+                            $sujet->addTag($t);
+                            unset($tagArray[$t->getSlug()]);
+                        }
+
+                        /* On crée les nouveaux tags */
+                        if (count($tagArray) > 0) {
+                            foreach ($tagArray as $tag) {
+                                $sujet->addTag($tag);
+                            }
+                        }
                     }
+
 
                     // On l'ajoute dans la BDD
                     $em->persist($sujet);

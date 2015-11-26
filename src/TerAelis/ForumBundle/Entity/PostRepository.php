@@ -170,25 +170,35 @@ class PostRepository extends EntityRepository
         return $posts;
     }
 
-    public function findByTags($tags = array(), $perm)
+    public function findByTags($tags = array(), $perm = ['voirSujet' => []])
     {
         if (strlen(count($tags)) == 0) {
             return [];
         }
 
-        $whereTag = "";
-        foreach ($tags as $t) {
-            $whereTag = $whereTag . ' or t.id >= ' . $t->getId();
-        }
-        $whereTag = substr($whereTag, 4);
+        $whereTag = join(' or ', array_map(function($t) {
+            return 't.id = '.((int)$t->getId());
+        }, $tags));
 
-        $wherePerm = "";
-        foreach ($perm['voirCategorie'] as $c) {
-            if ($c == 1) {
-                $wherePerm = $wherePerm . ' or c.id >= ' . $c;
+        $wherePerm = $perm['voirSujet'];
+        array_walk(
+            $wherePerm,
+            function(&$value, $key) use (&$wherePerm) {
+                if($value || $value == 1) {
+                    $value = 'c.id = ' . ((int)$key);
+                }
             }
-        }
-        $wherePerm = substr($wherePerm, 4);
+        );
+
+        $wherePerm = join(
+            ' or ',
+            array_filter(
+                $wherePerm,
+                function($value) {
+                    return $value !== 0;
+                }
+            )
+        );
 
         $posts = $this->createQueryBuilder('p')
             ->join('p.tags', 't')
