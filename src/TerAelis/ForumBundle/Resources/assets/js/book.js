@@ -50,6 +50,13 @@ $(document).ready(function() {
       $(this).show();
       scrollTop = $('body').scrollTop();
       $('body').scrollTop(0);
+
+      $(this).find('.js-content-image').each(function() {
+        $(this).width('auto');
+        var currentWidth = $(this).width();
+        $(this).on('changeImageSize', window.resizableImage.changeImageSize(currentWidth).bind(this));
+      });
+
       $(this).trigger('updateView');
       $(this).trigger('updateFields');
     })
@@ -69,6 +76,8 @@ $(document).ready(function() {
         .css('background-color', currentState.modalBackgroundColor);
 
       $(this).css('color', currentState.modalFontColor);
+
+      $(this).find('.js-content-image').trigger('changeImageSize', [currentState.modalWidth]);
 
       var width = $(this).find('.js-modal-container').width();
       var windowWidth = $('body').width();
@@ -119,7 +128,7 @@ $(document).ready(function() {
     $('.js-book-modal').trigger('open', [this]);
   }
 
-  $(window).resize(function() {
+  $(window).on('resize', function() {
     $('.js-book-modal').trigger('updateView');
   });
 

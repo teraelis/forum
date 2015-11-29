@@ -222,6 +222,23 @@ $(document).ready(function() {
     }
   }
 
+    function changeImageSize(initialWidth) {
+        return function(event, containerWidth) {
+            if(typeof containerWidth === "undefined") {
+                containerWidth = $(this).closest('.js-content').width();
+            }
+
+            if (initialWidth > containerWidth) {
+                $(this).width(containerWidth);
+            } else {
+                $(this).width(initialWidth);
+            }
+        }
+    };
+    window.resizableImage = {
+        changeImageSize: changeImageSize
+    };
+
   var addImageToLightbox = function addImageToLightbox() {
     var shouldBeInLightbox = $(this).parents('a').length === 0;
 
@@ -232,12 +249,15 @@ $(document).ready(function() {
 
     $(this).load(function () {
       var currentWidth = $(this).width();
+      $(this).data('initial-width', currentWidth);
       var currentHeight = $(this).height();
       var containerWidth = $(this).closest('.js-content').width();
 
       if (currentWidth > containerWidth) {
         $(this).width(containerWidth);
       }
+
+      $(this).on('changeImageSize', changeImageSize(currentWidth).bind(this));
 
       if (shouldBeInLightbox && !alreadyInLightbox) {
         images[index] = {
@@ -258,6 +278,10 @@ $(document).ready(function() {
   };
 
   $('.js-content-image').each(addImageToLightbox);
+
+  $(window).on('resize', function() {
+    $('.js-content-image').trigger('changeImageSize');
+  });
 
   if(typeof window.TA === "undefined") {
     window.TA = {};
