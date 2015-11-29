@@ -142,6 +142,19 @@ button {
   margin: 0 auto;
 }
 
+.btn-text {
+  background: none;
+  border: none;
+  font-weight: bold;
+  color: $contentFontColor;
+  margin: 0 5px;
+  padding: 0 5px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .single-ligne div {
   display: inline-block;
   margin: 0 15px;

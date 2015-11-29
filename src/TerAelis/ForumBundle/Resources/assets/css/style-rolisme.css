@@ -6,7 +6,7 @@ body {
   font-size: 13px;
   padding: 0;
   margin: 0 0 -10px 0;
-  background-color: #3C281D;
+  background-color: #3c281d;
   word-wrap: break-word; }
 
 div, span {
@@ -15,7 +15,7 @@ div, span {
 
 body {
   font-family: Verdana, Arial, Helvetica, sans-serif;
-  color: #ffffff; }
+  color: white; }
 
 p {
   word-wrap: break-word; }
@@ -25,7 +25,7 @@ em {
   font-style: italic; }
 
 a {
-  color: #ffffff;
+  color: white;
   text-decoration: none; }
 
 p a {
@@ -35,7 +35,7 @@ a.pseudo {
   font-weight: 700; }
 
 .btn, .small-btn, .btn-disabled {
-  color: #ffffff;
+  color: white;
   display: inline-block;
   text-transform: uppercase;
   font-family: Oswald, sans-serif;
@@ -49,13 +49,13 @@ button {
 
 .btn {
   padding: 5px 15px;
-  color: #ffffff;
+  color: white;
   background-color: #20543e; }
 
 .btn-disabled {
   padding: 5px 15px;
   background-color: #20543e;
-  color: #bbb; }
+  color: #bbbbbb; }
 
 .small-btn {
   font-size: 0.76em;
@@ -76,7 +76,7 @@ button {
 .sujet_contenu .small-btn {
   display: inline-block;
   margin: 0;
-  color: #ffffff;
+  color: white;
   background: #5a5a5c;
   border: none;
   padding: 5px 10px; }
@@ -102,21 +102,31 @@ button {
 
 .btn:hover, .btn:focus, .btn:active, .small-btn:hover, .small-btn:focus, .small-btn:active {
   background-color: #16412d;
-  color: #ffffff;
+  color: white;
   text-decoration: none; }
 
 .btn.active, .btn:active, .small-btn:active {
   background-color: #16412d;
-  color: #ffffff; }
+  color: white; }
 
 .btn-disabled:hover, .btn-disabled:focus, .btn-disabled:active {
   background-color: #20543e;
-  color: #bbb;
+  color: #bbbbbb;
   text-decoration: none; }
 
 .btn.main {
   display: block;
   margin: 0 auto; }
+
+.btn-text {
+  background: none;
+  border: none;
+  font-weight: bold;
+  color: white;
+  margin: 0 5px;
+  padding: 0 5px; }
+  .btn-text:hover {
+    text-decoration: underline; }
 
 .single-ligne div {
   display: inline-block;
@@ -150,7 +160,7 @@ blockquote {
   color: #309a72; }
 
 .rolisme a:hover, .interpole a:hover {
-  color: #ffffff; }
+  color: white; }
 
 a:hover {
   text-decoration: underline;
@@ -189,14 +199,14 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 
 .container {
   margin: 0 auto;
-  background-color: #3C281D;
+  background-color: #3c281d;
   background: url("../../bundles/teraelisforum/img/rolisme/content_slide.jpg") repeat-y center; }
 
 .block {
   display: block;
   margin: 15px 0;
   background-color: #312c29;
-  color: #ffffff;
+  color: white;
   border: solid #00533f;
   border-width: 1px 1px 1px 1px;
   padding: 15px; }
@@ -350,7 +360,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
     width: calc((100vw - 985px) / 2); } }
 #content_center {
   background: url("../../bundles/teraelisforum/img/rolisme/content_slide.jpg") repeat-y center;
-  background-color: #A98265; }
+  background-color: #a98265; }
 
 /* Nav */
 .sidebar {
@@ -428,7 +438,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   margin: 0;
   padding: 5px 10px 5px 15px;
   background-color: #666666;
-  color: #ffffff; }
+  color: white; }
 
 .sidebar h3 a.expand {
   float: right; }
@@ -464,7 +474,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   padding: 1px;
   width: 186px;
   background-color: #312c29;
-  color: #ffffff;
+  color: white;
   display: table;
   table-layout: fixed; }
 
@@ -513,7 +523,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   margin: 0; }
 
 .sidebar .posts h4, .post .title h4 {
-  color: #ffffff;
+  color: white;
   margin: 0 0 5px 0;
   font-family: Rambla, sans-serif;
   font-weight: 700;
@@ -522,7 +532,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   font-size: 1.1em; }
 
 .sidebar .sub .posts a {
-  color: #ffffff; }
+  color: white; }
 
 .sidebar .post .meta a {
   display: block;
@@ -533,7 +543,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   line-height: 1.4em; }
 
 .sidebar .post p {
-  color: #ffffff;
+  color: white;
   margin: 8px 0;
   overflow: hidden;
   max-height: 197px; }
@@ -633,7 +643,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   width: 469px;
   width: calc(100% - 306px);
   padding: 5px 15px 5px 15px;
-  color: #ffffff;
+  color: white;
   text-overflow: ellipsis;
   border: 1px solid #464646;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.1) inset, 0 0 10px rgba(0, 0, 0, 0.25);
@@ -647,7 +657,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   margin: 0; }
 
 .cat_description h3 a {
-  color: #ffffff; }
+  color: white; }
 
 .cat_description p {
   margin: 0; }
@@ -660,7 +670,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   height: 100px;
   width: 150px;
   background-color: #464646;
-  color: #fff;
+  color: white;
   padding: 0 0 0 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); }
 
@@ -680,7 +690,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 
 .rolisme .cat_last, .listSujets .post_last {
   background-color: #00533f;
-  color: #fff;
+  color: white;
   position: relative; }
 
 .cat_last h4 {
@@ -694,11 +704,11 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   font-size: 10px;
   margin: 2px 0 0 0;
   line-height: 18px;
-  color: #fff; }
+  color: white; }
 
 .cat_last a {
   font-size: 12px;
-  color: #fff;
+  color: white;
   font-weight: 700;
   text-decoration: underline;
   overflow: hidden;
@@ -732,7 +742,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 .listSujets th {
   background-color: #00533f;
   height: 20px;
-  color: #fff;
+  color: white;
   font-family: "Oswald", sans-serif;
   font-weight: 400;
   letter-spacing: 4.5px;
@@ -742,13 +752,13 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   border-bottom: 1px solid #53a652; }
 
 .listSujets th a {
-  color: #fff; }
+  color: white; }
 
 .listSujets td {
   height: 20px;
   border: 1px solid #00533f;
   background-color: #312c29;
-  color: #ffffff;
+  color: white;
   padding: 5px; }
 
 .listSujets .table-separation {
@@ -762,10 +772,10 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   font-size: 0.9em; }
 
 .listSujets .vu {
-  color: #3C281D; }
+  color: #3c281d; }
 
 .listSujets a {
-  color: #ffffff; }
+  color: white; }
 
 .listSujets h3 {
   font-family: "Rambla", sans-serif;
@@ -781,7 +791,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   font-size: 1.1em; }
 
 .listSujets .empty {
-  color: #fff;
+  color: white;
   background-color: #464646;
   padding: 5px; }
 
@@ -799,7 +809,7 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
 .sujet .title, .sondage .title {
   margin: 0;
   background-color: #00533f;
-  color: #fff;
+  color: white;
   border-bottom: 1px solid #53a652; }
 
 .sujet .title {
@@ -818,17 +828,17 @@ input[type="submit"], input[type="checkbox"], input[type="radio"] {
   margin: 0; }
 
 .sujet .title a {
-  color: #fff; }
+  color: white; }
 
 .sujet_tags {
   font-size: 0.8em; }
 
 .sujet_tags, .sujet .sujet_tags a {
-  color: #ccc; }
+  color: #cccccc; }
 
 .sujet_main, .sondage {
   background-color: #312c29;
-  color: #ffffff; }
+  color: white; }
 
 .sondage_results {
   text-align: center;
@@ -882,7 +892,7 @@ article:not(:last-child) .sujet_main {
   overflow: auto;
   font-size: 13px;
   line-height: 1.5em;
-  color: #ffffff; }
+  color: white; }
 
 .sujet_contenu--padding {
   padding: 15px; }
@@ -897,7 +907,7 @@ article:not(:last-child) .sujet_main {
 
 .sujet_contenu th {
   background: #00533f;
-  color: #fff; }
+  color: white; }
 
 .sujet_contenu .modification {
   margin-top: 10px;
@@ -905,7 +915,7 @@ article:not(:last-child) .sujet_main {
   .sujet_contenu .modification a {
     text-decoration: none; }
   .sujet_contenu .modification a:hover {
-    color: #ffffff; }
+    color: white; }
 
 .sujet_contenu .date {
   font-weight: bold; }
@@ -989,7 +999,7 @@ article:not(:last-child) .sujet_main {
 
 .moderation .small-btn {
   background: #5a5a5c;
-  color: #ffffff; }
+  color: white; }
 
 .moderation .small-btn.img-btn {
   padding: 0;
@@ -1131,7 +1141,7 @@ section.infos h1 > a {
   border-right: 1px solid #53a652;
   border-bottom: 1px solid #53a652;
   background-color: #00533f;
-  color: #fff;
+  color: white;
   font-family: Oswald, sans-serif;
   font-size: 0.9em;
   letter-spacing: 4px;
@@ -1152,17 +1162,17 @@ section.infos h1 > a {
   padding: 10px;
   width: 80%;
   border-bottom: 1px solid #00533f;
-  color: #ffffff; }
+  color: white; }
 
 .form-input input {
   background-color: #312c29;
-  color: #ffffff; }
+  color: white; }
 
 .form-input textarea {
   width: 100%;
   min-height: 200px;
   background-color: #312c29;
-  color: #ffffff; }
+  color: white; }
 
 .formulaire--small-width {
   width: auto; }
@@ -1247,11 +1257,11 @@ li:last-child .bbcode-img-btn {
   display: block; }
 
 .salon .info {
-  color: #999;
+  color: #999999;
   margin: 0 0 5px; }
 
 .salon .info a {
-  color: #999; }
+  color: #999999; }
 
 .salon .discussion {
   display: table-cell; }
@@ -1260,7 +1270,7 @@ li:last-child .bbcode-img-btn {
   margin: 0 1px 5px 1px;
   padding: 0;
   background-color: #312c29;
-  color: #ffffff;
+  color: white;
   overflow-y: scroll;
   overflow-x: hidden;
   min-height: 200px;
@@ -1279,12 +1289,12 @@ li:last-child .bbcode-img-btn {
   background-color: #312c29;
   border: solid #00533f;
   border-width: 1px 1px 3px 1px;
-  color: #ffffff; }
+  color: white; }
 
 .salon input[type="submit"] {
   float: right;
   background-color: #00533f;
-  color: #ffffff;
+  color: white;
   margin: 5px 0;
   font-size: 1em; }
 
@@ -1300,7 +1310,7 @@ li:last-child .bbcode-img-btn {
   padding: 10px 0;
   display: block;
   background-color: #312c29;
-  color: #ffffff;
+  color: white;
   border-bottom: 1px solid #00533f; }
 
 /* Footer */
@@ -1317,7 +1327,7 @@ li:last-child .bbcode-img-btn {
 
 .decoda-spoiler-button {
   background: #20543e;
-  color: #ffffff;
+  color: white;
   display: inline-block;
   text-transform: uppercase;
   font-family: Oswald, sans-serif;
@@ -1446,5 +1456,3 @@ li:last-child .bbcode-img-btn {
 
 .cat_last {
   width: 19.5%; }
-
-/*# sourceMappingURL=style-rolisme.css.map */

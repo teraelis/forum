@@ -174,16 +174,16 @@ class ForumController extends Controller
             } else {
                 $category = $arrayCategories[$c->getId()];
             }
-            if(isset($perm['voirCategorie'][$c->getId()]) && $perm['voirCategorie'][$c->getId()] == 1) {
+            if(isset($perm['voirSujet'][$c->getId()]) && $perm['voirSujet'][$c->getId()] == 1) {
                 $children = $c->getChildren();
                 foreach ($children as $child) {
                     $childId = $child->getId();
                     if(array_key_exists($childId, $arrayCategories)) {
                         $childLastPost = $arrayCategories[$childId]->getLastPost();
                         if (!empty($childLastPost)
-                            && isset($perm['voirCategorie'][$childId])
-                            && !empty($perm['voirCategorie'][$childId])
-                            && $perm['voirCategorie'][$childId] == 1
+                            && isset($perm['voirSujet'][$childId])
+                            && !empty($perm['voirSujet'][$childId])
+                            && $perm['voirSujet'][$childId] == 1
                         ) {
                             $c->setLastPost($childLastPost);
                         }

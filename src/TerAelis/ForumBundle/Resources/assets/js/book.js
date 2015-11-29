@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var opened = false;
+  var scrollTop = 0;
 
   var currentState = {
     modalFontColor: '#333333',
@@ -7,7 +7,7 @@ $(document).ready(function() {
     modalFontFamily: 'Georgia, serif',
     modalLineHeight: 1.5,
     modalFontSize: 18,
-    modalWidth: 600
+    modalWidth: 550
   };
   var modalFontColor, modalBackgroundColor, modalFontFamily, modalFontSize, modalWidth;
 
@@ -20,10 +20,10 @@ $(document).ready(function() {
       catch (e) {
         savedData = {};
       }
-    }
-    else {
+    } else {
       savedData = {};
     }
+
     for (var key in currentState) {
       if (currentState.hasOwnProperty(key) && savedData.hasOwnProperty(key)) {
         currentState[key] = savedData[key];
@@ -48,15 +48,16 @@ $(document).ready(function() {
         );
 
       $(this).show();
+      scrollTop = $('body').scrollTop();
       $('body').scrollTop(0);
       $(this).trigger('updateView');
       $(this).trigger('updateFields');
     })
     .on('close', function() {
       $(this).hide();
+      $('body').scrollTop(scrollTop);
     })
     .on('updateView', function() {
-      console.log("test");
       $(this).find('.js-book-modal-content')
         .css('font-family', currentState.modalFontFamily)
         .css('line-height', currentState.modalLineHeight+'em')
@@ -129,9 +130,7 @@ $(document).ready(function() {
     $jsBook.on('open', openFunc);
 
     $jsBook.find('.js-book-button-open').on('click', function() {
-      var styles = $jsBook.data('styles');
-      styles = styles.split(',');
-      openFunc(styles);
+      openFunc();
     });
   });
 });
