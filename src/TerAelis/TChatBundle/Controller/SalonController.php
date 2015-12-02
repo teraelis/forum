@@ -28,7 +28,7 @@ class SalonController extends Controller
         $repo = $this->get('doctrine.orm.entity_manager')
             ->getRepository('TerAelisTChatBundle:Salon');
 
-        $salons = $repo->getRooms($user->getId(), null);
+        $salons = $repo->getRooms($user->getId(), null, null, true);
 
         $nonVuBySalonId = $this->getNonVusBySalon($user, $salons);
 
@@ -59,6 +59,19 @@ class SalonController extends Controller
                 $public[] = $salon;
             }
         }
+
+        uasort(
+            $private,
+            function($a, $b) {
+                if($a['user']->getUsername() < $b['user']->getUsername()) {
+                    return 1;
+                } elseif($a['user']->getUsername() > $b['user']->getUsername()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        );
 
         return $this->render('TerAelisTChatBundle:Salon:list.html.twig', array(
             'private' => $private,

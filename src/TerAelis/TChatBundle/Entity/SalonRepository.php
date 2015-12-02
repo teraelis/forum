@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class SalonRepository extends EntityRepository
 {
-    public function getRooms($user, $nb = null, $public = null) {
+    public function getRooms($user, $nb = null, $public = null, $orderByName = false) {
         $query = $this->createQueryBuilder('s')
             ->leftJoin('s.users', 'u')
             ->leftJoin('s.mods', 'm')
@@ -20,8 +20,12 @@ class SalonRepository extends EntityRepository
         if($public !== null) {
             $query = $query->andWhere('s.private = ' . ($public ? '0' : '1'));
         }
-        $query = $query->orderBy('s.lastUpdate', 'DESC')
-            ->getQuery();
+        if($orderByName) {
+            $query = $query->orderBy('s.name', 'ASC');
+        } else {
+            $query = $query->orderBy('s.lastUpdate', 'DESC');
+        }
+        $query = $query->getQuery();
         if($nb != null) {
             $query = $query->setMaxResults($nb);
         }
