@@ -114,6 +114,7 @@ class PostStatistics {
             } else {
                 $c->setLastPost($post, true);
             }
+            unset($post);
             $result[] = $c;
         }
 
