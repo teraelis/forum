@@ -22,20 +22,28 @@
                 {% endspaceless %}</div>
             {% endif %}
 
-            <p class="date">
-                {{ sujet.datePublication |localizeddate('medium', 'none') }} - {{ sujet.datePublication | localizeddate('none', 'short') }}
-            </p>
+            <div class="book js-book">
+                <p class="date js-book-buttons">
+                    {{ sujet.datePublication |localizeddate('medium', 'none') }}
+                    - {{ sujet.datePublication | localizeddate('none', 'short') }}
+                    <button type="button" class="btn-text js-book-button-open">
+                        Ouvrir la lecture confortable
+                    </button>
+                </p>
 
-            {% for content in sujet.getFormulaireDonnees() %}
-                {% if content.contenu is defined and content.contenu != null %}
-                    {% if content.type is defined and content.type.isTitleVisible() %}
-                        <h3>
-                            {{ content.type.nom }}
-                        </h3>
-                    {% endif %}
-                    <p class="paragraphe">{{ content.contenu|bbcode_filter('my_default_filter') }}</p>
-                {% endif %}
-            {% endfor %}
+                <div class="js-content js-book-content">
+                    {% for content in sujet.getFormulaireDonnees() %}
+                        {% if content.contenu is defined and content.contenu != null %}
+                            {% if content.type is defined and content.type.isTitleVisible() %}
+                                <h3>
+                                    {{ content.type.nom }}
+                                </h3>
+                            {% endif %}
+                            <p class="paragraphe">{{ content.contenu|bbcode_filter('my_default_filter') }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
 
             {% if author is not defined %}
                 {% set author = sujet.authors.first() %}
