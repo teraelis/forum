@@ -96,6 +96,7 @@ class PostStatistics {
                 $p->setLastAuthor($comment->getAuthor());
                 $p->setLastComment($comment->getCreatedAt());
             }
+            unset($comment);
 
             $postsList[] = $p;
         }
