@@ -179,13 +179,13 @@ class ForumController extends Controller
                 foreach ($children as $child) {
                     $childId = $child->getId();
                     if(array_key_exists($childId, $arrayCategories)) {
-                        $childLastPost = $arrayCategories[$childId]->getLastPost();
+                        $childLastPost = $arrayCategories[$childId]->getLastViewPost();
                         if (!empty($childLastPost)
                             && isset($perm['voirSujet'][$childId])
                             && !empty($perm['voirSujet'][$childId])
                             && $perm['voirSujet'][$childId] == 1
                         ) {
-                            $c->setLastPost($childLastPost);
+                            $c->setLastViewPost($childLastPost);
                         }
                     }
 
@@ -316,6 +316,7 @@ class ForumController extends Controller
     public function getStats() {
         $em = $this->getDoctrine()
             ->getManager();
+        $em->
         $statsRepo = $em->getRepository('TerAelisStatistiquesBundle:Stats');
         if($statsRepo->needUpdate()) {
             $stats = new Stats();

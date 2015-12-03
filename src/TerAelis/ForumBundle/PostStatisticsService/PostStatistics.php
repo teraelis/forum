@@ -96,7 +96,6 @@ class PostStatistics {
                 $p->setLastAuthor($comment->getAuthor());
                 $p->setLastComment($comment->getCreatedAt());
             }
-            unset($comment);
 
             $postsList[] = $p;
         }
@@ -118,7 +117,6 @@ class PostStatistics {
             } else {
                 $c->setLastPost($post, true);
             }
-            unset($post);
             $result[] = $c;
         }
 

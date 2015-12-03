@@ -13,17 +13,17 @@
                     <p>{{ child.description }}</p>
                 </span>
                 <span class="cat_last">
-                    {% if child.lastPost is defined and child.lastPost is not null %}
-                        <a class="lienimage" href="{{ path("taforum_voirSujet_last", {'pole': pole_aff, 'slug': child.lastPost.slug}) }}"><img src="{{ asset('bundles/teraelisforum/img/'~pole~'/last_message.png') }}" alt="Aller au dernier message" title="Aller au dernier message" /></a>
+                    {% if child.lastViewPost is defined and child.lastViewPost is not null %}
+                        <a class="lienimage" href="{{ path("taforum_voirSujet_last", {'pole': pole_aff, 'slug': child.lastViewPost.slug}) }}"><img src="{{ asset('bundles/teraelisforum/img/'~pole~'/last_message.png') }}" alt="Aller au dernier message" title="Aller au dernier message" /></a>
                     {% endif %}
                     <h4>Dernier message</h4>
                     <p>
-                        {% if child.lastPost is defined and child.lastPost is not null %}
+                        {% if child.lastViewPost is defined and child.lastViewPost is not null %}
                             <span class="cat_last_title">
-                                <a href="{{ path("taforum_voirSujet_last", {'pole': pole_aff, 'slug': child.lastPost.slug}) }}">{{ short((child.lastPost.getBalise() is not empty ? '['~child.lastPost.getBalise().getCourt()~'] ' : '' ) ~ child.lastPost.title) }}</a><br />
+                                <a href="{{ path("taforum_voirSujet_last", {'pole': pole_aff, 'slug': child.lastViewPost.slug}) }}">{{ short((child.lastViewPost.getBalise() is not empty ? '['~child.lastViewPost.getBalise().getCourt()~'] ' : '' ) ~ child.lastViewPost.title) }}</a><br />
                             </span>
-                            {{ child.lastPost.lastComment | localizeddate('none', 'short') }} - {{ child.lastPost.lastComment |localizeddate('medium', 'none') }}<br />
-                            {{ authors(child.lastPost.getLastAuthor(), true) }}
+                            {{ child.lastViewPost.lastComment | localizeddate('none', 'short') }} - {{ child.lastViewPost.lastComment |localizeddate('medium', 'none') }}<br />
+                            {{ authors(child.lastViewPost.getLastAuthor(), true) }}
                         {% else %}
                             Pas de message
                         {% endif %}

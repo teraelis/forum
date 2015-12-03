@@ -127,6 +127,11 @@ class Categorie
     private $lastPost = null;
 
     /**
+     * @var Post|null
+     */
+    private $lastViewPost = null;
+
+    /**
      * @ORM\OneToMany(targetEntity="TerAelis\ForumBundle\Entity\Post", mappedBy="mainCategorie")
      */
     private $posts = null;
@@ -566,8 +571,10 @@ class Categorie
      * @param Post|null $lastPost
      */
     public function setLastPost($lastPost, $force = false) {
-        if($force || $lastPost === null || $this->lastPost === null || $this->lastPost->getLastComment() < $lastPost->getLastComment())
+        if($force || $lastPost === null || $this->lastPost === null || $this->lastPost->getLastComment() < $lastPost->getLastComment()) {
             $this->lastPost = $lastPost;
+            $this->lastViewPost = $lastPost;
+        }
     }
 
     /**
@@ -575,6 +582,25 @@ class Categorie
      */
     public function getLastPost() {
         return $this->lastPost;
+    }
+
+    /**
+     * @return Post|null
+     */
+    public function getLastViewPost()
+    {
+        return (empty($this->lastViewPost) ? $this->lastPost : $this->lastViewPost);
+    }
+
+    /**
+     * @param Post|null $lastViewPost
+     */
+    public function setLastViewPost($lastViewPost)
+    {
+        if($this->lastPost === null || ($lastViewPost !== null && $this->lastPost->getLastComment() < $lastViewPost->getLastComment())) {
+            $this->lastViewPost = $lastViewPost;
+        }
+        return $this;
     }
 
     /**

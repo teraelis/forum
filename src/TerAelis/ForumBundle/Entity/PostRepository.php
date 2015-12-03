@@ -135,6 +135,7 @@ class PostRepository extends EntityRepository
     public function findLastByCategorie($categorie)
     {
         $res = $this->createQueryBuilder('p')
+            ->addSelect('c')
             ->join('p.mainCategorie', 'c')
             ->where('c.id = ' . $categorie->getId())
             ->andWhere('p.datePublication <= :today')
