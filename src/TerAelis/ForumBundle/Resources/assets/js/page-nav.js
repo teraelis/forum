@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
   function toggleFunc(display) {
-    console.log('toggle');
     updateView.bind(this)(!display);
     return !display;
   }

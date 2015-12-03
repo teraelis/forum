@@ -2,7 +2,6 @@
   var app = angular.module("TchatTerAelis", ['ngResource', 'ngSanitize']);
 
   app.controller("tchatController", ['$scope', '$sce', '$resource', function($scope, $sce, $resource) {
-    console.log(Routing);
     var messagesRest = $resource(
       decodeURIComponent(Routing.generate(
         'teraelis_tchat_getLastMessage',

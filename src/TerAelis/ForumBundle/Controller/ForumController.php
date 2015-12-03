@@ -316,7 +316,6 @@ class ForumController extends Controller
     public function getStats() {
         $em = $this->getDoctrine()
             ->getManager();
-        $em->
         $statsRepo = $em->getRepository('TerAelisStatistiquesBundle:Stats');
         if($statsRepo->needUpdate()) {
             $stats = new Stats();
