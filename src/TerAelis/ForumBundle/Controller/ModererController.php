@@ -143,19 +143,8 @@ class ModererController extends Controller
                 }
 
                 // On mets a jour les infos des catégories
-                $categorieId = $categorie->getId();
-                $categoriesId = [];
-                while(!empty($categorie)) {
-                    $categoriesId[$categorie->getId()] = $categorie->getId();
-                    $categorie = $categorie->getParent();
-                }
-                $categorie = $newCategorie;
-                while(!empty($categorie)) {
-                    $categoriesId[$categorie->getId()] = $categorie->getId();
-                    $categorie = $categorie->getParent();
-                }
                 $postStatsService = $this->container->get('ter_aelis_forum.post_statistics');
-                $postStatsService->refreshCategories($categoriesId);
+                $postStatsService->refreshCategories(array($categorie, $newCategorie));
 
                 $em->commit();
                 return $this->redirect($this->generateUrl('taforum_deplacer_liste', array(
@@ -238,17 +227,6 @@ class ModererController extends Controller
                 $mainCategorie = $post->getMainCategorie();
                 $post->addCategory($mainCategorie);
 
-                $categoriesId = array();
-                while(!empty($categorie)) {
-                    $categoriesId[$categorie->getId()] = $categorie->getId();
-                    $categorie = $categorie->getParent();
-                }
-                $categorie = $mainCategorie;
-                while(!empty($categorie)) {
-                    $categoriesId[$categorie->getId()] = $categorie->getId();
-                    $categorie = $categorie->getParent();
-                }
-
                 // Récupération du contenu
                 $arrayFormulaireDonnees = [];
                 $body = "";
@@ -280,7 +258,7 @@ class ModererController extends Controller
 
                 // On s'assure de la bonne vision des derniers messages et des stats
                 $postStatsService = $this->container->get('ter_aelis_forum.post_statistics');
-                $postStatsService->refreshCategories($categoriesId);
+                $postStatsService->refreshCategories(array($categorie, $mainCategorie));
 
                 $em->commit();
                 return $this->redirect($this->generateUrl('taforum_voirSujet', array(
@@ -459,14 +437,8 @@ class ModererController extends Controller
                 }
                 $em->flush();
 
-                $categorieId = $categorie->getId();
-                $categoriesId = array();
-                while(!empty($categorie)) {
-                    $categoriesId[$categorie->getId()] = $categorie->getId();
-                    $categorie = $categorie->getParent();
-                }
                 $postStatsService = $this->container->get('ter_aelis_forum.post_statistics');
-                $postStatsService->refreshCategories($categoriesId);
+                $postStatsService->refreshCategories(array($categorie));
 
                 $em->commit();
 

@@ -95,7 +95,7 @@ class CategorieRepository extends NestedTreeRepository
         if(!empty($categories)) {
             $query->where('1 = 0');
             foreach ($categories as $cat) {
-                $query->orWhere('(c.root = ' . $cat->getRoot() . ' and c.lft >= ' . $cat->getLft() . ' and c.rgt <= ' . $cat->getRgt() . ')');
+                $query->orWhere('(c.root = ' . $cat->getRoot() . ' and c.lft <= ' . $cat->getLft() . ' and c.rgt >= ' . $cat->getRgt() . ')');
             }
         }
         $query->orderBy('c.lvl', 'DESC');

@@ -161,13 +161,7 @@ class ThreadController extends Controller
                     $postStatistics = $this->get('ter_aelis_forum.post_statistics');
                     $postStatistics->refreshPosts(array($post));
 
-                    $categorieIds = array();
-                    $parent = $categorie;
-                    while ($parent != null) {
-                        $categorieIds[] = $parent->getId();
-                        $parent = $parent->getParent();
-                    }
-                    $postStatistics->refreshCategories($categorieIds);
+                    $postStatistics->refreshCategories(array($categorie));
 
                     $em->commit();
 
@@ -359,13 +353,7 @@ class ThreadController extends Controller
                 $postStatistics = $this->get('ter_aelis_forum.post_statistics');
                 $postStatistics->refreshPosts(array($post));
 
-                $parent = $categorie;
-                $categoriesId = array();
-                while ($parent != null) {
-                    $categoriesId[$parent->getId()] = $parent->getId();
-                    $parent = $parent->getParent();
-                }
-                $postStatistics->refreshCategories($categoriesId);
+                $postStatistics->refreshCategories(array($categorie));
 
                 $em->commit();
 

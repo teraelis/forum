@@ -401,13 +401,7 @@ class PostController extends Controller
                         $nonVuService->updateNonVu($post);
 
                         // Update des infos des categories
-                        $categoriesId = array();
-
-                        while ($categorie != null) {
-                            $categoriesId[$categorie->getId()] = $categorie->getId();
-                            $categorie = $categorie->getParent();
-                        }
-                        $this->get('ter_aelis_forum.post_statistics')->refreshCategories($categoriesId);
+                        $this->get('ter_aelis_forum.post_statistics')->refreshCategories(array($categorie));
 
                         // On informe le user que c'est bon
                         $this->get('session')->getFlashBag()->add('info', 'Le sujet a été créé avec succès');
@@ -571,12 +565,7 @@ class PostController extends Controller
 
                     // Update stats des catégories
                     $categorie = $sujet->getMainCategorie();
-                    $categoriesId = array();
-                    while ($categorie != null) {
-                        $categoriesId[$categorie->getId()] = $categorie->getId();
-                        $categorie = $categorie->getParent();
-                    }
-                    $this->get('ter_aelis_forum.post_statistics')->refreshCategories($categoriesId);
+                    $this->get('ter_aelis_forum.post_statistics')->refreshCategories(array($categorie));
 
                     // On informe le user que c'est bon
                     $this->get('session')->getFlashBag()->add('info', 'Le sujet a été modifié avec succès');
@@ -661,13 +650,9 @@ class PostController extends Controller
             $em->flush();
 
             // Mise a jour des infos des categories
-            $parent = $categorie;
-            $categoriesId = [];
-            while ($parent != null) {
-                $categoriesId[] = $parent->getId();
-                $parent = $parent->getParent();
-            }
-            $this->get('ter_aelis_forum.post_statistics')->refreshCategories($categoriesId);
+            $this->get('ter_aelis_forum.post_statistics')->refreshCategories(
+                array($categorie)
+            );
 
             $em->commit();
 
@@ -865,14 +850,9 @@ class PostController extends Controller
                     ->updateNonVu($sujet);
             }
 
-            $categoriesIds = array();
-            while(!empty($categorie)) {
-                $categoriesIds[$categorie->getId()] = $categorie->getId();
-                $categorie = $categorie->getParent();
-            }
             $this->get('ter_aelis_forum.post_statistics')
                 ->refreshCategories(
-                    $categoriesIds
+                    array($categorie)
                 );
 
             $em->commit();

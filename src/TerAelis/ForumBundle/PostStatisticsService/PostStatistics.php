@@ -17,8 +17,7 @@ class PostStatistics {
         $this->em = $em;
     }
 
-    public function refreshCategories($arrayCategoryId = array())
-    {
+    public function refreshCategoriesIds($arrayCategoryId = array()) {
         if(!empty($arrayCategoryId)) {
             $categories = $this->categoryRepo
                 ->findByArrayId($arrayCategoryId);
@@ -29,6 +28,10 @@ class PostStatistics {
             $categories = array();
         }
 
+        $this->refreshCategories($categories);
+    }
+
+    public function refreshCategories($categories = array()) {
         $fullCategories = $this->categoryRepo
             ->findFullCategories($categories);
         if($fullCategories == null || count($fullCategories) <= 0) {
