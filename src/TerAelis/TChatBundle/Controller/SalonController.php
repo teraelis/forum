@@ -63,13 +63,10 @@ class SalonController extends Controller
         uasort(
             $private,
             function($a, $b) {
-                if($a['user']->getUsername() < $b['user']->getUsername()) {
-                    return 1;
-                } elseif($a['user']->getUsername() > $b['user']->getUsername()) {
-                    return -1;
-                } else {
-                    return 0;
-                }
+                return strcmp(
+                    $a['user']->getUsernameCanonical(),
+                    $b['user']->getUsernameCanonical()
+                );
             }
         );
 
