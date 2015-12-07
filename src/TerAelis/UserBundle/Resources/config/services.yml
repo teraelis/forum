@@ -34,3 +34,24 @@ services:
       - @teraelis.tchat.persist_chat
       - %default_bot_user_id%
       - @teraelis.registration.message_service
+
+  teraelis.user_manager:
+    class: TerAelis\UserBundle\Model\UserManager
+    arguments:
+      - @security.encoder_factory
+      - @fos_user.util.username_canonicalizer
+      - @fos_user.util.email_canonicalizer
+      - @fos_user.entity_manager
+      - %fos_user.model.user.class%
+
+  teraelis.username_transformer:
+    class: TerAelis\UserBundle\Form\DataTransformer\UserToUsernameTransformer
+    arguments:
+      - @teraelis.user_manager
+
+  teraelis.username_form_type:
+    class: TerAelis\UserBundle\Form\UsernameFormType
+    arguments:
+      - @teraelis.username_transformer
+    tags:
+      - { name: "form.type", alias: "teraelis_user_username" }

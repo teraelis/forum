@@ -89,7 +89,7 @@ class GroupController extends Controller
         return $this->redirect($this->generateUrl('group_liste'));
     }
 
-    public function addUserAction($id) {
+    public function addUserAction(Request $request, $id) {
         /* Récupération du groupe */
         $em = $this->getDoctrine()
             ->getManager();
@@ -128,29 +128,16 @@ class GroupController extends Controller
         $role = new UserRole();
         $role->setGroupe($group);
 
-        $form = $this->createFormBuilder($role)
-            ->add('user', 'text')
+        $form = $this->createFormBuilder()
+            ->add('user', $this->get('teraelis.username_form_type'))
             ->getForm();
 
         // Le formulaire est déjà envoyé
-        $request = $this->getRequest();
         if ($request->getMethod() == 'POST')
         {
-            // On récupère les informations
-            $form->bind($request);
-
-            // On l'ajoute dans la BDD
-            $em = $this->getDoctrine()->getManager();
-            $repositoryUser = $em->getRepository("TerAelisUserBundle:User");
-            $user = $repositoryUser->findOneByName($form["user"]->getData());
-
-            if(empty($user)) {
-                $form->addError(new FormError('Cet utilisateur n\'existe pas.'));
-            }
-
-            // Gestion de la validation du formulaire
-            if ($form->isValid())
-            {
+            $form->handleRequest($request);
+            if($form->isValid() && $form->isSubmitted()) {
+                $user = $form->get('user')->getData();
                 $role->setUser($user);
                 $role->setRole("usr");
                 $em->persist($role);
@@ -165,7 +152,6 @@ class GroupController extends Controller
 
                 // Puis on redirige vers la page de visualisation de cet article
                 return $this->redirect( $this->generateUrl('group_view', array('id' => $id)) );
-
             }
         }
 

@@ -82,7 +82,7 @@ class SalonController extends Controller
         $salon = new Salon;
         $form = $this->createForm(new SalonType(), $salon,
             array(
-                'userType' => $this->get('fos_user.username_form_type')
+                'userType' => $this->get('teraelis.username_form_type')
             )
         );
 
@@ -331,7 +331,7 @@ class SalonController extends Controller
         /* Gestion du formulaire */
         $userAdded = new User();
         $form = $this->createFormBuilder()
-            ->add('user', $this->get('fos_user.username_form_type'))
+            ->add('user', $this->get('teraelis.username_form_type'))
             ->getForm();
 
         // Le formulaire est déjà envoyé

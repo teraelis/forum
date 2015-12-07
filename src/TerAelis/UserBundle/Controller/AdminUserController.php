@@ -13,7 +13,7 @@ class AdminUserController extends Controller
 {
     public function indexAction(Request $request) {
         $form = $this->createFormBuilder()
-            ->add('user', $this->get('fos_user.username_form_type'))
+            ->add('user', $this->get('teraelis.username_form_type'))
             ->add('chercher', 'submit')
             ->getForm();
 

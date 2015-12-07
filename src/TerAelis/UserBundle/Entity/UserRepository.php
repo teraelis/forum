@@ -46,22 +46,25 @@ class UserRepository extends EntityRepository
      */
     public function findByName($name) {
         return $this->createQueryBuilder('u')
-            ->where("u.username = '".$name."' or u.usernameCanonical = '".$name."'")
+            ->where("u.username = ?1 or u.usernameCanonical = ?2")
             ->getQuery()
+            ->setParameters(array(
+                1 => $name,
+                2 => $name,
+            ))
             ->getResult();
     }
 
     public function findOneByName($name) {
-        $users = $this->createQueryBuilder('u')
-            ->where("u.username = '".$name."' or u.usernameCanonical = '".$name."'")
+        return $this->createQueryBuilder('u')
+            ->where("u.username = ?1 or u.usernameCanonical = ?2")
+            ->setParameters(array(
+                1 => $name,
+                2 => $name,
+            ))
             ->getQuery()
             ->setMaxResults(1)
-            ->getResult();
-        $res = null;
-        foreach($users as $u) {
-            $res = $u;
-        }
-        return $res;
+            ->getOneOrNullResult();
     }
 
     public function getOnline() {

@@ -1,4 +1,4 @@
-To do when deploying
+To do lors du déploiement
     parameters.yml.dist
         -> bien parametrer
     config.yml
