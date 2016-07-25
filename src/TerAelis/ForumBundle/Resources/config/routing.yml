@@ -15,6 +15,11 @@ taforum_pole:
     requirements:
         pole: litterature|graphisme|rolisme
 
+#CGU
+#taforum_cgu:
+#    path:	/cgu
+
+
 # Qui est en ligne ?
 taforum_enligne:
     path:       /quiEstEnLigne
@@ -33,6 +38,7 @@ taforum_event_show:
     requirements:
         pole: litterature|graphisme|rolisme
         eventId: \d+
+
 
 taforum_event_edit:
     path:      /{pole}/calendrier/{eventId}/edit
